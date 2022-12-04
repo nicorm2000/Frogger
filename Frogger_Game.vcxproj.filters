@@ -2,11 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Src\main.cpp" />
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Objects\Player.cpp">
       <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Window\MainMenu.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

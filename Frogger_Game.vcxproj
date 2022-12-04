@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Src\main.cpp" />
     <ClCompile Include="Src\Objects\Player.cpp" />
+    <ClCompile Include="Src\Window\MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenu.h" />
