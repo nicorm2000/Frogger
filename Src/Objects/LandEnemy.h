@@ -7,11 +7,13 @@ namespace game
 	{
 		Vector2 landEnemyPosition{};
 		Vector2 landEnemySize;
-		Vector2 landEnemySpeed{};
+		float landEnemySpeed;
 		Color landEnemyColor;
 		Texture landEnemyTexture;
 	};
 
+	LandEnemy CreateMotorcycle(LandEnemy& landEnemy);
+	
 	LandEnemy CreateCar(LandEnemy& landEnemy);
 
 	LandEnemy CreateFastCar(LandEnemy& landEnemy);
