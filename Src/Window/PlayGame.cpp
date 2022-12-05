@@ -66,8 +66,10 @@ namespace game
 				DrawRectangle(0, 768, 1024, 64, GRAY);
 				DrawRectangle(0, 832, 1024, 64, GRAY);
 
+				//Sidewalk
+				DrawRectangle(0, 896, 1024, 64, LIGHTGRAY);
+				
 				//Start zone
-				DrawRectangle(0, 896, 1024, 64, DARKGREEN);
 				DrawRectangle(0, 960, 1024, 64, DARKGREEN);
 			}
 
@@ -133,5 +135,4 @@ namespace game
 			}
 		}
 	}
-
 }
