@@ -15,6 +15,10 @@ namespace game
 
 	void CheckPlayerInput(Frog& frog, bool& playingGame);
 
+	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h);
+
+	void GameCollisions(Frog& frog, LandEnemy landEnemy);
+
 	void GameLoop()
 	{
 		Initialize();
@@ -48,8 +52,16 @@ namespace game
 			ClearBackground(BLACK);
 
 			//Logic
-
-			CheckPlayerInput(frog, playingGame);
+			if (frog.isAlive)
+			{
+				CheckPlayerInput(frog, playingGame);
+			}
+			GameCollisions(frog, motorcycle);
+			GameCollisions(frog, car);
+			GameCollisions(frog, fastCar);
+			GameCollisions(frog, van);
+			GameCollisions(frog, bus);
+			GameCollisions(frog, truck);
 
 			//Enemy Logic
 			motorcycle.landEnemyPosition.x += motorcycle.landEnemySpeed * GetFrameTime();
@@ -147,6 +159,26 @@ namespace game
 			if (landEnemy.landEnemyPosition.x > GetScreenWidth() + 200)
 			{
 				landEnemy.landEnemyPosition.x = -200;
+			}
+		}
+	}
+
+	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h)
+	{
+		if (r1x + r1w >= r2x && r1x <= r2x + r2w && r1y + r1h >= r2y && r1y <= r2y + r2h)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	void GameCollisions(Frog& frog, LandEnemy landEnemy)
+	{
+		if (frog.isAlive)
+		{
+			if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, landEnemy.landEnemyPosition.x, landEnemy.landEnemyPosition.y, landEnemy.landEnemySize.x, landEnemy.landEnemySize.y))
+			{
+				frog.isAlive = false;
 			}
 		}
 	}
