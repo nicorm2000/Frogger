@@ -29,9 +29,9 @@ namespace game
 		SetExitKey(KEY_NULL);
 
 		bool playingGame = true;
-		//bool isPaused = false;
-		//bool exitWindow = false;
-		//bool gameFinished = false;
+		bool isPaused = false;
+		bool exitWindow = false;
+		bool gameFinished = false;
 
 		GameState gameState = GameState::GAMETITLE;
 
@@ -124,33 +124,65 @@ namespace game
 					//Logic
 
 					mousePosition = GetMousePosition();
-
-					if (frog.isAlive)
+					
+					if (!isPaused)
 					{
-						CheckPlayerInput(frog, playingGame);
+						if (frog.isAlive)
+						{
+							CheckPlayerInput(frog, playingGame);
+						}
+						GameCollisions(frog, motorcycle);
+						GameCollisions(frog, car);
+						GameCollisions(frog, fastCar);
+						GameCollisions(frog, van);
+						GameCollisions(frog, bus);
+						GameCollisions(frog, truck);
+
+						//Enemy Logic
+						motorcycle.landEnemyPosition.x += motorcycle.landEnemySpeed * GetFrameTime();
+						car.landEnemyPosition.x += car.landEnemySpeed * GetFrameTime();
+						fastCar.landEnemyPosition.x += fastCar.landEnemySpeed * GetFrameTime();
+						van.landEnemyPosition.x += van.landEnemySpeed * GetFrameTime();
+						bus.landEnemyPosition.x += bus.landEnemySpeed * GetFrameTime();
+						truck.landEnemyPosition.x += truck.landEnemySpeed * GetFrameTime();
+
+						LandEnemyTp(motorcycle);
+						LandEnemyTp(car);
+						LandEnemyTp(fastCar);
+						LandEnemyTp(van);
+						LandEnemyTp(bus);
+						LandEnemyTp(truck);
 					}
-					GameCollisions(frog, motorcycle);
-					GameCollisions(frog, car);
-					GameCollisions(frog, fastCar);
-					GameCollisions(frog, van);
-					GameCollisions(frog, bus);
-					GameCollisions(frog, truck);
 
-					//Enemy Logic
-					motorcycle.landEnemyPosition.x += motorcycle.landEnemySpeed * GetFrameTime();
-					car.landEnemyPosition.x += car.landEnemySpeed * GetFrameTime();
-					fastCar.landEnemyPosition.x += fastCar.landEnemySpeed * GetFrameTime();
-					van.landEnemyPosition.x += van.landEnemySpeed * GetFrameTime();
-					bus.landEnemyPosition.x += bus.landEnemySpeed * GetFrameTime();
-					truck.landEnemyPosition.x += truck.landEnemySpeed * GetFrameTime();
+					//Pause Logic
 
-					LandEnemyTp(motorcycle);
-					LandEnemyTp(car);
-					LandEnemyTp(fastCar);
-					LandEnemyTp(van);
-					LandEnemyTp(bus);
-					LandEnemyTp(truck);
+					if (IsKeyPressed(KEY_ESCAPE) && !gameFinished)
+					{
+						isPaused = true;
+						exitWindow = true;
+					}
 
+					if (exitWindow)
+					{
+						if (CheckCollisionPointRec(mousePosition, { 350, 525, 150, 100 }))
+						{
+							if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+							{
+								exitWindow = false;
+								isPaused = !isPaused;
+							}
+						}
+						if (CheckCollisionPointRec(mousePosition, { 530, 525, 150, 100 }))
+						{
+							if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+							{
+								gameState = GameState::GAMETITLE;
+
+								exitWindow = false;
+								isPaused = !isPaused;
+							}
+						}
+					}
 					//Draw
 
 					//Map
@@ -200,6 +232,27 @@ namespace game
 					if (frog.isAlive)
 					{
 						DrawFrog(frog);
+					}
+
+					//Draw Pause
+
+					if (exitWindow)
+					{
+						DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 250, static_cast<float>(GetScreenHeight() / 2) - 200, 500, 400 }, 0.5f, 1, BLACK);
+						DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 245, static_cast<float>(GetScreenHeight() / 2) - 195, 490, 390 }, 0.5f, 1, WHITE);
+
+						DrawText("Do you want to", static_cast<int>(GetScreenWidth() - 705), static_cast<int>(GetScreenHeight() / 2) - 150, 51, BLACK);
+						DrawText("keep playing?", static_cast<int>(GetScreenWidth() - 685), static_cast<int>(GetScreenHeight() / 2) - 80, 51, BLACK);
+
+						DrawRectangleRounded({ 350, 525, 150, 100 }, 0.5f, 1, BLACK);
+						DrawRectangleRounded({ 355, 530, 140, 90 }, 0.5f, 1, WHITE);
+
+						DrawText("YES", 390, 560, 35, BLACK);
+
+						DrawRectangleRounded({ 530, 525, 150, 100 }, 0.5f, 1, BLACK);
+						DrawRectangleRounded({ 535, 530, 140, 90 }, 0.5f, 1, WHITE);
+
+						DrawText("NO", 580, 560, 35, BLACK);
 					}
 
 					break;
