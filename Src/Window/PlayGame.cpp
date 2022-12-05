@@ -1,5 +1,6 @@
 #include "Window/PlayGame.h"
 #include "Objects/Frog.h"
+#include "Objects/LandEnemy.h"
 
 #include "raylib.h"
 
@@ -22,7 +23,21 @@ namespace game
 
 		Frog frog;
 
+		LandEnemy motorcycle;
+		LandEnemy car;
+		LandEnemy fastCar;
+		LandEnemy van;
+		LandEnemy bus;
+		LandEnemy truck;
+
 		CreateFrog(frog);
+
+		CreateMotorcycle(motorcycle);
+		CreateCar(car);
+		CreateFastCar(fastCar);
+		CreateVan(van);
+		CreateBus(bus);
+		CreateTruck(truck);
 
 		while (playingGame && !WindowShouldClose())
 		{
@@ -74,6 +89,13 @@ namespace game
 			}
 
 			DrawRectangle(510, 0, 2, 1024, WHITE);
+
+			DrawLandEnemy(motorcycle);
+			DrawLandEnemy(car);
+			DrawLandEnemy(fastCar);
+			DrawLandEnemy(van);
+			DrawLandEnemy(bus);
+			DrawLandEnemy(truck);
 
 			if (frog.isAlive)
 			{
