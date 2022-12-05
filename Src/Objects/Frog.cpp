@@ -3,10 +3,10 @@
 
 Frog CreateFrog(Frog& frog)
 {
-	frog.frogPosition.x = 480;
+	frog.frogPosition.x = 486;
 	frog.frogPosition.y = 960;
-	frog.frogSize.x = 64;
-	frog.frogSize.y = 64;
+	frog.frogSize.x = 50;
+	frog.frogSize.y = 50;
 	frog.isAlive = true;
 	frog.frogColor = GREEN;
 
