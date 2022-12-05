@@ -9,6 +9,20 @@ void GameLoop()
 {
 	Initialize();
 	HideCursor();
+
+	SetExitKey(KEY_NULL);
+
+	bool playingGame = true;
+
+	while (playingGame && !WindowShouldClose())
+	{
+		BeginDrawing();
+
+		ClearBackground(BLACK);
+
+		EndDrawing();
+	}
+
 	Close();
 }
 
