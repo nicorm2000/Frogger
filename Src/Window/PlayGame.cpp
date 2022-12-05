@@ -15,7 +15,7 @@ namespace game
 	void GameLoop()
 	{
 		Initialize();
-		//HideCursor();
+		HideCursor();
 		SetExitKey(KEY_NULL);
 
 		bool playingGame = true;
@@ -29,6 +29,8 @@ namespace game
 			BeginDrawing();
 
 			ClearBackground(BLACK);
+
+			//Logic
 
 			CheckPlayerInput(frog, playingGame);
 
@@ -66,22 +68,34 @@ namespace game
 
 		if (IsKeyPressed(KEY_UP))
 		{
-			frog.frogPosition.y -= 64;
+			if (frog.frogPosition.y >= 64)
+			{
+				frog.frogPosition.y -= 64;
+			}
 		}
 
 		if (IsKeyPressed(KEY_DOWN))
 		{
-			frog.frogPosition.y += 64;
+			if (frog.frogPosition.y <= 959)
+			{
+				frog.frogPosition.y += 64;
+			}
 		}
 
 		if (IsKeyPressed(KEY_RIGHT))
 		{
-			frog.frogPosition.x += 64;
+			if (frog.frogPosition.x <= 933)
+			{
+				frog.frogPosition.x += 64;
+			}
 		}
 
 		if (IsKeyPressed(KEY_LEFT))
 		{
-			frog.frogPosition.x -= 64;
+			if (frog.frogPosition.x >= 39)
+			{
+				frog.frogPosition.x -= 64;
+			}
 		}
 	}
 
