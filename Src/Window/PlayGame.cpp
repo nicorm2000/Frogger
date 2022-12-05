@@ -50,6 +50,15 @@ namespace game
 			//Logic
 
 			CheckPlayerInput(frog, playingGame);
+
+			//Enemy Logic
+			motorcycle.landEnemyPosition.x += motorcycle.landEnemySpeed * GetFrameTime();
+			car.landEnemyPosition.x += car.landEnemySpeed * GetFrameTime();
+			fastCar.landEnemyPosition.x += fastCar.landEnemySpeed * GetFrameTime();
+			van.landEnemyPosition.x += van.landEnemySpeed * GetFrameTime();
+			bus.landEnemyPosition.x += bus.landEnemySpeed * GetFrameTime();
+			truck.landEnemyPosition.x += truck.landEnemySpeed * GetFrameTime();
+
 			LandEnemyTp(motorcycle);
 			LandEnemyTp(car);
 			LandEnemyTp(fastCar);
@@ -95,8 +104,6 @@ namespace game
 				//Start zone
 				DrawRectangle(0, 960, 1024, 64, DARKGREEN);
 			}
-
-			DrawRectangle(510, 0, 2, 1024, WHITE);
 
 			DrawLandEnemy(motorcycle);
 			DrawLandEnemy(car);
