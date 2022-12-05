@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\main.cpp" />
-    <ClCompile Include="Src\Objects\Player.cpp" />
+    <ClCompile Include="Src\Objects\Frog.cpp" />
     <ClCompile Include="Src\Window\MainMenu.cpp" />
+    <ClCompile Include="Src\Window\PlayGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenu.h" />
-    <ClInclude Include="Src\Objects\Player.h" />
+    <ClInclude Include="Src\Objects\Frog.h" />
+    <ClInclude Include="Src\Window\PlayGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

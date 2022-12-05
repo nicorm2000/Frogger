@@ -3,7 +3,7 @@
 
 struct Frog
 {
-	Vector2 frogPsition{};
+	Vector2 frogPosition{};
 	Vector2 frogSize;
 	bool isAlive;
 	Color frogColor;

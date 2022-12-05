@@ -2,10 +2,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Src\main.cpp" />
-    <ClCompile Include="Src\Objects\Player.cpp">
+    <ClCompile Include="Src\Objects\Frog.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Src\Window\MainMenu.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Window\PlayGame.cpp">
       <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
@@ -21,8 +24,11 @@
     <ClInclude Include="MainMenu.h">
       <Filter>Window</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Objects\Player.h">
+    <ClInclude Include="Src\Objects\Frog.h">
       <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Window\PlayGame.h">
+      <Filter>Window</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

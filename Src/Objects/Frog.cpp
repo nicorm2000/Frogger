@@ -15,5 +15,5 @@ Frog CreateFrog(Frog& frog)
 
 void DrawFrog(Frog frog)
 {
-	DrawRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, frog.frogColor);
+	DrawRectangle(static_cast<int>(frog.frogPosition.x), static_cast<int>(frog.frogPosition.y), static_cast<int>(frog.frogSize.x), static_cast<int>(frog.frogSize.y), frog.frogColor);
 }
