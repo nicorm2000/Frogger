@@ -15,7 +15,7 @@ namespace game
 	void GameLoop()
 	{
 		Initialize();
-		HideCursor();
+		//HideCursor();
 		SetExitKey(KEY_NULL);
 
 		bool playingGame = true;
@@ -35,6 +35,41 @@ namespace game
 			CheckPlayerInput(frog, playingGame);
 
 			//Draw
+			
+			//Map
+			{
+				DrawRectangle(0, 0, 1024, 64, DARKGRAY);
+
+				//Objective zone
+				DrawRectangle(95, 0, 64, 64, LIME);
+				DrawRectangle(287, 0, 64, 64, LIME);
+				DrawRectangle(479, 0, 64, 64, LIME);
+				DrawRectangle(671, 0, 64, 64, LIME);
+				DrawRectangle(863, 0, 64, 64, LIME);
+
+				//Water
+				DrawRectangle(0, 64, 1024, 64, SKYBLUE);
+				DrawRectangle(0, 128, 1024, 64, SKYBLUE);
+				DrawRectangle(0, 192, 1024, 64, SKYBLUE);
+				DrawRectangle(0, 256, 1024, 64, SKYBLUE);
+				DrawRectangle(0, 320, 1024, 64, SKYBLUE);
+				DrawRectangle(0, 384, 1024, 64, SKYBLUE);
+
+				//Sidewalk
+				DrawRectangle(0, 448, 1024, 64, LIGHTGRAY);
+
+				//Street
+				DrawRectangle(0, 512, 1024, 64, GRAY);
+				DrawRectangle(0, 576, 1024, 64, GRAY);
+				DrawRectangle(0, 640, 1024, 64, GRAY);
+				DrawRectangle(0, 704, 1024, 64, GRAY);
+				DrawRectangle(0, 768, 1024, 64, GRAY);
+				DrawRectangle(0, 832, 1024, 64, GRAY);
+
+				//Start zone
+				DrawRectangle(0, 896, 1024, 64, DARKGREEN);
+				DrawRectangle(0, 960, 1024, 64, DARKGREEN);
+			}
 
 			DrawRectangle(510, 0, 2, 1024, WHITE);
 
