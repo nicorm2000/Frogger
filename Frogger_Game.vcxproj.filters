@@ -14,6 +14,12 @@
     <ClCompile Include="Src\Objects\LandEnemy.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Window\Credits.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Window\HowToPlay.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Window">
@@ -35,6 +41,12 @@
     </ClInclude>
     <ClInclude Include="Src\Objects\LandEnemy.h">
       <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Window\Credits.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Window\HowToPlay.h">
+      <Filter>Window</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

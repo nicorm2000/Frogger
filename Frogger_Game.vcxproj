@@ -22,12 +22,16 @@
     <ClCompile Include="Src\main.cpp" />
     <ClCompile Include="Src\Objects\Frog.cpp" />
     <ClCompile Include="Src\Objects\LandEnemy.cpp" />
+    <ClCompile Include="Src\Window\Credits.cpp" />
+    <ClCompile Include="Src\Window\HowToPlay.cpp" />
     <ClCompile Include="Src\Window\MainMenu.cpp" />
     <ClCompile Include="Src\Window\PlayGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Objects\Frog.h" />
     <ClInclude Include="Src\Objects\LandEnemy.h" />
+    <ClInclude Include="Src\Window\Credits.h" />
+    <ClInclude Include="Src\Window\HowToPlay.h" />
     <ClInclude Include="Src\Window\MainMenu.h" />
     <ClInclude Include="Src\Window\PlayGame.h" />
   </ItemGroup>
