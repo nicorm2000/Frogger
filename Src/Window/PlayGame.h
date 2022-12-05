@@ -1,3 +1,6 @@
 #pragma once
 
-void GameLoop();
+namespace game
+{
+	void GameLoop();
+}

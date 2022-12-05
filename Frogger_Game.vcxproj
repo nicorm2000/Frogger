@@ -25,8 +25,8 @@
     <ClCompile Include="Src\Window\PlayGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Src\Objects\Frog.h" />
+    <ClInclude Include="Src\Window\MainMenu.h" />
     <ClInclude Include="Src\Window\PlayGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

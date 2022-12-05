@@ -3,81 +3,86 @@
 
 #include "raylib.h"
 
-static void Initialize();
-
-static void Close();
-
-void CheckPlayerInput(Frog& frog, bool& playingGame);
-
-void GameLoop()
+namespace game
 {
-	Initialize();
-	//HideCursor();
-	SetExitKey(KEY_NULL);
 
-	bool playingGame = true;
+	static void Initialize();
 
-	Frog frog;
+	static void Close();
 
-	CreateFrog(frog);
+	void CheckPlayerInput(Frog& frog, bool& playingGame);
 
-	while (playingGame && !WindowShouldClose())
+	void GameLoop()
 	{
-		BeginDrawing();
+		Initialize();
+		//HideCursor();
+		SetExitKey(KEY_NULL);
 
-		ClearBackground(BLACK);
+		bool playingGame = true;
 
-		CheckPlayerInput(frog, playingGame);
+		Frog frog;
 
-		//Draw
+		CreateFrog(frog);
 
-		DrawRectangle(510, 0, 2, 1024, WHITE);
-
-		if (frog.isAlive)
+		while (playingGame && !WindowShouldClose())
 		{
-			DrawFrog(frog);
+			BeginDrawing();
+
+			ClearBackground(BLACK);
+
+			CheckPlayerInput(frog, playingGame);
+
+			//Draw
+
+			DrawRectangle(510, 0, 2, 1024, WHITE);
+
+			if (frog.isAlive)
+			{
+				DrawFrog(frog);
+			}
+
+			EndDrawing();
 		}
 
-		EndDrawing();
+		Close();
 	}
 
-	Close();
-}
-
-static void Initialize()
-{
-	InitWindow(1024, 1024, "Frogger 0.1");
-}
-
-static void Close()
-{
-	CloseWindow();
-}
-
-void CheckPlayerInput(Frog& frog, bool& playingGame)
-{
-	if (IsKeyPressed(KEY_ENTER))
+	static void Initialize()
 	{
-		playingGame = false;
+		InitWindow(1024, 1024, "Frogger 0.1");
 	}
 
-	if (IsKeyPressed(KEY_UP))
+	static void Close()
 	{
-		frog.frogPosition.y -= 64;
+		CloseWindow();
 	}
 
-	if (IsKeyPressed(KEY_DOWN))
+	void CheckPlayerInput(Frog& frog, bool& playingGame)
 	{
-		frog.frogPosition.y += 64;
+		if (IsKeyPressed(KEY_ENTER))
+		{
+			playingGame = false;
+		}
+
+		if (IsKeyPressed(KEY_UP))
+		{
+			frog.frogPosition.y -= 64;
+		}
+
+		if (IsKeyPressed(KEY_DOWN))
+		{
+			frog.frogPosition.y += 64;
+		}
+
+		if (IsKeyPressed(KEY_RIGHT))
+		{
+			frog.frogPosition.x += 64;
+		}
+
+		if (IsKeyPressed(KEY_LEFT))
+		{
+			frog.frogPosition.x -= 64;
+		}
 	}
 
-	if (IsKeyPressed(KEY_RIGHT))
-	{
-		frog.frogPosition.x += 64;
-	}
-
-	if (IsKeyPressed(KEY_LEFT))
-	{
-		frog.frogPosition.x -= 64;
-	}
 }
