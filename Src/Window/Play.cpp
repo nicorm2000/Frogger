@@ -65,17 +65,66 @@ namespace game
 			{
 				case game::GameState::GAMETITLE:
 
+					//Logic
+
 					mousePosition = GetMousePosition();
 
+					if (CheckCollisionPointRec(mousePosition, { static_cast<float>(GetScreenWidth() / 2) - 150 / 2, 200, 150, 50 }))
+					{
+						if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+						{
+							gameState = GameState::GAME;
+						}
+					}
 
+					if (CheckCollisionPointRec(mousePosition, { static_cast<float>(GetScreenWidth() / 2) - (375 / 2) + 5, 275, 375, 50 }))
+					{
+						if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+						{
+							gameState = GameState::HOWTOPLAY;
+						}
+					}
+
+					if (CheckCollisionPointRec(mousePosition, { static_cast<float>(GetScreenWidth() / 2) - (250 / 2), 350, 250, 50 }))
+					{
+						if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+						{
+							gameState = GameState::CREDITS;
+						}
+					}
+
+					if (CheckCollisionPointRec(mousePosition, { static_cast<float>(GetScreenWidth() / 2) - (150 / 2), 425, 150, 150 }))
+					{
+						if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+						{
+							gameState = GameState::EXIT;
+						}
+					}
+
+					//Draw
+
+					DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), WHITE);
+
+					DrawRectangle(GetScreenWidth() / 2 - (150 / 2), 197, 150, 50, BLACK);
+					DrawText("PLAY", GetScreenWidth() / 2 - 50 - 15, 200, 50, WHITE);
+
+					DrawRectangle(GetScreenWidth() / 2 - (375 / 2) + 5, 272, 375, 50, BLACK);
+					DrawText("HOW TO PLAY", GetScreenWidth() / 2 - 50 - 125, 275, 50, WHITE);
+
+					DrawRectangle(GetScreenWidth() / 2 - (250 / 2), 347, 250, 50, BLACK);
+					DrawText("CREDITS", GetScreenWidth() / 2 - 50 - 65, 350, 50, WHITE);
+
+					DrawRectangle(GetScreenWidth() / 2 - (150 / 2), 422, 150, 50, BLACK);
+					DrawText("EXIT", GetScreenWidth() / 2 - 50 - 10, 425, 50, WHITE);
 
 					break;
 
 				case game::GameState::GAME:
 					
+					//Logic
+
 					mousePosition = GetMousePosition();
 
-					//Logic
 					if (frog.isAlive)
 					{
 						CheckPlayerInput(frog, playingGame);
@@ -161,7 +210,7 @@ namespace game
 
 					mousePosition = GetMousePosition();
 
-					if (CheckCollisionPointRec(mousePosition, { 10, 40, 45, 45 }))
+					if (CheckCollisionPointRec(mousePosition, { 10, 10, 45, 45 }))
 					{
 						if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 						{
@@ -171,8 +220,8 @@ namespace game
 
 					//Draw
 
-					DrawRectangle(10, 40, 45, 45, RED);
-					DrawText("x", 20, 35, 50, WHITE);
+					DrawRectangle(10, 10, 45, 45, RED);
+					DrawText("x", 20, 5, 50, WHITE);
 
 					break;
 
@@ -182,7 +231,7 @@ namespace game
 
 					mousePosition = GetMousePosition();
 					
-					if (CheckCollisionPointRec(mousePosition, { 10, 40, 45, 45 }))
+					if (CheckCollisionPointRec(mousePosition, { 10, 10, 45, 45 }))
 					{
 						if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 						{
@@ -192,8 +241,8 @@ namespace game
 
 					//Draw
 
-					DrawRectangle(10, 40, 45, 45, RED);
-					DrawText("x", 20, 35, 50, WHITE);
+					DrawRectangle(10, 10, 45, 45, RED);
+					DrawText("x", 20, 5, 50, WHITE);
 
 					break;
 
