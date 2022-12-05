@@ -157,17 +157,43 @@ namespace game
 
 				case game::GameState::HOWTOPLAY:
 					
+					//Logic
+
 					mousePosition = GetMousePosition();
 
+					if (CheckCollisionPointRec(mousePosition, { 10, 40, 45, 45 }))
+					{
+						if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+						{
+							gameState = GameState::GAMETITLE;
+						}
+					}
 
+					//Draw
+
+					DrawRectangle(10, 40, 45, 45, RED);
+					DrawText("x", 20, 35, 50, WHITE);
 
 					break;
 
 				case game::GameState::CREDITS:
 					
+					//Logic
+
 					mousePosition = GetMousePosition();
 					
+					if (CheckCollisionPointRec(mousePosition, { 10, 40, 45, 45 }))
+					{
+						if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+						{
+							gameState = GameState::GAMETITLE;
+						}
+					}
 
+					//Draw
+
+					DrawRectangle(10, 40, 45, 45, RED);
+					DrawText("x", 20, 35, 50, WHITE);
 
 					break;
 
