@@ -5,8 +5,8 @@ namespace game
 {
 	LandEnemy CreateMotorcycle(LandEnemy& landEnemy)
 	{
-		landEnemy.landEnemyPosition.x = 512;
-		landEnemy.landEnemyPosition.y = -100;
+		landEnemy.landEnemyPosition.x = -100;
+		landEnemy.landEnemyPosition.y = 512;
 		landEnemy.landEnemySize.x = 60;
 		landEnemy.landEnemySize.y = 60;
 		landEnemy.landEnemySpeed = 120;
@@ -17,8 +17,8 @@ namespace game
 
 	LandEnemy CreateCar(LandEnemy& landEnemy)
 	{
-		landEnemy.landEnemyPosition.x = 832;
-		landEnemy.landEnemyPosition.y = 1124;
+		landEnemy.landEnemyPosition.x = 1124;
+		landEnemy.landEnemyPosition.y = 832;
 		landEnemy.landEnemySize.x = 80;
 		landEnemy.landEnemySize.y = 60;
 		landEnemy.landEnemySpeed = -100;
@@ -29,8 +29,8 @@ namespace game
 
 	LandEnemy CreateFastCar(LandEnemy& landEnemy)
 	{
-		landEnemy.landEnemyPosition.x = 768;
-		landEnemy.landEnemyPosition.y = -100;
+		landEnemy.landEnemyPosition.x = -100;
+		landEnemy.landEnemyPosition.y = 768;
 		landEnemy.landEnemySize.x = 80;
 		landEnemy.landEnemySize.y = 60;
 		landEnemy.landEnemySpeed = 200;
@@ -41,8 +41,8 @@ namespace game
 
 	LandEnemy CreateVan(LandEnemy& landEnemy)
 	{
-		landEnemy.landEnemyPosition.x = 704;
-		landEnemy.landEnemyPosition.y = 1124;
+		landEnemy.landEnemyPosition.x = 1124;
+		landEnemy.landEnemyPosition.y = 704;
 		landEnemy.landEnemySize.x = 100;
 		landEnemy.landEnemySize.y = 60;
 		landEnemy.landEnemySpeed = -100;
@@ -53,8 +53,8 @@ namespace game
 
 	LandEnemy CreateBus(LandEnemy& landEnemy)
 	{
-		landEnemy.landEnemyPosition.x = 640;
-		landEnemy.landEnemyPosition.y = -100;
+		landEnemy.landEnemyPosition.x = -100;
+		landEnemy.landEnemyPosition.y = 640;
 		landEnemy.landEnemySize.x = 150;
 		landEnemy.landEnemySize.y = 60;
 		landEnemy.landEnemySpeed = 90;
@@ -65,8 +65,8 @@ namespace game
 
 	LandEnemy CreateTruck(LandEnemy& landEnemy)
 	{
-		landEnemy.landEnemyPosition.x = 576;
-		landEnemy.landEnemyPosition.y = 1124;
+		landEnemy.landEnemyPosition.x = 1124;
+		landEnemy.landEnemyPosition.y = 576;
 		landEnemy.landEnemySize.x = 200;
 		landEnemy.landEnemySize.y = 60;
 		landEnemy.landEnemySpeed = -80;

@@ -11,6 +11,8 @@ namespace game
 
 	static void Close();
 
+	void LandEnemyTp(LandEnemy& landEnemy);
+
 	void CheckPlayerInput(Frog& frog, bool& playingGame);
 
 	void GameLoop()
@@ -48,6 +50,12 @@ namespace game
 			//Logic
 
 			CheckPlayerInput(frog, playingGame);
+			LandEnemyTp(motorcycle);
+			LandEnemyTp(car);
+			LandEnemyTp(fastCar);
+			LandEnemyTp(van);
+			LandEnemyTp(bus);
+			LandEnemyTp(truck);
 
 			//Draw
 			
@@ -116,6 +124,24 @@ namespace game
 	static void Close()
 	{
 		CloseWindow();
+	}
+
+	void LandEnemyTp(LandEnemy& landEnemy)
+	{
+		if (landEnemy.landEnemySpeed < 0)
+		{
+			if (landEnemy.landEnemyPosition.x < -200)
+			{
+				landEnemy.landEnemyPosition.x = static_cast<float>(GetScreenWidth()) + 50;
+			}
+		}
+		else
+		{
+			if (landEnemy.landEnemyPosition.x > GetScreenWidth() + 200)
+			{
+				landEnemy.landEnemyPosition.x = -200;
+			}
+		}
 	}
 
 	void CheckPlayerInput(Frog& frog, bool& playingGame)
