@@ -1,4 +1,7 @@
-#include "Window/PlayGame.h"
+#include "MainMenu.h"
+#include "Window/Play.h"
+#include "HowToPlay.h"
+#include "Credits.h"
 #include "Objects/Frog.h"
 #include "Objects/LandEnemy.h"
 

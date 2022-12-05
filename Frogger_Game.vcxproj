@@ -25,7 +25,7 @@
     <ClCompile Include="Src\Window\Credits.cpp" />
     <ClCompile Include="Src\Window\HowToPlay.cpp" />
     <ClCompile Include="Src\Window\MainMenu.cpp" />
-    <ClCompile Include="Src\Window\PlayGame.cpp" />
+    <ClCompile Include="Src\Window\Play.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Objects\Frog.h" />
@@ -33,7 +33,7 @@
     <ClInclude Include="Src\Window\Credits.h" />
     <ClInclude Include="Src\Window\HowToPlay.h" />
     <ClInclude Include="Src\Window\MainMenu.h" />
-    <ClInclude Include="Src\Window\PlayGame.h" />
+    <ClInclude Include="Src\Window\Play.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
