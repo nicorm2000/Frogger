@@ -29,6 +29,11 @@ namespace game
 		SetExitKey(KEY_NULL);
 
 		bool playingGame = true;
+		//bool isPaused = false;
+		//bool exitWindow = false;
+		//bool gameFinished = false;
+
+		GameState gameState = GameState::GAMETITLE;
 
 		Frog frog;
 
@@ -48,88 +53,129 @@ namespace game
 		CreateBus(bus);
 		CreateTruck(truck);
 
+		Vector2 mousePosition = GetMousePosition();
+
 		while (playingGame && !WindowShouldClose())
 		{
 			BeginDrawing();
 
 			ClearBackground(BLACK);
 
-			//Logic
-			if (frog.isAlive)
+			switch (gameState)
 			{
-				CheckPlayerInput(frog, playingGame);
-			}
-			GameCollisions(frog, motorcycle);
-			GameCollisions(frog, car);
-			GameCollisions(frog, fastCar);
-			GameCollisions(frog, van);
-			GameCollisions(frog, bus);
-			GameCollisions(frog, truck);
+				case game::GameState::GAMETITLE:
 
-			//Enemy Logic
-			motorcycle.landEnemyPosition.x += motorcycle.landEnemySpeed * GetFrameTime();
-			car.landEnemyPosition.x += car.landEnemySpeed * GetFrameTime();
-			fastCar.landEnemyPosition.x += fastCar.landEnemySpeed * GetFrameTime();
-			van.landEnemyPosition.x += van.landEnemySpeed * GetFrameTime();
-			bus.landEnemyPosition.x += bus.landEnemySpeed * GetFrameTime();
-			truck.landEnemyPosition.x += truck.landEnemySpeed * GetFrameTime();
+					mousePosition = GetMousePosition();
 
-			LandEnemyTp(motorcycle);
-			LandEnemyTp(car);
-			LandEnemyTp(fastCar);
-			LandEnemyTp(van);
-			LandEnemyTp(bus);
-			LandEnemyTp(truck);
 
-			//Draw
-			
-			//Map
-			{
-				DrawRectangle(0, 0, 1024, 64, DARKGRAY);
 
-				//Objective zone
-				DrawRectangle(95, 0, 64, 64, LIME);
-				DrawRectangle(287, 0, 64, 64, LIME);
-				DrawRectangle(479, 0, 64, 64, LIME);
-				DrawRectangle(671, 0, 64, 64, LIME);
-				DrawRectangle(863, 0, 64, 64, LIME);
+					break;
 
-				//Water
-				DrawRectangle(0, 64, 1024, 64, SKYBLUE);
-				DrawRectangle(0, 128, 1024, 64, SKYBLUE);
-				DrawRectangle(0, 192, 1024, 64, SKYBLUE);
-				DrawRectangle(0, 256, 1024, 64, SKYBLUE);
-				DrawRectangle(0, 320, 1024, 64, SKYBLUE);
-				DrawRectangle(0, 384, 1024, 64, SKYBLUE);
+				case game::GameState::GAME:
+					
+					mousePosition = GetMousePosition();
 
-				//Sidewalk
-				DrawRectangle(0, 448, 1024, 64, LIGHTGRAY);
+					//Logic
+					if (frog.isAlive)
+					{
+						CheckPlayerInput(frog, playingGame);
+					}
+					GameCollisions(frog, motorcycle);
+					GameCollisions(frog, car);
+					GameCollisions(frog, fastCar);
+					GameCollisions(frog, van);
+					GameCollisions(frog, bus);
+					GameCollisions(frog, truck);
 
-				//Street
-				DrawRectangle(0, 512, 1024, 64, GRAY);
-				DrawRectangle(0, 576, 1024, 64, GRAY);
-				DrawRectangle(0, 640, 1024, 64, GRAY);
-				DrawRectangle(0, 704, 1024, 64, GRAY);
-				DrawRectangle(0, 768, 1024, 64, GRAY);
-				DrawRectangle(0, 832, 1024, 64, GRAY);
+					//Enemy Logic
+					motorcycle.landEnemyPosition.x += motorcycle.landEnemySpeed * GetFrameTime();
+					car.landEnemyPosition.x += car.landEnemySpeed * GetFrameTime();
+					fastCar.landEnemyPosition.x += fastCar.landEnemySpeed * GetFrameTime();
+					van.landEnemyPosition.x += van.landEnemySpeed * GetFrameTime();
+					bus.landEnemyPosition.x += bus.landEnemySpeed * GetFrameTime();
+					truck.landEnemyPosition.x += truck.landEnemySpeed * GetFrameTime();
 
-				//Sidewalk
-				DrawRectangle(0, 896, 1024, 64, LIGHTGRAY);
-				
-				//Start zone
-				DrawRectangle(0, 960, 1024, 64, DARKGREEN);
-			}
+					LandEnemyTp(motorcycle);
+					LandEnemyTp(car);
+					LandEnemyTp(fastCar);
+					LandEnemyTp(van);
+					LandEnemyTp(bus);
+					LandEnemyTp(truck);
 
-			DrawLandEnemy(motorcycle);
-			DrawLandEnemy(car);
-			DrawLandEnemy(fastCar);
-			DrawLandEnemy(van);
-			DrawLandEnemy(bus);
-			DrawLandEnemy(truck);
+					//Draw
 
-			if (frog.isAlive)
-			{
-				DrawFrog(frog);
+					//Map
+					{
+						DrawRectangle(0, 0, 1024, 64, DARKGRAY);
+
+						//Objective zone
+						DrawRectangle(95, 0, 64, 64, LIME);
+						DrawRectangle(287, 0, 64, 64, LIME);
+						DrawRectangle(479, 0, 64, 64, LIME);
+						DrawRectangle(671, 0, 64, 64, LIME);
+						DrawRectangle(863, 0, 64, 64, LIME);
+
+						//Water
+						DrawRectangle(0, 64, 1024, 64, SKYBLUE);
+						DrawRectangle(0, 128, 1024, 64, SKYBLUE);
+						DrawRectangle(0, 192, 1024, 64, SKYBLUE);
+						DrawRectangle(0, 256, 1024, 64, SKYBLUE);
+						DrawRectangle(0, 320, 1024, 64, SKYBLUE);
+						DrawRectangle(0, 384, 1024, 64, SKYBLUE);
+
+						//Sidewalk
+						DrawRectangle(0, 448, 1024, 64, LIGHTGRAY);
+
+						//Street
+						DrawRectangle(0, 512, 1024, 64, GRAY);
+						DrawRectangle(0, 576, 1024, 64, GRAY);
+						DrawRectangle(0, 640, 1024, 64, GRAY);
+						DrawRectangle(0, 704, 1024, 64, GRAY);
+						DrawRectangle(0, 768, 1024, 64, GRAY);
+						DrawRectangle(0, 832, 1024, 64, GRAY);
+
+						//Sidewalk
+						DrawRectangle(0, 896, 1024, 64, LIGHTGRAY);
+
+						//Start zone
+						DrawRectangle(0, 960, 1024, 64, DARKGREEN);
+					}
+
+					DrawLandEnemy(motorcycle);
+					DrawLandEnemy(car);
+					DrawLandEnemy(fastCar);
+					DrawLandEnemy(van);
+					DrawLandEnemy(bus);
+					DrawLandEnemy(truck);
+
+					if (frog.isAlive)
+					{
+						DrawFrog(frog);
+					}
+
+					break;
+
+				case game::GameState::HOWTOPLAY:
+					
+					mousePosition = GetMousePosition();
+
+
+
+					break;
+
+				case game::GameState::CREDITS:
+					
+					mousePosition = GetMousePosition();
+					
+
+
+					break;
+
+				case game::GameState::EXIT:
+
+					playingGame = false;
+
+					break;
 			}
 
 			EndDrawing();

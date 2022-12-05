@@ -23,6 +23,7 @@
     <ClCompile Include="Src\Objects\Frog.cpp" />
     <ClCompile Include="Src\Objects\LandEnemy.cpp" />
     <ClCompile Include="Src\Window\Credits.cpp" />
+    <ClCompile Include="Src\Window\GameLoop.cpp" />
     <ClCompile Include="Src\Window\HowToPlay.cpp" />
     <ClCompile Include="Src\Window\MainMenu.cpp" />
     <ClCompile Include="Src\Window\Play.cpp" />
@@ -31,6 +32,7 @@
     <ClInclude Include="Src\Objects\Frog.h" />
     <ClInclude Include="Src\Objects\LandEnemy.h" />
     <ClInclude Include="Src\Window\Credits.h" />
+    <ClInclude Include="Src\Window\GameLoop.h" />
     <ClInclude Include="Src\Window\HowToPlay.h" />
     <ClInclude Include="Src\Window\MainMenu.h" />
     <ClInclude Include="Src\Window\Play.h" />
