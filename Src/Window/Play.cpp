@@ -341,7 +341,15 @@ namespace game
 		{
 			if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, landEnemy.landEnemyPosition.x, landEnemy.landEnemyPosition.y, landEnemy.landEnemySize.x, landEnemy.landEnemySize.y))
 			{
-				frog.isAlive = false;
+				frog.frogLives--;
+				
+				frog.frogPosition.x = 486;
+				frog.frogPosition.y = 967.5f;
+
+				if (frog.frogLives <= 0)
+				{
+					frog.isAlive = false;
+				}
 			}
 		}
 	}
