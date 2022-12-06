@@ -6,7 +6,7 @@ namespace game
 	Frog CreateFrog(Frog& frog)
 	{
 		frog.frogPosition.x = 486;
-		frog.frogPosition.y = 960;
+		frog.frogPosition.y = 967.5f;
 		frog.frogSize.x = 50;
 		frog.frogSize.y = 50;
 		frog.isAlive = true;

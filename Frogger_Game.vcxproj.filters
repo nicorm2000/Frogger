@@ -23,6 +23,9 @@
     <ClCompile Include="Src\Window\GameLoop.cpp">
       <Filter>Window</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Objects\Log.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Window">
@@ -53,6 +56,9 @@
     </ClInclude>
     <ClInclude Include="Src\Window\GameLoop.h">
       <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Objects\Log.h">
+      <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
