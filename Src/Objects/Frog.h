@@ -7,6 +7,7 @@ namespace game
 	{
 		Vector2 frogPosition{};
 		Vector2 frogSize;
+		int frogLives;
 		bool isAlive;
 		Color frogColor;
 		Texture frogTexture;
