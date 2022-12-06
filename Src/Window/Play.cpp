@@ -128,9 +128,9 @@ namespace game
 
 						//Second three logs
 
-						smallLog2.logPosition.y = 64;
-						mediumLog2.logPosition.y = 128;
-						bigLog2.logPosition.y = 192;
+						smallLog2.logPosition.y = 66;
+						mediumLog2.logPosition.y = 130;
+						bigLog2.logPosition.y = 194;
 
 						smallLog2.logSpeed = -200;
 						mediumLog2.logSpeed = 175;
@@ -321,7 +321,7 @@ namespace game
 
 	static void Initialize()
 	{
-		InitWindow(1024, 1024, "Frogger 0.1");
+		InitWindow(1024, 1024, "Frogger 0.2");
 	}
 
 	static void Close()
