@@ -22,7 +22,7 @@ namespace game
 
 	void GameCollisions(Frog& frog, LandEnemy landEnemy);
 
-	void GameLoop()
+	void Game()
 	{
 		Initialize();
 		//HideCursor();

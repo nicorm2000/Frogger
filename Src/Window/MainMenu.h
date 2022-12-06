@@ -13,7 +13,7 @@ namespace game
 		EXIT
 	};
 
-	void GameLoop();
+	void Game();
 
 	void MainMenuLogic(Vector2 mousePosition, GameState& gameState);
 

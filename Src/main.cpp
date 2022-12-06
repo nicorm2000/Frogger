@@ -4,5 +4,5 @@ using namespace game;
 
 int main()
 {
-	GameLoop();
+	Game();
 }
