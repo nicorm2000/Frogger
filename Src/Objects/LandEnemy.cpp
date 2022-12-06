@@ -43,7 +43,7 @@ namespace game
 	{
 		landEnemy.landEnemyPosition.x = 1124;
 		landEnemy.landEnemyPosition.y = 704;
-		landEnemy.landEnemySize.x = 120;
+		landEnemy.landEnemySize.x = 100;
 		landEnemy.landEnemySize.y = 60;
 		landEnemy.landEnemySpeed = -230;
 		landEnemy.landEnemyColor = PURPLE;

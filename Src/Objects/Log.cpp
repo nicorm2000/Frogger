@@ -4,11 +4,11 @@ namespace game
 {
 	Log CreateSmallLog(Log& log)
 	{
-		log.logPosition.x = -150;
-		log.logPosition.y = 256;
+		log.logPosition.x = -200;
+		log.logPosition.y = 258;
 		log.logSize.x = 180;
 		log.logSize.y = 60;
-		log.logSpeed = 250;
+		log.logSpeed = 200;
 		log.logColor = BROWN;
 
 		return log;
@@ -17,10 +17,10 @@ namespace game
 	Log CreateMediumLog(Log& log)
 	{
 		log.logPosition.x = 1124;
-		log.logPosition.y = 320;
+		log.logPosition.y = 322;
 		log.logSize.x = 240;
 		log.logSize.y = 60;
-		log.logSpeed = 250;
+		log.logSpeed = -175;
 		log.logColor = BROWN;
 
 		return log;
@@ -28,11 +28,11 @@ namespace game
 
 	Log CreateBigLog(Log& log)
 	{
-		log.logPosition.x = -150;
-		log.logPosition.y = 384;
+		log.logPosition.x = -310;
+		log.logPosition.y = 386;
 		log.logSize.x = 300;
 		log.logSize.y = 60;
-		log.logSpeed = 250;
+		log.logSpeed = 150;
 		log.logColor = BROWN;
 
 		return log;

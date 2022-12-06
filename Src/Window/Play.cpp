@@ -1,8 +1,9 @@
-#include "MainMenu.h"
+#include "Window/MainMenu.h"
 #include "Window/Play.h"
-#include "HowToPlay.h"
-#include "Credits.h"
+#include "Window/HowToPlay.h"
+#include "Window/Credits.h"
 #include "Objects/Frog.h"
+#include "Objects/Log.h"
 #include "Objects/LandEnemy.h"
 
 #include "raylib.h"
@@ -13,6 +14,8 @@ namespace game
 	static void Initialize();
 
 	static void Close();
+
+	void LogTp(Log& log);
 
 	void LandEnemyTp(LandEnemy& landEnemy);
 
@@ -37,6 +40,10 @@ namespace game
 
 		Frog frog;
 
+		Log smallLog;
+		Log mediumLog;
+		Log bigLog;
+
 		LandEnemy motorcycle;
 		LandEnemy car;
 		LandEnemy fastCar;
@@ -45,6 +52,10 @@ namespace game
 		LandEnemy truck;
 
 		CreateFrog(frog);
+
+		CreateSmallLog(smallLog);
+		CreateMediumLog(mediumLog);
+		CreateBigLog(bigLog);
 
 		CreateMotorcycle(motorcycle);
 		CreateCar(car);
@@ -96,6 +107,16 @@ namespace game
 						GameCollisions(frog, van);
 						GameCollisions(frog, bus);
 						GameCollisions(frog, truck);
+
+						//Log Loigc
+
+						smallLog.logPosition.x += smallLog.logSpeed * GetFrameTime();
+						mediumLog.logPosition.x += mediumLog.logSpeed * GetFrameTime();
+						bigLog.logPosition.x += bigLog.logSpeed * GetFrameTime();
+
+						LogTp(smallLog);
+						LogTp(mediumLog);
+						LogTp(bigLog);
 
 						//Enemy Logic
 						motorcycle.landEnemyPosition.x += motorcycle.landEnemySpeed * GetFrameTime();
@@ -181,7 +202,17 @@ namespace game
 						DrawRectangle(0, 960, 1024, 64, DARKGREEN);
 					}
 
+					//Draw lives
+
 					DrawText(TextFormat("Lives:%i", frog.frogLives), 10, 965, 60, BLACK);
+
+					//Draw log
+
+					DrawLog(smallLog);
+					DrawLog(mediumLog);
+					DrawLog(bigLog);
+
+					//Draw enemy
 
 					DrawLandEnemy(motorcycle);
 					DrawLandEnemy(car);
@@ -267,6 +298,24 @@ namespace game
 	static void Close()
 	{
 		CloseWindow();
+	}
+
+	void LogTp(Log& log)
+	{
+		if (log.logSpeed < 0)
+		{
+			if (log.logPosition.x < -310)
+			{
+				log.logPosition.x = static_cast<float>(GetScreenWidth()) + 50;
+			}
+		}
+		else
+		{
+			if (log.logPosition.x > GetScreenWidth() + 200)
+			{
+				log.logPosition.x = -310;
+			}
+		}
 	}
 
 	void LandEnemyTp(LandEnemy& landEnemy)
