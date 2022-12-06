@@ -131,6 +131,7 @@ namespace game
 						{
 							CheckPlayerInput(frog, playingGame);
 						}
+
 						GameCollisions(frog, motorcycle);
 						GameCollisions(frog, car);
 						GameCollisions(frog, fastCar);

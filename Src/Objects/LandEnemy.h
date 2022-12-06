@@ -3,6 +3,16 @@
 
 namespace game
 {
+	enum class LandVehicles
+	{
+		Motorcycle = 0,
+		Car,
+		FastCar,
+		Van,
+		Bus,
+		Truck
+	};
+
 	struct LandEnemy
 	{
 		Vector2 landEnemyPosition{};
@@ -11,6 +21,8 @@ namespace game
 		Color landEnemyColor;
 		Texture landEnemyTexture;
 	};
+
+	LandEnemy CreateVehicle(LandVehicles& landVehicles, LandEnemy& landEnemy);
 
 	LandEnemy CreateMotorcycle(LandEnemy& landEnemy);
 	
