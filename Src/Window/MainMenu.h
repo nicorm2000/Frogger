@@ -1,5 +1,7 @@
 #pragma once
 
+#include "raylib.h"
+
 namespace game
 {
 	enum class GameState
@@ -12,4 +14,8 @@ namespace game
 	};
 
 	void GameLoop();
+
+	void MainMenuLogic(Vector2 mousePosition, GameState& gameState);
+
+	void MainMenuDraw();
 }
