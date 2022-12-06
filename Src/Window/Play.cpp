@@ -65,7 +65,7 @@ namespace game
 			{
 				case game::GameState::GAMETITLE:
 
-					//Logic
+					////Logic
 
 					mousePosition = GetMousePosition();
 
@@ -101,7 +101,7 @@ namespace game
 						}
 					}
 
-					//Draw
+					////Draw
 
 					DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), WHITE);
 
@@ -121,7 +121,7 @@ namespace game
 
 				case game::GameState::GAME:
 					
-					//Logic
+					////Logic
 
 					mousePosition = GetMousePosition();
 					
@@ -183,7 +183,7 @@ namespace game
 							}
 						}
 					}
-					//Draw
+					////Draw
 
 					//Map
 					{
@@ -259,34 +259,27 @@ namespace game
 
 				case game::GameState::HOWTOPLAY:
 					
-					//Logic
+					////Logic
 
 					mousePosition = GetMousePosition();
 
-					if (CheckCollisionPointRec(mousePosition, { 10, 10, 45, 45 }))
-					{
-						if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
-						{
-							gameState = GameState::GAMETITLE;
-						}
-					}
+					HowToPlayLogic(mousePosition, gameState);
 
-					//Draw
+					////Draw
 
-					DrawRectangle(10, 10, 45, 45, RED);
-					DrawText("x", 20, 5, 50, WHITE);
+					HowToPlayDraw();
 
 					break;
 
 				case game::GameState::CREDITS:
 					
-					//Logic
+					////Logic
 
 					mousePosition = GetMousePosition();
 					
 					CreditsLogic(mousePosition, gameState);
 
-					//Draw
+					////Draw
 
 					CreditsDraw();
 
