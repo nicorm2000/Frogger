@@ -43,6 +43,9 @@ namespace game
 		Log smallLog;
 		Log mediumLog;
 		Log bigLog;
+		Log smallLog2;
+		Log mediumLog2;
+		Log bigLog2;
 
 		LandEnemy motorcycle;
 		LandEnemy car;
@@ -56,6 +59,9 @@ namespace game
 		CreateSmallLog(smallLog);
 		CreateMediumLog(mediumLog);
 		CreateBigLog(bigLog);
+		CreateSmallLog(smallLog2);
+		CreateMediumLog(mediumLog2);
+		CreateBigLog(bigLog2);
 
 		CreateMotorcycle(motorcycle);
 		CreateCar(car);
@@ -110,6 +116,8 @@ namespace game
 
 						//Log Loigc
 
+						//First three of logs
+
 						smallLog.logPosition.x += smallLog.logSpeed * GetFrameTime();
 						mediumLog.logPosition.x += mediumLog.logSpeed * GetFrameTime();
 						bigLog.logPosition.x += bigLog.logSpeed * GetFrameTime();
@@ -117,6 +125,24 @@ namespace game
 						LogTp(smallLog);
 						LogTp(mediumLog);
 						LogTp(bigLog);
+
+						//Second three logs
+
+						smallLog2.logPosition.y = 64;
+						mediumLog2.logPosition.y = 128;
+						bigLog2.logPosition.y = 192;
+
+						smallLog2.logSpeed = -200;
+						mediumLog2.logSpeed = 175;
+						bigLog2.logSpeed = -150;
+
+						smallLog2.logPosition.x += smallLog2.logSpeed * GetFrameTime();
+						mediumLog2.logPosition.x += mediumLog2.logSpeed * GetFrameTime();
+						bigLog2.logPosition.x += bigLog2.logSpeed * GetFrameTime();
+
+						LogTp(smallLog2);
+						LogTp(mediumLog2);
+						LogTp(bigLog2);
 
 						//Enemy Logic
 						motorcycle.landEnemyPosition.x += motorcycle.landEnemySpeed * GetFrameTime();
@@ -211,6 +237,9 @@ namespace game
 					DrawLog(smallLog);
 					DrawLog(mediumLog);
 					DrawLog(bigLog);
+					DrawLog(smallLog2);
+					DrawLog(mediumLog2);
+					DrawLog(bigLog2);
 
 					//Draw enemy
 
