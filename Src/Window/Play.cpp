@@ -222,6 +222,8 @@ namespace game
 						DrawRectangle(0, 960, 1024, 64, DARKGREEN);
 					}
 
+					DrawText(TextFormat("Lives:%i", frog.frogLives), 10, 965, 60, BLACK);
+
 					DrawLandEnemy(motorcycle);
 					DrawLandEnemy(car);
 					DrawLandEnemy(fastCar);
