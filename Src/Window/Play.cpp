@@ -52,12 +52,6 @@ namespace game
 		int auxEnemyCount = 0;
 
 		LandEnemy motorcycle[MOTORCYCLE_COUNT];
-		
-		//LandEnemy car;
-		//LandEnemy fastCar;
-		//LandEnemy van;
-		//LandEnemy bus;
-		//LandEnemy truck;
 
 		CreateFrog(frog);
 
@@ -70,18 +64,11 @@ namespace game
 
 		for (int i = 0; i < MOTORCYCLE_COUNT; i++)
 		{
-			motorcycle[i] = CreateVehicle(Vehicles::Motorcycle, static_cast<float>(i * -100));
+			motorcycle[i] = CreateVehicle(Vehicles::Motorcycle, static_cast<float>(i * -500));
 			
 			landEnemies[auxEnemyCount] = motorcycle[i];
 			auxEnemyCount++;
 		}
-
-		
-		/*CreateCar(car);
-		CreateFastCar(fastCar);
-		CreateVan(van);
-		CreateBus(bus);
-		CreateTruck(truck);*/
 
 		Vector2 mousePosition = GetMousePosition();
 
@@ -124,11 +111,6 @@ namespace game
 						{
 							GameCollisions(frog, landEnemies[i]);
 						}
-						//GameCollisions(frog, car);
-						//GameCollisions(frog, fastCar);
-						//GameCollisions(frog, van);
-						//GameCollisions(frog, bus);
-						//GameCollisions(frog, truck);
 
 						//Log Loigc
 
@@ -165,22 +147,9 @@ namespace game
 						for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
 						{
 							landEnemies[i].landEnemyPosition.x += landEnemies[i].landEnemySpeed * GetFrameTime();
-						}
-						//car.landEnemyPosition.x += car.landEnemySpeed * GetFrameTime();
-						//fastCar.landEnemyPosition.x += fastCar.landEnemySpeed * GetFrameTime();
-						//van.landEnemyPosition.x += van.landEnemySpeed * GetFrameTime();
-						//bus.landEnemyPosition.x += bus.landEnemySpeed * GetFrameTime();
-						//truck.landEnemyPosition.x += truck.landEnemySpeed * GetFrameTime();
 
-						for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
-						{
 							LandEnemyTp(landEnemies[i]);
 						}
-						//LandEnemyTp(car);
-						//LandEnemyTp(fastCar);
-						//LandEnemyTp(van);
-						//LandEnemyTp(bus);
-						//LandEnemyTp(truck);
 					}
 
 					//Pause Logic
@@ -270,11 +239,6 @@ namespace game
 					{
 						DrawLandEnemy(landEnemies[i]);
 					}
-					//DrawLandEnemy(car);
-					//DrawLandEnemy(fastCar);
-					//DrawLandEnemy(van);
-					//DrawLandEnemy(bus);
-					//DrawLandEnemy(truck);
 
 					if (frog.isAlive)
 					{
