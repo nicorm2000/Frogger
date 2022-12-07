@@ -48,11 +48,11 @@ namespace game
 		Log bigLog2;
 
 		LandEnemy motorcycle;
-		LandEnemy car;
-		LandEnemy fastCar;
-		LandEnemy van;
-		LandEnemy bus;
-		LandEnemy truck;
+		//LandEnemy car;
+		//LandEnemy fastCar;
+		//LandEnemy van;
+		//LandEnemy bus;
+		//LandEnemy truck;
 
 		CreateFrog(frog);
 
@@ -63,12 +63,12 @@ namespace game
 		CreateMediumLog(mediumLog2);
 		CreateBigLog(bigLog2);
 
-		CreateMotorcycle(motorcycle);
-		CreateCar(car);
+		motorcycle = CreateVehicle(Vehicles::Motorcycle);
+		/*CreateCar(car);
 		CreateFastCar(fastCar);
 		CreateVan(van);
 		CreateBus(bus);
-		CreateTruck(truck);
+		CreateTruck(truck);*/
 
 		Vector2 mousePosition = GetMousePosition();
 
@@ -108,11 +108,11 @@ namespace game
 						}
 
 						GameCollisions(frog, motorcycle);
-						GameCollisions(frog, car);
-						GameCollisions(frog, fastCar);
-						GameCollisions(frog, van);
-						GameCollisions(frog, bus);
-						GameCollisions(frog, truck);
+						//GameCollisions(frog, car);
+						//GameCollisions(frog, fastCar);
+						//GameCollisions(frog, van);
+						//GameCollisions(frog, bus);
+						//GameCollisions(frog, truck);
 
 						//Log Loigc
 
@@ -145,19 +145,20 @@ namespace game
 						LogTp(bigLog2);
 
 						//Enemy Logic
+
 						motorcycle.landEnemyPosition.x += motorcycle.landEnemySpeed * GetFrameTime();
-						car.landEnemyPosition.x += car.landEnemySpeed * GetFrameTime();
-						fastCar.landEnemyPosition.x += fastCar.landEnemySpeed * GetFrameTime();
-						van.landEnemyPosition.x += van.landEnemySpeed * GetFrameTime();
-						bus.landEnemyPosition.x += bus.landEnemySpeed * GetFrameTime();
-						truck.landEnemyPosition.x += truck.landEnemySpeed * GetFrameTime();
+						//car.landEnemyPosition.x += car.landEnemySpeed * GetFrameTime();
+						//fastCar.landEnemyPosition.x += fastCar.landEnemySpeed * GetFrameTime();
+						//van.landEnemyPosition.x += van.landEnemySpeed * GetFrameTime();
+						//bus.landEnemyPosition.x += bus.landEnemySpeed * GetFrameTime();
+						//truck.landEnemyPosition.x += truck.landEnemySpeed * GetFrameTime();
 
 						LandEnemyTp(motorcycle);
-						LandEnemyTp(car);
-						LandEnemyTp(fastCar);
-						LandEnemyTp(van);
-						LandEnemyTp(bus);
-						LandEnemyTp(truck);
+						//LandEnemyTp(car);
+						//LandEnemyTp(fastCar);
+						//LandEnemyTp(van);
+						//LandEnemyTp(bus);
+						//LandEnemyTp(truck);
 					}
 
 					//Pause Logic
@@ -244,11 +245,11 @@ namespace game
 					//Draw enemy
 
 					DrawLandEnemy(motorcycle);
-					DrawLandEnemy(car);
-					DrawLandEnemy(fastCar);
-					DrawLandEnemy(van);
-					DrawLandEnemy(bus);
-					DrawLandEnemy(truck);
+					//DrawLandEnemy(car);
+					//DrawLandEnemy(fastCar);
+					//DrawLandEnemy(van);
+					//DrawLandEnemy(bus);
+					//DrawLandEnemy(truck);
 
 					if (frog.isAlive)
 					{
