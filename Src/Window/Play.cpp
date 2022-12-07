@@ -215,9 +215,9 @@ namespace game
 							GameCollisions(frog, landEnemies[i]);
 						}
 
-						//Log Loigc
-
 						//Logs
+						
+						//Log Logic
 
 						for (int i = 0; i < LOG_COUNT; i++)
 						{
@@ -268,41 +268,7 @@ namespace game
 					////Draw
 
 					//Map
-					{
-						DrawRectangle(0, 0, 1024, 64, DARKGRAY);
-
-						//Objective zone
-						DrawRectangle(95, 0, 64, 64, LIME);
-						DrawRectangle(287, 0, 64, 64, LIME);
-						DrawRectangle(479, 0, 64, 64, LIME);
-						DrawRectangle(671, 0, 64, 64, LIME);
-						DrawRectangle(863, 0, 64, 64, LIME);
-
-						//Water
-						DrawRectangle(0, 64, 1024, 64, SKYBLUE);
-						DrawRectangle(0, 128, 1024, 64, SKYBLUE);
-						DrawRectangle(0, 192, 1024, 64, SKYBLUE);
-						DrawRectangle(0, 256, 1024, 64, SKYBLUE);
-						DrawRectangle(0, 320, 1024, 64, SKYBLUE);
-						DrawRectangle(0, 384, 1024, 64, SKYBLUE);
-
-						//Sidewalk
-						DrawRectangle(0, 448, 1024, 64, LIGHTGRAY);
-
-						//Street
-						DrawRectangle(0, 512, 1024, 64, GRAY);
-						DrawRectangle(0, 576, 1024, 64, GRAY);
-						DrawRectangle(0, 640, 1024, 64, GRAY);
-						DrawRectangle(0, 704, 1024, 64, GRAY);
-						DrawRectangle(0, 768, 1024, 64, GRAY);
-						DrawRectangle(0, 832, 1024, 64, GRAY);
-
-						//Sidewalk
-						DrawRectangle(0, 896, 1024, 64, LIGHTGRAY);
-
-						//Start zone
-						DrawRectangle(0, 960, 1024, 64, DARKGREEN);
-					}
+					DrawMap();
 
 					//Draw lives
 
@@ -333,21 +299,7 @@ namespace game
 
 					if (exitWindow)
 					{
-						DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 250, static_cast<float>(GetScreenHeight() / 2) - 200, 500, 400 }, 0.5f, 1, BLACK);
-						DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 245, static_cast<float>(GetScreenHeight() / 2) - 195, 490, 390 }, 0.5f, 1, WHITE);
-
-						DrawText("Do you want to", static_cast<int>(GetScreenWidth() - 705), static_cast<int>(GetScreenHeight() / 2) - 150, 51, BLACK);
-						DrawText("keep playing?", static_cast<int>(GetScreenWidth() - 685), static_cast<int>(GetScreenHeight() / 2) - 80, 51, BLACK);
-
-						DrawRectangleRounded({ 350, 525, 150, 100 }, 0.5f, 1, BLACK);
-						DrawRectangleRounded({ 355, 530, 140, 90 }, 0.5f, 1, WHITE);
-
-						DrawText("YES", 390, 560, 35, BLACK);
-
-						DrawRectangleRounded({ 530, 525, 150, 100 }, 0.5f, 1, BLACK);
-						DrawRectangleRounded({ 535, 530, 140, 90 }, 0.5f, 1, WHITE);
-
-						DrawText("NO", 580, 560, 35, BLACK);
+						DrawExitWindow();
 					}
 
 					break;
@@ -401,6 +353,62 @@ namespace game
 	static void Close()
 	{
 		CloseWindow();
+	}
+
+	void DrawMap()
+	{
+		DrawRectangle(0, 0, 1024, 64, DARKGRAY);
+
+		//Objective zone
+		DrawRectangle(95, 0, 64, 64, LIME);
+		DrawRectangle(287, 0, 64, 64, LIME);
+		DrawRectangle(479, 0, 64, 64, LIME);
+		DrawRectangle(671, 0, 64, 64, LIME);
+		DrawRectangle(863, 0, 64, 64, LIME);
+
+		//Water
+		DrawRectangle(0, 64, 1024, 64, SKYBLUE);
+		DrawRectangle(0, 128, 1024, 64, SKYBLUE);
+		DrawRectangle(0, 192, 1024, 64, SKYBLUE);
+		DrawRectangle(0, 256, 1024, 64, SKYBLUE);
+		DrawRectangle(0, 320, 1024, 64, SKYBLUE);
+		DrawRectangle(0, 384, 1024, 64, SKYBLUE);
+
+		//Sidewalk
+		DrawRectangle(0, 448, 1024, 64, LIGHTGRAY);
+
+		//Street
+		DrawRectangle(0, 512, 1024, 64, GRAY);
+		DrawRectangle(0, 576, 1024, 64, GRAY);
+		DrawRectangle(0, 640, 1024, 64, GRAY);
+		DrawRectangle(0, 704, 1024, 64, GRAY);
+		DrawRectangle(0, 768, 1024, 64, GRAY);
+		DrawRectangle(0, 832, 1024, 64, GRAY);
+
+		//Sidewalk
+		DrawRectangle(0, 896, 1024, 64, LIGHTGRAY);
+
+		//Start zone
+		DrawRectangle(0, 960, 1024, 64, DARKGREEN);
+	}
+
+	void DrawExitWindow()
+	{
+		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 250, static_cast<float>(GetScreenHeight() / 2) - 200, 500, 400 }, 0.5f, 1, BLACK);
+		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 245, static_cast<float>(GetScreenHeight() / 2) - 195, 490, 390 }, 0.5f, 1, WHITE);
+
+		DrawText("Do you want to", static_cast<int>(GetScreenWidth() - 705), static_cast<int>(GetScreenHeight() / 2) - 150, 51, BLACK);
+		DrawText("keep playing?", static_cast<int>(GetScreenWidth() - 685), static_cast<int>(GetScreenHeight() / 2) - 80, 51, BLACK);
+
+		DrawRectangleRounded({ 350, 525, 150, 100 }, 0.5f, 1, BLACK);
+		DrawRectangleRounded({ 355, 530, 140, 90 }, 0.5f, 1, WHITE);
+
+		DrawText("YES", 390, 560, 35, BLACK);
+
+		DrawRectangleRounded({ 530, 525, 150, 100 }, 0.5f, 1, BLACK);
+		DrawRectangleRounded({ 535, 530, 140, 90 }, 0.5f, 1, WHITE);
+
+		DrawText("NO", 580, 560, 35, BLACK);
 	}
 
 	void LogTp(Log& log)
