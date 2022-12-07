@@ -4,6 +4,13 @@
 
 namespace game
 {
+	const int MOTORCYCLE_COUNT = 3;
+	const int CAR_COUNT = 3;
+	const int FAST_CAR_COUNT = 3;
+	const int VAN_COUNT = 3;
+	const int BUS_COUNT = 3;
+	const int TRUCK_COUNT = 3;
+
 	enum class Vehicles
 	{
 		Motorcycle = 0,
