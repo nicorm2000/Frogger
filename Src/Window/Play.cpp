@@ -4,7 +4,7 @@
 #include "Window/Credits.h"
 #include "Objects/Frog.h"
 #include "Objects/Log.h"
-//#include "Objects/LandEnemy.h"
+#include "Objects/LandEnemy.h"
 
 #include "raylib.h"
 
@@ -52,6 +52,11 @@ namespace game
 		int auxEnemyCount = 0;
 
 		LandEnemy motorcycle[MOTORCYCLE_COUNT];
+		LandEnemy car[CAR_COUNT];
+		LandEnemy fastCar[FAST_CAR_COUNT];
+		LandEnemy van[VAN_COUNT];
+		LandEnemy bus[BUS_COUNT];
+		LandEnemy truck[TRUCK_COUNT];
 
 		CreateFrog(frog);
 
@@ -67,6 +72,46 @@ namespace game
 			motorcycle[i] = CreateVehicle(Vehicles::Motorcycle, static_cast<float>(i * -500));
 			
 			landEnemies[auxEnemyCount] = motorcycle[i];
+			auxEnemyCount++;
+		}
+
+		for (int i = 0; i < CAR_COUNT; i++)
+		{
+			car[i] = CreateVehicle(Vehicles::Car, static_cast<float>(i * -500));
+
+			landEnemies[auxEnemyCount] = car[i];
+			auxEnemyCount++;
+		}
+
+		for (int i = 0; i < FAST_CAR_COUNT; i++)
+		{
+			fastCar[i] = CreateVehicle(Vehicles::FastCar, static_cast<float>(i * -500));
+
+			landEnemies[auxEnemyCount] = fastCar[i];
+			auxEnemyCount++;
+		}
+
+		for (int i = 0; i < VAN_COUNT; i++)
+		{
+			van[i] = CreateVehicle(Vehicles::Van, static_cast<float>(i * -500));
+
+			landEnemies[auxEnemyCount] = van[i];
+			auxEnemyCount++;
+		}
+
+		for (int i = 0; i < BUS_COUNT; i++)
+		{
+			bus[i] = CreateVehicle(Vehicles::Bus, static_cast<float>(i * -500));
+
+			landEnemies[auxEnemyCount] = bus[i];
+			auxEnemyCount++;
+		}
+
+		for (int i = 0; i < TRUCK_COUNT; i++)
+		{
+			truck[i] = CreateVehicle(Vehicles::Truck, static_cast<float>(i * -400));
+
+			landEnemies[auxEnemyCount] = truck[i];
 			auxEnemyCount++;
 		}
 

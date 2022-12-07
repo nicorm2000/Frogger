@@ -4,6 +4,17 @@
 
 namespace game
 {
+	const int SMALL_LOG_COUNT = 3;
+	const int MEDIUM_LOG_COUNT = 3;
+	const int BIG_LOG_COUNT = 3;
+
+	enum class Logs
+	{
+		Small = 0,
+		Medium,
+		Big
+	};
+
 	struct Log
 	{
 		Vector2 logPosition{};
@@ -14,11 +25,7 @@ namespace game
 		Texture logTexture;
 	};
 
-	Log CreateSmallLog(Log& log);
-	
-	Log CreateMediumLog(Log& log);
-	
-	Log CreateBigLog(Log& log);
+	Log CreateLog(Logs logs, float distance);
 
 	void DrawLog(Log log);
 }

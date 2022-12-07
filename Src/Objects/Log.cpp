@@ -2,38 +2,51 @@
 
 namespace game
 {
-	Log CreateSmallLog(Log& log)
+	Log CreateLog(Logs logs, float distance)
 	{
-		log.logPosition.x = -200;
-		log.logPosition.y = 258;
-		log.logSize.x = 180;
-		log.logSize.y = 60;
-		log.logSpeed = 200;
-		log.logColor = BROWN;
+		Log log;
 
-		return log;
-	}
+		switch (logs)
+		{
+			case game::Logs::Small:
 
-	Log CreateMediumLog(Log& log)
-	{
-		log.logPosition.x = 1124;
-		log.logPosition.y = 322;
-		log.logSize.x = 240;
-		log.logSize.y = 60;
-		log.logSpeed = -175;
-		log.logColor = BROWN;
+				log.logPosition.x = -200;
+				log.logPosition.y = 258;
+				log.logSize.x = 180;
+				log.logSize.y = 60;
+				log.logSpeed = 200;
+				log.logColor = BROWN;
 
-		return log;
-	}
+				break;
 
-	Log CreateBigLog(Log& log)
-	{
-		log.logPosition.x = -310;
-		log.logPosition.y = 386;
-		log.logSize.x = 300;
-		log.logSize.y = 60;
-		log.logSpeed = 150;
-		log.logColor = BROWN;
+			case game::Logs::Medium:
+
+				log.logPosition.x = 1124;
+				log.logPosition.y = 322;
+				log.logSize.x = 240;
+				log.logSize.y = 60;
+				log.logSpeed = -175;
+				log.logColor = BROWN;
+
+				break;
+
+			case game::Logs::Big:
+
+				log.logPosition.x = -310;
+				log.logPosition.y = 386;
+				log.logSize.x = 300;
+				log.logSize.y = 60;
+				log.logSpeed = 150;
+				log.logColor = BROWN;
+
+				break;
+
+			default:
+
+				log = CreateLog(Logs::Small, distance);//The function is called again so there is always an object called
+
+				break;
+		}
 
 		return log;
 	}

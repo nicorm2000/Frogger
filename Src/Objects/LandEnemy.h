@@ -31,18 +31,6 @@ namespace game
 	};
 	
 	LandEnemy CreateVehicle(Vehicles vehicle, float distance);
-	/*
-	LandEnemy CreateMotorcycle(LandEnemy& landEnemy);
-	
-	LandEnemy CreateCar(LandEnemy& landEnemy);
 
-	LandEnemy CreateFastCar(LandEnemy& landEnemy);
-
-	LandEnemy CreateVan(LandEnemy& landEnemy);
-
-	LandEnemy CreateBus(LandEnemy& landEnemy);
-	
-	LandEnemy CreateTruck(LandEnemy& landEnemy);
-	*/
 	void DrawLandEnemy(LandEnemy landEnemy);
 }
