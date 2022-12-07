@@ -10,7 +10,7 @@ namespace game
 		{
 			case game::Logs::Small:
 
-				log.logPosition.x = -200;
+				log.logPosition.x = -200 + distance;
 				log.logPosition.y = 258;
 				log.logSize.x = 180;
 				log.logSize.y = 60;
@@ -21,7 +21,7 @@ namespace game
 
 			case game::Logs::Medium:
 
-				log.logPosition.x = 1124;
+				log.logPosition.x = 1124 + distance;
 				log.logPosition.y = 322;
 				log.logSize.x = 240;
 				log.logSize.y = 60;
@@ -32,7 +32,7 @@ namespace game
 
 			case game::Logs::Big:
 
-				log.logPosition.x = -310;
+				log.logPosition.x = -310 + distance;
 				log.logPosition.y = 386;
 				log.logSize.x = 300;
 				log.logSize.y = 60;
@@ -47,6 +47,8 @@ namespace game
 
 				break;
 		}
+
+		log.logType = logs;
 
 		return log;
 	}

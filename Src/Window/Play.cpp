@@ -40,12 +40,17 @@ namespace game
 
 		Frog frog;
 
-		Log smallLog;
-		Log mediumLog;
-		Log bigLog;
-		Log smallLog2;
-		Log mediumLog2;
-		Log bigLog2;
+		Log totalLogs[LOG_COUNT];
+		//Log totalLogs2[LOG_COUNT2];
+
+		int auxLogCount = 0;
+
+		Log smallLog[SMALL_LOG_COUNT];
+		Log smallLog2[SMALL_LOG_COUNT2];
+		Log mediumLog[MEDIUM_LOG_COUNT];
+		Log mediumLog2[MEDIUM_LOG_COUNT2];
+		Log bigLog[BIG_LOG_COUNT];
+		Log bigLog2[BIG_LOG_COUNT2];
 
 		LandEnemy landEnemies[LAND_ENEMIES_COUNT];
 
@@ -59,62 +64,115 @@ namespace game
 		LandEnemy truck[TRUCK_COUNT];
 
 		CreateFrog(frog);
-
-		CreateSmallLog(smallLog);
-		CreateMediumLog(mediumLog);
-		CreateBigLog(bigLog);
-		CreateSmallLog(smallLog2);
-		CreateMediumLog(mediumLog2);
-		CreateBigLog(bigLog2);
-
-		for (int i = 0; i < MOTORCYCLE_COUNT; i++)
+		
+		//Logs
 		{
-			motorcycle[i] = CreateVehicle(Vehicles::Motorcycle, static_cast<float>(i * -500));
-			
-			landEnemies[auxEnemyCount] = motorcycle[i];
-			auxEnemyCount++;
+			for (int i = 0; i < SMALL_LOG_COUNT; i++)
+			{
+				smallLog[i] = CreateLog(Logs::Small, static_cast<float>(i * -500));
+
+				totalLogs[auxLogCount] = smallLog[i];
+				auxLogCount++;
+			}
+
+			for (int i = 0; i < SMALL_LOG_COUNT2; i++)
+			{
+				smallLog2[i] = CreateLog(Logs::Small, static_cast<float>(i * 500));
+				smallLog2[i].logPosition.y = 66;
+				smallLog2[i].logSpeed = -200;
+
+				totalLogs[auxLogCount] = smallLog2[i];
+				auxLogCount++;
+			}
+
+			for (int i = 0; i < MEDIUM_LOG_COUNT; i++)
+			{
+				mediumLog[i] = CreateLog(Logs::Medium, static_cast<float>(i * -500));
+
+				totalLogs[auxLogCount] = mediumLog[i];
+				auxLogCount++;
+			}
+
+			for (int i = 0; i < MEDIUM_LOG_COUNT2; i++)
+			{
+				mediumLog2[i] = CreateLog(Logs::Medium, static_cast<float>(i * 500));
+				mediumLog2[i].logPosition.y = 130;
+				mediumLog2[i].logSpeed = 175;
+
+				totalLogs[auxLogCount] = mediumLog2[i];
+				auxLogCount++;
+			}
+
+			for (int i = 0; i < BIG_LOG_COUNT; i++)
+			{
+				bigLog[i] = CreateLog(Logs::Big, static_cast<float>(i * -500));
+
+				totalLogs[auxLogCount] = bigLog[i];
+				auxLogCount++;
+			}
+
+			for (int i = 0; i < BIG_LOG_COUNT2; i++)
+			{
+				bigLog2[i] = CreateLog(Logs::Big, static_cast<float>(i * 500));
+				bigLog2[i].logPosition.y = 194;
+				bigLog2[i].logSpeed = -150;
+
+				totalLogs[auxLogCount] = bigLog2[i];
+				auxLogCount++;
+			}
 		}
 
-		for (int i = 0; i < CAR_COUNT; i++)
+		//Land Enemies
 		{
-			car[i] = CreateVehicle(Vehicles::Car, static_cast<float>(i * -500));
+			for (int i = 0; i < MOTORCYCLE_COUNT; i++)
+			{
+				motorcycle[i] = CreateVehicle(Vehicles::Motorcycle, static_cast<float>(i * -500));
 
-			landEnemies[auxEnemyCount] = car[i];
-			auxEnemyCount++;
+				landEnemies[auxEnemyCount] = motorcycle[i];
+				auxEnemyCount++;
+			}
+
+			for (int i = 0; i < CAR_COUNT; i++)
+			{
+				car[i] = CreateVehicle(Vehicles::Car, static_cast<float>(i * -500));
+
+				landEnemies[auxEnemyCount] = car[i];
+				auxEnemyCount++;
+			}
+
+			for (int i = 0; i < FAST_CAR_COUNT; i++)
+			{
+				fastCar[i] = CreateVehicle(Vehicles::FastCar, static_cast<float>(i * -500));
+
+				landEnemies[auxEnemyCount] = fastCar[i];
+				auxEnemyCount++;
+			}
+
+			for (int i = 0; i < VAN_COUNT; i++)
+			{
+				van[i] = CreateVehicle(Vehicles::Van, static_cast<float>(i * -500));
+
+				landEnemies[auxEnemyCount] = van[i];
+				auxEnemyCount++;
+			}
+
+			for (int i = 0; i < BUS_COUNT; i++)
+			{
+				bus[i] = CreateVehicle(Vehicles::Bus, static_cast<float>(i * -500));
+
+				landEnemies[auxEnemyCount] = bus[i];
+				auxEnemyCount++;
+			}
+
+			for (int i = 0; i < TRUCK_COUNT; i++)
+			{
+				truck[i] = CreateVehicle(Vehicles::Truck, static_cast<float>(i * -400));
+
+				landEnemies[auxEnemyCount] = truck[i];
+				auxEnemyCount++;
+			}
 		}
-
-		for (int i = 0; i < FAST_CAR_COUNT; i++)
-		{
-			fastCar[i] = CreateVehicle(Vehicles::FastCar, static_cast<float>(i * -500));
-
-			landEnemies[auxEnemyCount] = fastCar[i];
-			auxEnemyCount++;
-		}
-
-		for (int i = 0; i < VAN_COUNT; i++)
-		{
-			van[i] = CreateVehicle(Vehicles::Van, static_cast<float>(i * -500));
-
-			landEnemies[auxEnemyCount] = van[i];
-			auxEnemyCount++;
-		}
-
-		for (int i = 0; i < BUS_COUNT; i++)
-		{
-			bus[i] = CreateVehicle(Vehicles::Bus, static_cast<float>(i * -500));
-
-			landEnemies[auxEnemyCount] = bus[i];
-			auxEnemyCount++;
-		}
-
-		for (int i = 0; i < TRUCK_COUNT; i++)
-		{
-			truck[i] = CreateVehicle(Vehicles::Truck, static_cast<float>(i * -400));
-
-			landEnemies[auxEnemyCount] = truck[i];
-			auxEnemyCount++;
-		}
-
+		
 		Vector2 mousePosition = GetMousePosition();
 
 		while (playingGame && !WindowShouldClose())
@@ -159,33 +217,14 @@ namespace game
 
 						//Log Loigc
 
-						//First three of logs
+						//Logs
 
-						smallLog.logPosition.x += smallLog.logSpeed * GetFrameTime();
-						mediumLog.logPosition.x += mediumLog.logSpeed * GetFrameTime();
-						bigLog.logPosition.x += bigLog.logSpeed * GetFrameTime();
+						for (int i = 0; i < LOG_COUNT; i++)
+						{
+							totalLogs[i].logPosition.x += totalLogs[i].logSpeed * GetFrameTime();
 
-						LogTp(smallLog);
-						LogTp(mediumLog);
-						LogTp(bigLog);
-
-						//Second three logs
-
-						smallLog2.logPosition.y = 66;
-						mediumLog2.logPosition.y = 130;
-						bigLog2.logPosition.y = 194;
-
-						smallLog2.logSpeed = -200;
-						mediumLog2.logSpeed = 175;
-						bigLog2.logSpeed = -150;
-
-						smallLog2.logPosition.x += smallLog2.logSpeed * GetFrameTime();
-						mediumLog2.logPosition.x += mediumLog2.logSpeed * GetFrameTime();
-						bigLog2.logPosition.x += bigLog2.logSpeed * GetFrameTime();
-
-						LogTp(smallLog2);
-						LogTp(mediumLog2);
-						LogTp(bigLog2);
+							LogTp(totalLogs[i]);
+						}
 
 						//Enemy Logic
 
@@ -271,12 +310,10 @@ namespace game
 
 					//Draw log
 
-					DrawLog(smallLog);
-					DrawLog(mediumLog);
-					DrawLog(bigLog);
-					DrawLog(smallLog2);
-					DrawLog(mediumLog2);
-					DrawLog(bigLog2);
+					for (int i = 0; i < LOG_COUNT; i++)
+					{
+						DrawLog(totalLogs[i]);
+					}
 
 					//Draw enemy
 
@@ -284,6 +321,8 @@ namespace game
 					{
 						DrawLandEnemy(landEnemies[i]);
 					}
+
+					//Draw player
 
 					if (frog.isAlive)
 					{

@@ -5,8 +5,11 @@
 namespace game
 {
 	const int SMALL_LOG_COUNT = 3;
+	const int SMALL_LOG_COUNT2 = 3;
 	const int MEDIUM_LOG_COUNT = 3;
+	const int MEDIUM_LOG_COUNT2 = 3;
 	const int BIG_LOG_COUNT = 3;
+	const int BIG_LOG_COUNT2 = 3;
 
 	enum class Logs
 	{
@@ -18,7 +21,8 @@ namespace game
 	struct Log
 	{
 		Vector2 logPosition{};
-		Vector2 logSize;
+		Vector2 logSize{};
+		Logs logType;
 		float logSpeed;
 		bool isFrogOnLog;
 		Color logColor;
