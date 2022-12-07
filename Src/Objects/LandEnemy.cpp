@@ -3,7 +3,7 @@
 
 namespace game
 {
-	LandEnemy CreateVehicle(Vehicles vehicle, int distance, int speed)
+	LandEnemy CreateVehicle(Vehicles vehicle, float distance)
 	{
 		LandEnemy landEnemy;
 
@@ -15,7 +15,7 @@ namespace game
 				landEnemy.landEnemyPosition.y = 512;
 				landEnemy.landEnemySize.x = 60;
 				landEnemy.landEnemySize.y = 60;
-				landEnemy.landEnemySpeed = 250 + speed;
+				landEnemy.landEnemySpeed = 250;
 				landEnemy.landEnemyColor = RED;
 
 				break;
@@ -26,7 +26,7 @@ namespace game
 				landEnemy.landEnemyPosition.y = 832;
 				landEnemy.landEnemySize.x = 80;
 				landEnemy.landEnemySize.y = 60;
-				landEnemy.landEnemySpeed = -250 + speed;
+				landEnemy.landEnemySpeed = -250;
 				landEnemy.landEnemyColor = BLUE;
 
 				break;
@@ -37,7 +37,7 @@ namespace game
 				landEnemy.landEnemyPosition.y = 768;
 				landEnemy.landEnemySize.x = 80;
 				landEnemy.landEnemySize.y = 60;
-				landEnemy.landEnemySpeed = 350 + speed;
+				landEnemy.landEnemySpeed = 350;
 				landEnemy.landEnemyColor = ORANGE;
 				
 				break;
@@ -48,7 +48,7 @@ namespace game
 				landEnemy.landEnemyPosition.y = 704;
 				landEnemy.landEnemySize.x = 100;
 				landEnemy.landEnemySize.y = 60;
-				landEnemy.landEnemySpeed = -230 + speed;
+				landEnemy.landEnemySpeed = -230;
 				landEnemy.landEnemyColor = PURPLE;
 				
 				break;
@@ -59,7 +59,7 @@ namespace game
 				landEnemy.landEnemyPosition.y = 640;
 				landEnemy.landEnemySize.x = 150;
 				landEnemy.landEnemySize.y = 60;
-				landEnemy.landEnemySpeed = 170 + speed;
+				landEnemy.landEnemySpeed = 170;
 				landEnemy.landEnemyColor = YELLOW;
 				
 				break;
@@ -70,14 +70,14 @@ namespace game
 				landEnemy.landEnemyPosition.y = 576;
 				landEnemy.landEnemySize.x = 200;
 				landEnemy.landEnemySize.y = 60;
-				landEnemy.landEnemySpeed = -150 + speed;
+				landEnemy.landEnemySpeed = -150;
 				landEnemy.landEnemyColor = MAGENTA;
 				
 				break;
 			
 			default:
 				
-				landEnemy = CreateVehicle(Vehicles::Motorcycle, distance, speed);
+				landEnemy = CreateVehicle(Vehicles::Motorcycle, distance);//The function is called again so there is always an object called
 
 				break;
 		}

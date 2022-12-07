@@ -4,7 +4,7 @@
 #include "Window/Credits.h"
 #include "Objects/Frog.h"
 #include "Objects/Log.h"
-#include "Objects/LandEnemy.h"
+//#include "Objects/LandEnemy.h"
 
 #include "raylib.h"
 
@@ -47,7 +47,12 @@ namespace game
 		Log mediumLog2;
 		Log bigLog2;
 
-		LandEnemy motorcycle;
+		LandEnemy landEnemies[LAND_ENEMIES_COUNT];
+
+		int auxEnemyCount = 0;
+
+		LandEnemy motorcycle[MOTORCYCLE_COUNT];
+		
 		//LandEnemy car;
 		//LandEnemy fastCar;
 		//LandEnemy van;
@@ -63,7 +68,15 @@ namespace game
 		CreateMediumLog(mediumLog2);
 		CreateBigLog(bigLog2);
 
-		motorcycle = CreateVehicle(Vehicles::Motorcycle);
+		for (int i = 0; i < MOTORCYCLE_COUNT; i++)
+		{
+			motorcycle[i] = CreateVehicle(Vehicles::Motorcycle, static_cast<float>(i * -100));
+			
+			landEnemies[auxEnemyCount] = motorcycle[i];
+			auxEnemyCount++;
+		}
+
+		
 		/*CreateCar(car);
 		CreateFastCar(fastCar);
 		CreateVan(van);
@@ -106,8 +119,11 @@ namespace game
 						{
 							CheckPlayerInput(frog, playingGame);
 						}
-
-						GameCollisions(frog, motorcycle);
+						
+						for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
+						{
+							GameCollisions(frog, landEnemies[i]);
+						}
 						//GameCollisions(frog, car);
 						//GameCollisions(frog, fastCar);
 						//GameCollisions(frog, van);
@@ -146,14 +162,20 @@ namespace game
 
 						//Enemy Logic
 
-						motorcycle.landEnemyPosition.x += motorcycle.landEnemySpeed * GetFrameTime();
+						for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
+						{
+							landEnemies[i].landEnemyPosition.x += landEnemies[i].landEnemySpeed * GetFrameTime();
+						}
 						//car.landEnemyPosition.x += car.landEnemySpeed * GetFrameTime();
 						//fastCar.landEnemyPosition.x += fastCar.landEnemySpeed * GetFrameTime();
 						//van.landEnemyPosition.x += van.landEnemySpeed * GetFrameTime();
 						//bus.landEnemyPosition.x += bus.landEnemySpeed * GetFrameTime();
 						//truck.landEnemyPosition.x += truck.landEnemySpeed * GetFrameTime();
 
-						LandEnemyTp(motorcycle);
+						for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
+						{
+							LandEnemyTp(landEnemies[i]);
+						}
 						//LandEnemyTp(car);
 						//LandEnemyTp(fastCar);
 						//LandEnemyTp(van);
@@ -244,7 +266,10 @@ namespace game
 
 					//Draw enemy
 
-					DrawLandEnemy(motorcycle);
+					for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
+					{
+						DrawLandEnemy(landEnemies[i]);
+					}
 					//DrawLandEnemy(car);
 					//DrawLandEnemy(fastCar);
 					//DrawLandEnemy(van);

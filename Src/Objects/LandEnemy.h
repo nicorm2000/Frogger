@@ -30,8 +30,8 @@ namespace game
 		Texture landEnemyTexture;
 	};
 	
-	LandEnemy CreateVehicle(Vehicles vehicle, int distance, int speed);
-	 /*
+	LandEnemy CreateVehicle(Vehicles vehicle, float distance);
+	/*
 	LandEnemy CreateMotorcycle(LandEnemy& landEnemy);
 	
 	LandEnemy CreateCar(LandEnemy& landEnemy);
