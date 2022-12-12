@@ -26,15 +26,15 @@ namespace game
 
 	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h);
 
-	void LandGameCollisions(Frog& frog, LandEnemy landEnemy);
+	void LandGameCollisions(Frog& frog, LandEnemy landEnemy, float& timer);
 
-	void WaterGameCollisions(Frog& frog, Water water, Log totalLogs[]);
+	void WaterGameCollisions(Frog& frog, Water water, Log totalLogs[], float& timer);
 
 	bool LogCollisions(Frog& frog, Log log);
 
-	void FlyCollisions(Frog& frog, Fly& fly, int& fliesPickedUp);
+	void FlyCollisions(Frog& frog, Fly& fly, int& fliesPickedUp, float& timer);
 
-	void Respawn(Frog& frog);
+	void Respawn(Frog& frog, float& timer);
 
 	void TpBackToStart(Frog& frog);
 
@@ -48,6 +48,8 @@ namespace game
 		bool isPaused = false;
 		bool exitWindow = false;
 		bool gameFinished = false;
+
+		float timer = 30.0f;
 
 		GameState gameState = GameState::GAMETITLE;
 
@@ -238,20 +240,27 @@ namespace game
 						{
 							if (frog.isAlive)
 							{
+								timer -= GetFrameTime();
+
+								if (timer <= 0.0f)
+								{
+									Respawn(frog, timer);
+								}
+
 								CheckPlayerInput(frog, playingGame);
 
 								for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
 								{
-									LandGameCollisions(frog, landEnemies[i]);
+									LandGameCollisions(frog, landEnemies[i], timer);
 								}
 
-								WaterGameCollisions(frog, water, totalLogs);
+								WaterGameCollisions(frog, water, totalLogs, timer);
 
 								for (int i = 0; i < FLIES_COUNT; i++)
 								{
 									if (!flies[i].isFlyPicked)
 									{
-										FlyCollisions(frog, flies[i], fliesPickedUp);
+										FlyCollisions(frog, flies[i], fliesPickedUp, timer);
 									}
 								}
 							}
@@ -499,8 +508,10 @@ namespace game
 		}
 	}
 
-	void Respawn(Frog& frog)
+	void Respawn(Frog& frog, float& timer)
 	{
+		timer = 30.0f;
+
 		frog.frogLives--;
 
 		frog.frogPosition.x = 486;
@@ -528,17 +539,17 @@ namespace game
 		return false;
 	}
 
-	void LandGameCollisions(Frog& frog, LandEnemy landEnemy)
+	void LandGameCollisions(Frog& frog, LandEnemy landEnemy, float& timer)
 	{
 		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, landEnemy.landEnemyPosition.x, landEnemy.landEnemyPosition.y, landEnemy.landEnemySize.x, landEnemy.landEnemySize.y))
 		{
-			Respawn(frog);
+			Respawn(frog, timer);
 
 			//Splat Sound
 		}
 	}
 
-	void WaterGameCollisions(Frog& frog, Water water, Log totalLogs[])
+	void WaterGameCollisions(Frog& frog, Water water, Log totalLogs[], float& timer)
 	{
 		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, water.waterPosition.x, water.waterPosition.y, water.waterSize.x, water.waterSize.y))
 		{
@@ -556,7 +567,7 @@ namespace game
 
 			if (!frogOnLog)
 			{
-				Respawn(frog);
+				Respawn(frog, timer);
 
 				//Drown Sound
 			}
@@ -575,11 +586,13 @@ namespace game
 		}
 	}
 
-	void FlyCollisions(Frog& frog, Fly& fly, int& fliesPickedUp)
+	void FlyCollisions(Frog& frog, Fly& fly, int& fliesPickedUp, float& timer)
 	{
 		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, fly.flyPosition.x, fly.flyPosition.y, fly.flySize.x, fly.flySize.y))
 		{
 			TpBackToStart(frog);
+
+			timer = 30.0f;
 
 			fly.isFlyPicked = true;
 
