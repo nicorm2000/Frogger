@@ -9,6 +9,8 @@
 
 #include "raylib.h"
 
+#include <iostream>
+
 namespace game
 {
 
@@ -24,7 +26,11 @@ namespace game
 
 	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h);
 
-	void GameCollisions(Frog& frog, LandEnemy landEnemy, Water water);
+	void LandGameCollisions(Frog& frog, LandEnemy landEnemy);
+
+	void WaterGameCollisions(Frog& frog, Water water, Log log);
+
+	void respawn(Frog& frog);
 
 	void Game()
 	{
@@ -217,10 +223,13 @@ namespace game
 						
 						for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
 						{
-							GameCollisions(frog, landEnemies[i], water);
+							LandGameCollisions(frog, landEnemies[i]);
 						}
 
-						//Logs
+						for (int i = 0; i < LOG_COUNT; i++)
+						{
+							WaterGameCollisions(frog, water, totalLogs[i]);
+						}
 						
 						//Log Logic
 
@@ -452,6 +461,19 @@ namespace game
 		}
 	}
 
+	void respawn(Frog& frog)
+	{
+		frog.frogLives--;
+
+		frog.frogPosition.x = 486;
+		frog.frogPosition.y = 967.5f;
+
+		if (frog.frogLives <= 0)
+		{
+			frog.isAlive = false;
+		}
+	}
+
 	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h)
 	{
 		if (r1x + r1w >= r2x && r1x <= r2x + r2w && r1y + r1h >= r2y && r1y <= r2y + r2h)
@@ -461,33 +483,31 @@ namespace game
 		return false;
 	}
 
-	void GameCollisions(Frog& frog, LandEnemy landEnemy, Water water)
+	void LandGameCollisions(Frog& frog, LandEnemy landEnemy)
 	{
 		if (frog.isAlive)
 		{
 			if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, landEnemy.landEnemyPosition.x, landEnemy.landEnemyPosition.y, landEnemy.landEnemySize.x, landEnemy.landEnemySize.y))
 			{
-				frog.frogLives--;
-				
-				frog.frogPosition.x = 486;
-				frog.frogPosition.y = 967.5f;
-
-				if (frog.frogLives <= 0)
-				{
-					frog.isAlive = false;
-				}
+				respawn(frog);
 			}
+		}
+	}
 
+	void WaterGameCollisions(Frog& frog, Water water, Log log)
+	{
+		if (frog.isAlive)
+		{
 			if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, water.waterPosition.x, water.waterPosition.y, water.waterSize.x, water.waterSize.y))
 			{
-				frog.frogLives--;
-
-				frog.frogPosition.x = 486;
-				frog.frogPosition.y = 967.5f;
-
-				if (frog.frogLives <= 0)
+				if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, log.logPosition.x, log.logPosition.y, log.logSize.x, log.logSize.y))
 				{
-					frog.isAlive = false;
+					std::cout << "collision" << std::endl;
+					return;
+				}
+				else
+				{
+					respawn(frog);
 				}
 			}
 		}
