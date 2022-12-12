@@ -2,7 +2,13 @@
 
 namespace game
 {
-	Fly CreateFly(Fly& fly);
+	Fly CreateFly(Fly& fly)
+	{
 
-	void DrawFly(Fly fly);
+	}
+
+	void DrawFly(Fly fly)
+	{
+
+	}
 }
