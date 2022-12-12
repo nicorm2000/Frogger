@@ -241,6 +241,12 @@ namespace game
 							}
 
 							WaterGameCollisions(frog, water, totalLogs);
+
+							FlyCollisions(frog, fly);
+							FlyCollisions(frog, fly2);
+							FlyCollisions(frog, fly3);
+							FlyCollisions(frog, fly4);
+							FlyCollisions(frog, fly5);
 						}
 
 						for (int i = 0; i < LOG_COUNT; i++)
@@ -543,7 +549,10 @@ namespace game
 
 	void FlyCollisions(Frog& frog, Fly fly)
 	{
-
+		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, fly.flyPosition.x, fly.flyPosition.y, fly.flySize.x, fly.flySize.y))
+		{
+			Respawn(frog);
+		}
 	}
 
 	void CheckPlayerInput(Frog& frog, bool& playingGame)
