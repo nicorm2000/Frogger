@@ -8,7 +8,6 @@ namespace game
 		water.waterPosition.y = 64;
 		water.waterSize.x = 1024;
 		water.waterSize.y = 384;
-		water.isOnWater = false;
 		water.waterColor = BLANK;
 
 		return water;

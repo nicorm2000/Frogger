@@ -8,7 +8,6 @@ namespace game
 	{
 		Vector2 waterPosition{};
 		Vector2 waterSize;
-		bool isOnWater;
 		Color waterColor;
 	};
 

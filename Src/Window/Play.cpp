@@ -22,15 +22,17 @@ namespace game
 
 	void LandEnemyTp(LandEnemy& landEnemy);
 
-	void CheckPlayerInput(Frog& frog, bool& playingGame);
+	void CheckPlayerInput(Frog& frog);
 
 	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h);
 
 	void LandGameCollisions(Frog& frog, LandEnemy landEnemy);
 
-	void WaterGameCollisions(Frog& frog, Water water, Log log);
+	bool WaterGameCollisions(Frog& frog, Log log);
 
-	void respawn(Frog& frog);
+	void Respawn(Frog& frog);
+
+	void ObjectiveWallCollision(Frog& frog);
 
 	void Game()
 	{
@@ -98,7 +100,7 @@ namespace game
 
 			for (int i = 0; i < MEDIUM_LOG_COUNT; i++)
 			{
-				mediumLog[i] = CreateLog(Logs::Medium, static_cast<float>(i * -500));
+				mediumLog[i] = CreateLog(Logs::Medium, static_cast<float>(i * 500));
 
 				totalLogs[auxLogCount] = mediumLog[i];
 				auxLogCount++;
@@ -106,7 +108,7 @@ namespace game
 
 			for (int i = 0; i < MEDIUM_LOG_COUNT2; i++)
 			{
-				mediumLog2[i] = CreateLog(Logs::Medium, static_cast<float>(i * 500));
+				mediumLog2[i] = CreateLog(Logs::Medium, static_cast<float>(i * -500));
 				mediumLog2[i].logPosition.y = 130;
 				mediumLog2[i].logSpeed = 175;
 
@@ -218,17 +220,32 @@ namespace game
 					{
 						if (frog.isAlive)
 						{
-							CheckPlayerInput(frog, playingGame);
-						}
-						
-						for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
-						{
-							LandGameCollisions(frog, landEnemies[i]);
-						}
+							CheckPlayerInput(frog);
 
-						for (int i = 0; i < LOG_COUNT; i++)
-						{
-							WaterGameCollisions(frog, water, totalLogs[i]);
+							for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
+							{
+								LandGameCollisions(frog, landEnemies[i]);
+							}
+
+							if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, water.waterPosition.x, water.waterPosition.y, water.waterSize.x, water.waterSize.y))
+							{
+								bool frogOnLog = false;
+
+								for (int i = 0; i < LOG_COUNT; i++)
+								{
+									frogOnLog = WaterGameCollisions(frog, totalLogs[i]);
+
+									if (frogOnLog)
+									{
+										break;
+									}
+								}
+
+								if (!frogOnLog)
+								{
+									Respawn(frog);
+								}
+							}
 						}
 						
 						//Log Logic
@@ -461,7 +478,7 @@ namespace game
 		}
 	}
 
-	void respawn(Frog& frog)
+	void Respawn(Frog& frog)
 	{
 		frog.frogLives--;
 
@@ -474,52 +491,49 @@ namespace game
 		}
 	}
 
+	void ObjectiveWallCollision(Frog& frog)
+	{
+		if (frog.frogPosition.y == 64)
+		{
+			for (int i = 159; i < 1024; i + 64)
+			{
+
+			}
+		}
+	}
+
 	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h)
 	{
 		if (r1x + r1w >= r2x && r1x <= r2x + r2w && r1y + r1h >= r2y && r1y <= r2y + r2h)
 		{
 			return true;
 		}
+
 		return false;
 	}
 
 	void LandGameCollisions(Frog& frog, LandEnemy landEnemy)
 	{
-		if (frog.isAlive)
+		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, landEnemy.landEnemyPosition.x, landEnemy.landEnemyPosition.y, landEnemy.landEnemySize.x, landEnemy.landEnemySize.y))
 		{
-			if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, landEnemy.landEnemyPosition.x, landEnemy.landEnemyPosition.y, landEnemy.landEnemySize.x, landEnemy.landEnemySize.y))
-			{
-				respawn(frog);
-			}
+			Respawn(frog);
 		}
 	}
 
-	void WaterGameCollisions(Frog& frog, Water water, Log log)
+	bool WaterGameCollisions(Frog& frog, Log log)
 	{
-		if (frog.isAlive)
+		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, log.logPosition.x, log.logPosition.y, log.logSize.x, log.logSize.y))
 		{
-			if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, water.waterPosition.x, water.waterPosition.y, water.waterSize.x, water.waterSize.y))
-			{
-				if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, log.logPosition.x, log.logPosition.y, log.logSize.x, log.logSize.y))
-				{
-					std::cout << "collision" << std::endl;
-					return;
-				}
-				else
-				{
-					respawn(frog);
-				}
-			}
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
-	void CheckPlayerInput(Frog& frog, bool& playingGame)
+	void CheckPlayerInput(Frog& frog)
 	{
-		if (IsKeyPressed(KEY_ENTER))
-		{
-			playingGame = false;
-		}
-
 		if (IsKeyPressed(KEY_UP))
 		{
 			if (frog.frogPosition.y >= 64)
