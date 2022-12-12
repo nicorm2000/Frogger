@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\main.cpp" />
+    <ClCompile Include="Src\Objects\Fly.cpp" />
     <ClCompile Include="Src\Objects\Frog.cpp" />
     <ClCompile Include="Src\Objects\LandEnemy.cpp" />
     <ClCompile Include="Src\Objects\Log.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="Src\Window\Play.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Objects\Fly.h" />
     <ClInclude Include="Src\Objects\Frog.h" />
     <ClInclude Include="Src\Objects\LandEnemy.h" />
     <ClInclude Include="Src\Objects\Log.h" />

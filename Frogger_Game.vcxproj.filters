@@ -29,6 +29,9 @@
     <ClCompile Include="Src\Objects\Water.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Objects\Fly.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Window">
@@ -64,6 +67,9 @@
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Src\Objects\Water.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Objects\Fly.h">
       <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>

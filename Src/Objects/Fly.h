@@ -13,7 +13,7 @@ namespace game
 		Texture flyTexture;
 	};
 
-	Fly CreateFly(Fly& fly);
+	Fly CreateFly(Fly& fly, float posX);
 
 	void DrawFly(Fly fly);
 }

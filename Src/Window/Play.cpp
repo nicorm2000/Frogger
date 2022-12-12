@@ -6,6 +6,7 @@
 #include "Objects/Log.h"
 #include "Objects/LandEnemy.h"
 #include "Objects/Water.h"
+#include "Objects/Fly.h"
 
 #include "raylib.h"
 
@@ -50,6 +51,8 @@ namespace game
 
 		Water water;
 
+		Fly fly;
+
 		Log totalLogs[LOG_COUNT];
 
 		int auxLogCount = 0;
@@ -75,6 +78,8 @@ namespace game
 		CreateFrog(frog);
 		
 		CreateWater(water);
+
+		CreateFly(fly, 106);
 
 		//Logs
 		{
@@ -276,6 +281,8 @@ namespace game
 
 					//Map
 					DrawMap();
+
+					DrawFly(fly);
 
 					//Draw lives
 
