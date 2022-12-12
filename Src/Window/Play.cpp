@@ -52,6 +52,10 @@ namespace game
 		Water water;
 
 		Fly fly;
+		Fly fly2;
+		Fly fly3;
+		Fly fly4;
+		Fly fly5;
 
 		Log totalLogs[LOG_COUNT];
 
@@ -80,6 +84,10 @@ namespace game
 		CreateWater(water);
 
 		CreateFly(fly, 106);
+		CreateFly(fly2, 298);
+		CreateFly(fly3, 490);
+		CreateFly(fly4, 682);
+		CreateFly(fly5, 874);
 
 		//Logs
 		{
@@ -283,6 +291,10 @@ namespace game
 					DrawMap();
 
 					DrawFly(fly);
+					DrawFly(fly2);
+					DrawFly(fly3);
+					DrawFly(fly4);
+					DrawFly(fly5);
 
 					//Draw lives
 
