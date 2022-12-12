@@ -49,19 +49,15 @@ namespace game
 		bool exitWindow = false;
 		bool gameFinished = false;
 
-		int fliesPickedUp = 0;
-
 		GameState gameState = GameState::GAMETITLE;
 
 		Frog frog;
 
 		Water water;
 
-		Fly fly1;
-		Fly fly2;
-		Fly fly3;
-		Fly fly4;
-		Fly fly5;
+		Fly flies[FLIES_COUNT];
+
+		int fliesPickedUp = 0;
 
 		Log totalLogs[LOG_COUNT];
 
@@ -89,11 +85,14 @@ namespace game
 		
 		CreateWater(water);
 
-		CreateFly(fly1, 106);
-		CreateFly(fly2, 298);
-		CreateFly(fly3, 490);
-		CreateFly(fly4, 682);
-		CreateFly(fly5, 874);
+		int currentDistance = 0;
+
+		for (int i = 0; i < FLIES_COUNT; i++)
+		{
+			CreateFly(flies[i], static_cast<float>(106 + currentDistance));
+
+			currentDistance += SPACE_BETWEEN_FLIES;
+		}
 
 		//Logs
 		{
@@ -248,25 +247,12 @@ namespace game
 
 								WaterGameCollisions(frog, water, totalLogs);
 
-								if (!fly1.isFlyPicked)
+								for (int i = 0; i < FLIES_COUNT; i++)
 								{
-									FlyCollisions(frog, fly1, fliesPickedUp);
-								}
-								if (!fly2.isFlyPicked)
-								{
-									FlyCollisions(frog, fly2, fliesPickedUp);
-								}
-								if (!fly3.isFlyPicked)
-								{
-									FlyCollisions(frog, fly3, fliesPickedUp);
-								}
-								if (!fly4.isFlyPicked)
-								{
-									FlyCollisions(frog, fly4, fliesPickedUp);
-								}
-								if (!fly5.isFlyPicked)
-								{
-									FlyCollisions(frog, fly5, fliesPickedUp);
+									if (!flies[i].isFlyPicked)
+									{
+										FlyCollisions(frog, flies[i], fliesPickedUp);
+									}
 								}
 							}
 
@@ -323,26 +309,13 @@ namespace game
 
 					//Map
 					DrawMap();
-
-					if (!fly1.isFlyPicked)
+					
+					for (int i = 0; i < FLIES_COUNT; i++)
 					{
-						DrawFly(fly1);
-					}
-					if (!fly2.isFlyPicked)
-					{
-						DrawFly(fly2);
-					}
-					if (!fly3.isFlyPicked)
-					{
-						DrawFly(fly3);
-					}
-					if (!fly4.isFlyPicked)
-					{
-						DrawFly(fly4);
-					}
-					if (!fly5.isFlyPicked)
-					{
-						DrawFly(fly5);
+						if (!flies[i].isFlyPicked)
+						{
+							DrawFly(flies[i]);
+						}
 					}
 
 					//Draw lives
