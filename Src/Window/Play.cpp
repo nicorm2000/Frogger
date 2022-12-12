@@ -32,9 +32,11 @@ namespace game
 
 	bool LogCollisions(Frog& frog, Log log);
 
-	void FlyCollisions(Frog& frog, Fly fly);
+	void FlyCollisions(Frog& frog, Fly& fly);
 
 	void Respawn(Frog& frog);
+
+	void TpBackToStart(Frog& frog);
 
 	void Game()
 	{
@@ -242,11 +244,26 @@ namespace game
 
 							WaterGameCollisions(frog, water, totalLogs);
 
-							FlyCollisions(frog, fly);
-							FlyCollisions(frog, fly2);
-							FlyCollisions(frog, fly3);
-							FlyCollisions(frog, fly4);
-							FlyCollisions(frog, fly5);
+							if (!fly.isFlyPicked)
+							{
+								FlyCollisions(frog, fly);
+							}
+							if (!fly2.isFlyPicked)
+							{
+								FlyCollisions(frog, fly2);
+							}
+							if (!fly3.isFlyPicked)
+							{
+								FlyCollisions(frog, fly3);
+							}
+							if (!fly4.isFlyPicked)
+							{
+								FlyCollisions(frog, fly4);
+							}
+							if (!fly5.isFlyPicked)
+							{
+								FlyCollisions(frog, fly5);
+							}
 						}
 
 						for (int i = 0; i < LOG_COUNT; i++)
@@ -298,11 +315,26 @@ namespace game
 					//Map
 					DrawMap();
 
-					DrawFly(fly);
-					DrawFly(fly2);
-					DrawFly(fly3);
-					DrawFly(fly4);
-					DrawFly(fly5);
+					if (!fly.isFlyPicked)
+					{
+						DrawFly(fly);
+					}
+					if (!fly2.isFlyPicked)
+					{
+						DrawFly(fly2);
+					}
+					if (!fly3.isFlyPicked)
+					{
+						DrawFly(fly3);
+					}
+					if (!fly4.isFlyPicked)
+					{
+						DrawFly(fly4);
+					}
+					if (!fly5.isFlyPicked)
+					{
+						DrawFly(fly5);
+					}
 
 					//Draw lives
 
@@ -381,7 +413,7 @@ namespace game
 
 	static void Initialize()
 	{
-		InitWindow(1024, 1024, "Frogger 0.2");
+		InitWindow(1024, 1024, "Frogger 0.z");
 	}
 
 	static void Close()
@@ -494,6 +526,12 @@ namespace game
 		}
 	}
 
+	void TpBackToStart(Frog& frog)
+	{
+		frog.frogPosition.x = 486;
+		frog.frogPosition.y = 967.5f;
+	}
+
 	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h)
 	{
 		if (r1x + r1w >= r2x && r1x <= r2x + r2w && r1y + r1h >= r2y && r1y <= r2y + r2h)
@@ -547,11 +585,13 @@ namespace game
 		}
 	}
 
-	void FlyCollisions(Frog& frog, Fly fly)
+	void FlyCollisions(Frog& frog, Fly& fly)
 	{
 		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, fly.flyPosition.x, fly.flyPosition.y, fly.flySize.x, fly.flySize.y))
 		{
-			Respawn(frog);
+			TpBackToStart(frog);
+
+			fly.isFlyPicked = true;
 		}
 	}
 
