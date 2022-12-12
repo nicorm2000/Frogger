@@ -13,7 +13,6 @@
 
 namespace game
 {
-
 	static void Initialize();
 
 	static void Close();
@@ -28,11 +27,11 @@ namespace game
 
 	void LandGameCollisions(Frog& frog, LandEnemy landEnemy);
 
-	bool WaterGameCollisions(Frog& frog, Log log);
+	void WaterGameCollisions(Frog& frog, Water water, Log totalLogs[]);
+
+	bool LogCollisions(Frog& frog, Log log);
 
 	void Respawn(Frog& frog);
-
-	void ObjectiveWallCollision(Frog& frog);
 
 	void Game()
 	{
@@ -52,7 +51,6 @@ namespace game
 		Water water;
 
 		Log totalLogs[LOG_COUNT];
-		//Log totalLogs2[LOG_COUNT2];
 
 		int auxLogCount = 0;
 
@@ -227,28 +225,8 @@ namespace game
 								LandGameCollisions(frog, landEnemies[i]);
 							}
 
-							if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, water.waterPosition.x, water.waterPosition.y, water.waterSize.x, water.waterSize.y))
-							{
-								bool frogOnLog = false;
-
-								for (int i = 0; i < LOG_COUNT; i++)
-								{
-									frogOnLog = WaterGameCollisions(frog, totalLogs[i]);
-
-									if (frogOnLog)
-									{
-										break;
-									}
-								}
-
-								if (!frogOnLog)
-								{
-									Respawn(frog);
-								}
-							}
+							WaterGameCollisions(frog, water, totalLogs);
 						}
-						
-						//Log Logic
 
 						for (int i = 0; i < LOG_COUNT; i++)
 						{
@@ -256,8 +234,6 @@ namespace game
 
 							LogTp(totalLogs[i]);
 						}
-
-						//Enemy Logic
 
 						for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
 						{
@@ -508,7 +484,30 @@ namespace game
 		}
 	}
 
-	bool WaterGameCollisions(Frog& frog, Log log)
+	void WaterGameCollisions(Frog& frog, Water water, Log totalLogs[])
+	{
+		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, water.waterPosition.x, water.waterPosition.y, water.waterSize.x, water.waterSize.y))
+		{
+			bool frogOnLog = false;
+
+			for (int i = 0; i < LOG_COUNT; i++)
+			{
+				frogOnLog = LogCollisions(frog, totalLogs[i]);
+
+				if (frogOnLog)
+				{
+					break;
+				}
+			}
+
+			if (!frogOnLog)
+			{
+				Respawn(frog);
+			}
+		}
+	}
+
+	bool LogCollisions(Frog& frog, Log log)
 	{
 		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, log.logPosition.x, log.logPosition.y, log.logSize.x, log.logSize.y))
 		{
