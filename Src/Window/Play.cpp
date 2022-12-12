@@ -6,6 +6,7 @@
 #include "Objects/Log.h"
 #include "Objects/LandEnemy.h"
 #include "Objects/Water.h"
+#include "Objects/EndCellls.h"
 
 #include "raylib.h"
 
@@ -51,8 +52,14 @@ namespace game
 
 		Water water;
 
+		EndCells endCell1;
+		EndCells endCell2;
+		EndCells endCell3;
+		EndCells endCell4;
+		EndCells endCell5;
+		EndCells endCell6;
+
 		Log totalLogs[LOG_COUNT];
-		//Log totalLogs2[LOG_COUNT2];
 
 		int auxLogCount = 0;
 
@@ -77,6 +84,13 @@ namespace game
 		CreateFrog(frog);
 		
 		CreateWater(water);
+
+		CreateEndCells(endCell1, 0, 95);
+		CreateEndCells(endCell2, 0, 95);
+		CreateEndCells(endCell3, 0, 95);
+		CreateEndCells(endCell4, 0, 95);
+		CreateEndCells(endCell5, 0, 95);
+		CreateEndCells(endCell6, 0, 95);
 
 		//Logs
 		{
@@ -495,10 +509,7 @@ namespace game
 	{
 		if (frog.frogPosition.y == 64)
 		{
-			for (int i = 159; i < 1024; i + 64)
-			{
 
-			}
 		}
 	}
 
