@@ -32,7 +32,7 @@ namespace game
 
 	bool LogCollisions(Frog& frog, Log log);
 
-	void FlyCollisions(Frog& frog, Fly& fly);
+	void FlyCollisions(Frog& frog, Fly& fly, int& fliesPickedUp);
 
 	void Respawn(Frog& frog);
 
@@ -49,13 +49,15 @@ namespace game
 		bool exitWindow = false;
 		bool gameFinished = false;
 
+		int fliesPickedUp = 0;
+
 		GameState gameState = GameState::GAMETITLE;
 
 		Frog frog;
 
 		Water water;
 
-		Fly fly;
+		Fly fly1;
 		Fly fly2;
 		Fly fly3;
 		Fly fly4;
@@ -87,7 +89,7 @@ namespace game
 		
 		CreateWater(water);
 
-		CreateFly(fly, 106);
+		CreateFly(fly1, 106);
 		CreateFly(fly2, 298);
 		CreateFly(fly3, 490);
 		CreateFly(fly4, 682);
@@ -231,54 +233,61 @@ namespace game
 
 					mousePosition = GetMousePosition();
 					
-					if (!isPaused)
+					if (fliesPickedUp != 5)
 					{
-						if (frog.isAlive)
+						if (!isPaused)
 						{
-							CheckPlayerInput(frog, playingGame);
+							if (frog.isAlive)
+							{
+								CheckPlayerInput(frog, playingGame);
+
+								for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
+								{
+									LandGameCollisions(frog, landEnemies[i]);
+								}
+
+								WaterGameCollisions(frog, water, totalLogs);
+
+								if (!fly1.isFlyPicked)
+								{
+									FlyCollisions(frog, fly1, fliesPickedUp);
+								}
+								if (!fly2.isFlyPicked)
+								{
+									FlyCollisions(frog, fly2, fliesPickedUp);
+								}
+								if (!fly3.isFlyPicked)
+								{
+									FlyCollisions(frog, fly3, fliesPickedUp);
+								}
+								if (!fly4.isFlyPicked)
+								{
+									FlyCollisions(frog, fly4, fliesPickedUp);
+								}
+								if (!fly5.isFlyPicked)
+								{
+									FlyCollisions(frog, fly5, fliesPickedUp);
+								}
+							}
+
+							for (int i = 0; i < LOG_COUNT; i++)
+							{
+								totalLogs[i].logPosition.x += totalLogs[i].logSpeed * GetFrameTime();
+
+								LogTp(totalLogs[i]);
+							}
 
 							for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
 							{
-								LandGameCollisions(frog, landEnemies[i]);
-							}
+								landEnemies[i].landEnemyPosition.x += landEnemies[i].landEnemySpeed * GetFrameTime();
 
-							WaterGameCollisions(frog, water, totalLogs);
-
-							if (!fly.isFlyPicked)
-							{
-								FlyCollisions(frog, fly);
-							}
-							if (!fly2.isFlyPicked)
-							{
-								FlyCollisions(frog, fly2);
-							}
-							if (!fly3.isFlyPicked)
-							{
-								FlyCollisions(frog, fly3);
-							}
-							if (!fly4.isFlyPicked)
-							{
-								FlyCollisions(frog, fly4);
-							}
-							if (!fly5.isFlyPicked)
-							{
-								FlyCollisions(frog, fly5);
+								LandEnemyTp(landEnemies[i]);
 							}
 						}
-
-						for (int i = 0; i < LOG_COUNT; i++)
-						{
-							totalLogs[i].logPosition.x += totalLogs[i].logSpeed * GetFrameTime();
-
-							LogTp(totalLogs[i]);
-						}
-
-						for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
-						{
-							landEnemies[i].landEnemyPosition.x += landEnemies[i].landEnemySpeed * GetFrameTime();
-
-							LandEnemyTp(landEnemies[i]);
-						}
+					}
+					else
+					{
+						gameState = GameState::GAMETITLE;
 					}
 
 					//Pause Logic
@@ -315,9 +324,9 @@ namespace game
 					//Map
 					DrawMap();
 
-					if (!fly.isFlyPicked)
+					if (!fly1.isFlyPicked)
 					{
-						DrawFly(fly);
+						DrawFly(fly1);
 					}
 					if (!fly2.isFlyPicked)
 					{
@@ -339,6 +348,10 @@ namespace game
 					//Draw lives
 
 					DrawText(TextFormat("Lives:%i", frog.frogLives), 10, 965, 60, BLACK);
+
+					//Draw Points
+
+					DrawText(TextFormat("Points:%i", fliesPickedUp), 780, 965, 60, BLACK);
 
 					//Draw log
 
@@ -413,7 +426,7 @@ namespace game
 
 	static void Initialize()
 	{
-		InitWindow(1024, 1024, "Frogger 0.z");
+		InitWindow(1024, 1024, "Frogger 0.2");
 	}
 
 	static void Close()
@@ -547,6 +560,8 @@ namespace game
 		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, landEnemy.landEnemyPosition.x, landEnemy.landEnemyPosition.y, landEnemy.landEnemySize.x, landEnemy.landEnemySize.y))
 		{
 			Respawn(frog);
+
+			//Splat Sound
 		}
 	}
 
@@ -569,6 +584,8 @@ namespace game
 			if (!frogOnLog)
 			{
 				Respawn(frog);
+
+				//Drown Sound
 			}
 		}
 	}
@@ -585,13 +602,16 @@ namespace game
 		}
 	}
 
-	void FlyCollisions(Frog& frog, Fly& fly)
+	void FlyCollisions(Frog& frog, Fly& fly, int& fliesPickedUp)
 	{
 		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, fly.flyPosition.x, fly.flyPosition.y, fly.flySize.x, fly.flySize.y))
 		{
 			TpBackToStart(frog);
 
 			fly.isFlyPicked = true;
+
+			fliesPickedUp++;
+			//Pick up Fly Sound
 		}
 	}
 
@@ -633,5 +653,7 @@ namespace game
 				frog.frogPosition.x -= 64;
 			}
 		}
+
+		//Jump Sound
 	}
 }
