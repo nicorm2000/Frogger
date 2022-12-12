@@ -32,6 +32,8 @@ namespace game
 
 	bool LogCollisions(Frog& frog, Log log);
 
+	void FlyCollisions(Frog& frog, Fly fly);
+
 	void Respawn(Frog& frog);
 
 	void Game()
@@ -537,6 +539,11 @@ namespace game
 		{
 			return false;
 		}
+	}
+
+	void FlyCollisions(Frog& frog, Fly fly)
+	{
+
 	}
 
 	void CheckPlayerInput(Frog& frog, bool& playingGame)
