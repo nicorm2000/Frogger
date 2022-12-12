@@ -24,7 +24,7 @@ namespace game
 
 	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h);
 
-	void GameCollisions(Frog& frog, LandEnemy landEnemy);
+	void GameCollisions(Frog& frog, LandEnemy landEnemy, Water water);
 
 	void Game()
 	{
@@ -217,7 +217,7 @@ namespace game
 						
 						for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
 						{
-							GameCollisions(frog, landEnemies[i]);
+							GameCollisions(frog, landEnemies[i], water);
 						}
 
 						//Logs
@@ -461,7 +461,7 @@ namespace game
 		return false;
 	}
 
-	void GameCollisions(Frog& frog, LandEnemy landEnemy)
+	void GameCollisions(Frog& frog, LandEnemy landEnemy, Water water)
 	{
 		if (frog.isAlive)
 		{
@@ -469,6 +469,19 @@ namespace game
 			{
 				frog.frogLives--;
 				
+				frog.frogPosition.x = 486;
+				frog.frogPosition.y = 967.5f;
+
+				if (frog.frogLives <= 0)
+				{
+					frog.isAlive = false;
+				}
+			}
+
+			if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, water.waterPosition.x, water.waterPosition.y, water.waterSize.x, water.waterSize.y))
+			{
+				frog.frogLives--;
+
 				frog.frogPosition.x = 486;
 				frog.frogPosition.y = 967.5f;
 
