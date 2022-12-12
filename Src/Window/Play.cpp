@@ -86,11 +86,11 @@ namespace game
 		CreateWater(water);
 
 		CreateEndCells(endCell1, 0, 95);
-		CreateEndCells(endCell2, 0, 95);
-		CreateEndCells(endCell3, 0, 95);
-		CreateEndCells(endCell4, 0, 95);
-		CreateEndCells(endCell5, 0, 95);
-		CreateEndCells(endCell6, 0, 95);
+		CreateEndCells(endCell2, 159, 223);
+		CreateEndCells(endCell3, 351, 479);
+		CreateEndCells(endCell4, 543, 671);
+		CreateEndCells(endCell5, 735, 863);
+		CreateEndCells(endCell6, 927, 1024);
 
 		//Logs
 		{
