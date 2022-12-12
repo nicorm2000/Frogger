@@ -8,8 +8,7 @@ namespace game
 	{
 		Vector2 waterPosition{};
 		Vector2 waterSize;
-		Color frogColor;
-		Texture frogTexture;
+		Color waterColor;
 	};
 
 	Water CreateWater(Water& water);
