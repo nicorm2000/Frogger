@@ -6,7 +6,6 @@
 #include "Objects/Log.h"
 #include "Objects/LandEnemy.h"
 #include "Objects/Water.h"
-#include "Objects/EndCellls.h"
 
 #include "raylib.h"
 
@@ -23,7 +22,7 @@ namespace game
 
 	void LandEnemyTp(LandEnemy& landEnemy);
 
-	void CheckPlayerInput(Frog& frog);
+	void CheckPlayerInput(Frog& frog, bool& playingGame);
 
 	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h);
 
@@ -52,14 +51,8 @@ namespace game
 
 		Water water;
 
-		EndCells endCell1;
-		EndCells endCell2;
-		EndCells endCell3;
-		EndCells endCell4;
-		EndCells endCell5;
-		EndCells endCell6;
-
 		Log totalLogs[LOG_COUNT];
+		//Log totalLogs2[LOG_COUNT2];
 
 		int auxLogCount = 0;
 
@@ -84,13 +77,6 @@ namespace game
 		CreateFrog(frog);
 		
 		CreateWater(water);
-
-		CreateEndCells(endCell1, 0, 95);
-		CreateEndCells(endCell2, 159, 223);
-		CreateEndCells(endCell3, 351, 479);
-		CreateEndCells(endCell4, 543, 671);
-		CreateEndCells(endCell5, 735, 863);
-		CreateEndCells(endCell6, 927, 1024);
 
 		//Logs
 		{
@@ -234,7 +220,7 @@ namespace game
 					{
 						if (frog.isAlive)
 						{
-							CheckPlayerInput(frog);
+							CheckPlayerInput(frog, playingGame);
 
 							for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
 							{
@@ -505,21 +491,12 @@ namespace game
 		}
 	}
 
-	void ObjectiveWallCollision(Frog& frog)
-	{
-		if (frog.frogPosition.y == 64)
-		{
-
-		}
-	}
-
 	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h)
 	{
 		if (r1x + r1w >= r2x && r1x <= r2x + r2w && r1y + r1h >= r2y && r1y <= r2y + r2h)
 		{
 			return true;
 		}
-
 		return false;
 	}
 
@@ -543,8 +520,13 @@ namespace game
 		}
 	}
 
-	void CheckPlayerInput(Frog& frog)
+	void CheckPlayerInput(Frog& frog, bool& playingGame)
 	{
+		if (IsKeyPressed(KEY_ENTER))
+		{
+			playingGame = false;
+		}
+
 		if (IsKeyPressed(KEY_UP))
 		{
 			if (frog.frogPosition.y >= 64)
