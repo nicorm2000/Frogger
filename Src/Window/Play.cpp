@@ -64,6 +64,7 @@ namespace game
 		Sound frogSplat = LoadSound("Resources/Sounds/87535__whiprealgood__splat.wav");
 		Sound frogDrown = LoadSound("Resources/Sounds/657930__matrixxx__cartoon-drowning-02.wav");
 		Sound frogPickUpFly = LoadSound("Resources/Sounds/646671__sounddesignforyou__coin-pickup-sfx-3.wav");
+		Sound frogRibbitClick = LoadSound("Resources/Sounds/Frog-sound-ribbit.wav");
 
 		Music bgMusic = LoadMusicStream("Resources/Sounds/Video Game Music - Dar Golan - 200bpm - 01-11.mp3");
 
@@ -316,6 +317,10 @@ namespace game
 
 					if (IsKeyPressed(KEY_ESCAPE) && !gameFinished)
 					{
+						PlaySound(frogRibbitClick);
+
+						SetSoundVolume(frogRibbitClick, 1);
+
 						isPaused = true;
 						exitWindow = true;
 					}
@@ -326,6 +331,10 @@ namespace game
 						{
 							if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 							{
+								PlaySound(frogRibbitClick);
+
+								SetSoundVolume(frogRibbitClick, 1);
+
 								exitWindow = false;
 								isPaused = !isPaused;
 							}
@@ -334,6 +343,10 @@ namespace game
 						{
 							if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 							{
+								PlaySound(frogRibbitClick);
+
+								SetSoundVolume(frogRibbitClick, 1);
+
 								gameState = GameState::GAMETITLE;
 
 								exitWindow = false;
@@ -387,7 +400,7 @@ namespace game
 
 					if (exitWindow)
 					{
-						DrawExitWindow();
+						DrawExitWindow(gameFont);
 					}
 
 					DrawTexture(mouse, static_cast<int>(mousePosition.x), static_cast<int>(mousePosition.y), WHITE);
@@ -458,23 +471,23 @@ namespace game
 		DrawTexture(bg, 0, 0, WHITE);
 	}
 
-	void DrawExitWindow()
+	void DrawExitWindow(Font gameFont)
 	{
-		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 250, static_cast<float>(GetScreenHeight() / 2) - 200, 500, 400 }, 0.5f, 1, BLACK);
-		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 245, static_cast<float>(GetScreenHeight() / 2) - 195, 490, 390 }, 0.5f, 1, WHITE);
+		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 250, static_cast<float>(GetScreenHeight() / 2) - 190, 500, 330 }, 0.5f, 1, BLACK);
+		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 245, static_cast<float>(GetScreenHeight() / 2) - 185, 490, 320 }, 0.5f, 1, LIGHTGRAY);
 
-		DrawText("Do you want to", static_cast<int>(GetScreenWidth() - 705), static_cast<int>(GetScreenHeight() / 2) - 150, 51, BLACK);
-		DrawText("keep playing?", static_cast<int>(GetScreenWidth() - 685), static_cast<int>(GetScreenHeight() / 2) - 80, 51, BLACK);
+		DrawTextPro(gameFont, "Do you want to", { static_cast<float>(GetScreenWidth() - 730), static_cast<float>(GetScreenHeight() / 2) - 150 }, { 0, 0 }, 0, 90, 0, BLACK);
+		DrawTextPro(gameFont, "keep playing?", { static_cast<float>(GetScreenWidth() - 700), static_cast<float>(GetScreenHeight() / 2) - 80 }, { 0, 0 }, 0, 90, 0, BLACK);
 
 		DrawRectangleRounded({ 350, 525, 150, 100 }, 0.5f, 1, BLACK);
-		DrawRectangleRounded({ 355, 530, 140, 90 }, 0.5f, 1, WHITE);
+		DrawRectangleRounded({ 355, 530, 140, 90 }, 0.5f, 1, GREEN);
 
-		DrawText("YES", 390, 560, 35, BLACK);
+		DrawTextPro(gameFont, "YES", { 375, 540 }, { 0, 0 }, 0, 80, 0, BLACK);
 
 		DrawRectangleRounded({ 530, 525, 150, 100 }, 0.5f, 1, BLACK);
-		DrawRectangleRounded({ 535, 530, 140, 90 }, 0.5f, 1, WHITE);
+		DrawRectangleRounded({ 535, 530, 140, 90 }, 0.5f, 1, RED);
 
-		DrawText("NO", 580, 560, 35, BLACK);
+		DrawTextPro(gameFont, "NO", { 570, 540 }, { 0, 0 }, 0, 80, 0, BLACK);
 	}
 
 	void LogTp(Log& log)

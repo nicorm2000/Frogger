@@ -6,10 +6,15 @@ namespace game
 {
 	void MainMenuLogic(Vector2 mousePosition, GameState& gameState)
 	{
+		Sound frogRibbitClick = LoadSound("Resources/Sounds/Frog-sound-ribbit.wav");
+
 		if (CheckCollisionPointRec(mousePosition, { static_cast<float>(GetScreenWidth() / 2) - 150 / 2, 200, 150, 50 }))
 		{
 			if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 			{
+				PlaySound(frogRibbitClick);
+
+				SetSoundVolume(frogRibbitClick, 1);
 				gameState = GameState::GAME;
 			}
 		}
@@ -18,6 +23,9 @@ namespace game
 		{
 			if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 			{
+				PlaySound(frogRibbitClick);
+
+				SetSoundVolume(frogRibbitClick, 1);
 				gameState = GameState::HOWTOPLAY;
 			}
 		}
@@ -26,6 +34,9 @@ namespace game
 		{
 			if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 			{
+				PlaySound(frogRibbitClick);
+
+				SetSoundVolume(frogRibbitClick, 1);
 				gameState = GameState::CREDITS;
 			}
 		}
