@@ -26,31 +26,33 @@ namespace game
 
 	static void Close();
 
-	void LogTp(Log& log);
+	static void LogTp(Log& log);
 
-	void LandEnemyTp(LandEnemy& landEnemy);
+	static void LandEnemyTp(LandEnemy& landEnemy);
 
-	void CheckPlayerInput(Sound frogJump);
+	static void CheckPlayerInput(Sound frogJump);
 
-	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h);
+	static bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h);
 
-	void LandGameCollisions(LandEnemy landEnemy, Sound frogSplat);
+	static void LandGameCollisions(LandEnemy landEnemy, Sound frogSplat);
 
-	void WaterGameCollisions(Water water, Log totalLogs[], Sound frogDrown);
+	static void WaterGameCollisions(Water water, Log totalLogs[], Sound frogDrown);
 
-	bool LogCollisions(Log log);
+	static bool LogCollisions(Log log);
 
-	void FlyCollisions(Fly& fly, Sound frogPickUpFly);
+	static void FlyCollisions(Fly& fly, Sound frogPickUpFly);
 
-	void Respawn();
+	static void Respawn();
 
-	void TpBackToStart();
+	static void TpBackToStart();
 
+	static void UnloadDataPlay(Texture2D mouse, Texture2D bg, Log totalLogs[], LandEnemy landEnemies[], Font gameFont, Sound frogJump, Sound frogSplat, Sound frogDrown, Sound frogPickUpFly, Sound frogRibbitClick, Music bgMusic);
+
+	static void WinAndLoseLogic(Sound frogRibbitClick, GameState& gameState);
+
+	static void PauseLogic(bool& exitWindow, bool& isPaused, GameState& gameState, Sound frogRibbitClick);
+	
 	void ResetGame();
-
-	void UnloadDataPlay(Texture2D mouse, Texture2D bg, Log totalLogs[], LandEnemy landEnemies[], Font gameFont, Sound frogJump, Sound frogSplat, Sound frogDrown, Sound frogPickUpFly, Sound frogRibbitClick, Music bgMusic);
-
-	void WinAndLoseLogic(Sound frogRibbitClick, GameState& gameState);
 
 	void Game()
 	{
@@ -322,35 +324,8 @@ namespace game
 
 					//Pause Logic
 
-					if (exitWindow)
-					{
-						if (CheckCollisionPointRec(mousePosition, { 350, 525, 150, 100 }))
-						{
-							if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
-							{
-								PlaySound(frogRibbitClick);
+					PauseLogic(exitWindow, isPaused, gameState, frogRibbitClick);
 
-								SetSoundVolume(frogRibbitClick, 1);
-
-								exitWindow = false;
-								isPaused = !isPaused;
-							}
-						}
-						if (CheckCollisionPointRec(mousePosition, { 530, 525, 150, 100 }))
-						{
-							if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
-							{
-								PlaySound(frogRibbitClick);
-
-								SetSoundVolume(frogRibbitClick, 1);
-
-								gameState = GameState::GAMETITLE;
-
-								exitWindow = false;
-								isPaused = !isPaused;
-							}
-						}
-					}
 					////Draw
 
 					//Map
@@ -561,6 +536,39 @@ namespace game
 
 		DrawTextPro(gameFont, "exit", { 575, 530 }, { 0, 0 }, 0, 50, 0, BLACK);
 		DrawTextPro(gameFont, "game", { 560, 565 }, { 0, 0 }, 0, 50, 0, BLACK);
+	}
+
+	void PauseLogic(bool& exitWindow, bool& isPaused, GameState& gameState,Sound frogRibbitClick)
+	{
+		if (exitWindow)
+		{
+			if (CheckCollisionPointRec(mousePosition, { 350, 525, 150, 100 }))
+			{
+				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+				{
+					PlaySound(frogRibbitClick);
+
+					SetSoundVolume(frogRibbitClick, 1);
+
+					exitWindow = false;
+					isPaused = !isPaused;
+				}
+			}
+			if (CheckCollisionPointRec(mousePosition, { 530, 525, 150, 100 }))
+			{
+				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+				{
+					PlaySound(frogRibbitClick);
+
+					SetSoundVolume(frogRibbitClick, 1);
+
+					gameState = GameState::GAMETITLE;
+
+					exitWindow = false;
+					isPaused = !isPaused;
+				}
+			}
+		}
 	}
 
 	void LogTp(Log& log)
