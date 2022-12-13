@@ -41,7 +41,7 @@ namespace game
 	void Game()
 	{
 		Initialize();
-		//HideCursor();
+		HideCursor();
 		SetExitKey(KEY_NULL);
 
 		bool playingGame = true;
@@ -52,6 +52,8 @@ namespace game
 		float timer = 30.0f;
 
 		GameState gameState = GameState::GAMETITLE;
+
+		Texture2D mouse = LoadTexture("Resources/Textures/mouse.png");
 
 		Frog frog;
 
@@ -231,6 +233,8 @@ namespace game
 
 					MainMenuDraw();
 
+					DrawTexture(mouse, static_cast<int>(mousePosition.x), static_cast<int>(mousePosition.y), WHITE);
+
 					break;
 
 				case game::GameState::GAME:
@@ -368,6 +372,8 @@ namespace game
 						DrawExitWindow();
 					}
 
+					DrawTexture(mouse, static_cast<int>(mousePosition.x), static_cast<int>(mousePosition.y), WHITE);
+
 					break;
 
 				case game::GameState::HOWTOPLAY:
@@ -382,6 +388,8 @@ namespace game
 
 					HowToPlayDraw();
 
+					DrawTexture(mouse, static_cast<int>(mousePosition.x), static_cast<int>(mousePosition.y), WHITE);
+
 					break;
 
 				case game::GameState::CREDITS:
@@ -395,6 +403,8 @@ namespace game
 					////Draw
 
 					CreditsDraw();
+
+					DrawTexture(mouse, static_cast<int>(mousePosition.x), static_cast<int>(mousePosition.y), WHITE);
 
 					break;
 
