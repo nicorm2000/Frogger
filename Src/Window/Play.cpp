@@ -10,8 +10,6 @@
 
 #include "raylib.h"
 
-#include <iostream>
-
 namespace game
 {
 	static void Initialize();
@@ -333,7 +331,7 @@ namespace game
 
 					//Draw Points
 
-					DrawText(TextFormat("Points:%i", fliesPickedUp), 780, 965, 60, BLACK);
+					DrawText(TextFormat("Timer:%02.02f", timer), 680, 965, 60, BLACK);
 
 					//Draw log
 
@@ -408,7 +406,7 @@ namespace game
 
 	static void Initialize()
 	{
-		InitWindow(1024, 1024, "Frogger 0.2");
+		InitWindow(1024, 1024, "Frogger 0.3");
 	}
 
 	static void Close()
