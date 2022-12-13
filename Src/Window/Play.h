@@ -16,4 +16,8 @@ namespace game
 	void DrawMap(Texture2D bg);
 
 	void DrawExitWindow(Font gameFont);
+
+	void DrawWinMenu(Font gameFont);
+
+	void DrawLoseMenu(Font gameFont);
 }

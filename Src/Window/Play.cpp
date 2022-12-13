@@ -20,7 +20,7 @@ namespace game
 
 	void LandEnemyTp(LandEnemy& landEnemy);
 
-	void CheckPlayerInput(Frog& frog, bool& playingGame, Sound frogJump);
+	void CheckPlayerInput(Frog& frog, Sound frogJump);
 
 	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h);
 
@@ -275,7 +275,7 @@ namespace game
 									Respawn(frog, timer);
 								}
 
-								CheckPlayerInput(frog, playingGame, frogJump);
+								CheckPlayerInput(frog, frogJump);
 
 								for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
 								{
@@ -291,6 +291,12 @@ namespace game
 										FlyCollisions(frog, flies[i], fliesPickedUp, timer, frogPickUpFly);
 									}
 								}
+							}
+							else if (!frog.isAlive)
+							{
+								PlaySound(frogRibbitClick);
+
+								SetSoundVolume(frogRibbitClick, 1);
 							}
 
 							for (int i = 0; i < LOG_COUNT; i++)
@@ -310,7 +316,28 @@ namespace game
 					}
 					else
 					{
-						gameState = GameState::GAMETITLE;
+						if (CheckCollisionPointRec(mousePosition, { 350, 525, 150, 100 }))
+						{
+							if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+							{
+								PlaySound(frogRibbitClick);
+
+								SetSoundVolume(frogRibbitClick, 1);
+
+								gameState = GameState::GAME;
+							}
+						}
+						if (CheckCollisionPointRec(mousePosition, { 530, 525, 150, 100 }))
+						{
+							if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+							{
+								PlaySound(frogRibbitClick);
+
+								SetSoundVolume(frogRibbitClick, 1);
+
+								gameState = GameState::GAMETITLE;
+							}
+						}
 					}
 
 					//Pause Logic
@@ -403,6 +430,12 @@ namespace game
 						DrawExitWindow(gameFont);
 					}
 
+					//Win Menu
+					if (fliesPickedUp == 5 && frog.isAlive)
+					{
+						DrawExitWindow(gameFont);
+					}
+
 					DrawTexture(mouse, static_cast<int>(mousePosition.x), static_cast<int>(mousePosition.y), WHITE);
 
 					break;
@@ -491,6 +524,16 @@ namespace game
 		DrawRectangleRounded({ 535, 530, 140, 90 }, 0.5f, 1, RED);
 
 		DrawTextPro(gameFont, "NO", { 570, 540 }, { 0, 0 }, 0, 80, 0, BLACK);
+	}
+
+	void DrawWinMenu(Font gameFont)
+	{
+
+	}
+
+	void DrawLoseMenu(Font gameFont)
+	{
+
 	}
 
 	void LogTp(Log& log)
@@ -632,13 +675,8 @@ namespace game
 		}
 	}
 
-	void CheckPlayerInput(Frog& frog, bool& playingGame, Sound frogJump)
+	void CheckPlayerInput(Frog& frog, Sound frogJump)
 	{
-		if (IsKeyPressed(KEY_ENTER))
-		{
-			playingGame = false;
-		}
-
 		if (IsKeyPressed(KEY_UP))
 		{
 			if (frog.frogPosition.y >= 64)
