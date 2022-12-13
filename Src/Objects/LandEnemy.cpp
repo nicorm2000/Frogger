@@ -16,7 +16,8 @@ namespace game
 				landEnemy.landEnemySize.x = 60;
 				landEnemy.landEnemySize.y = 60;
 				landEnemy.landEnemySpeed = 250;
-				landEnemy.landEnemyColor = RED;
+				landEnemy.landEnemyColor = WHITE;
+				landEnemy.landEnemyTexture = LoadTexture("Resources/Textures/motorcycle.png");
 
 				break;
 
@@ -27,7 +28,8 @@ namespace game
 				landEnemy.landEnemySize.x = 80;
 				landEnemy.landEnemySize.y = 60;
 				landEnemy.landEnemySpeed = -250;
-				landEnemy.landEnemyColor = BLUE;
+				landEnemy.landEnemyColor = WHITE;
+				landEnemy.landEnemyTexture = LoadTexture("Resources/Textures/car.png");
 
 				break;
 			
@@ -38,8 +40,9 @@ namespace game
 				landEnemy.landEnemySize.x = 80;
 				landEnemy.landEnemySize.y = 60;
 				landEnemy.landEnemySpeed = 350;
-				landEnemy.landEnemyColor = ORANGE;
-				
+				landEnemy.landEnemyColor = WHITE;
+				landEnemy.landEnemyTexture = LoadTexture("Resources/Textures/fastCar.png");
+
 				break;
 			
 			case game::Vehicles::Van:
@@ -49,8 +52,9 @@ namespace game
 				landEnemy.landEnemySize.x = 100;
 				landEnemy.landEnemySize.y = 60;
 				landEnemy.landEnemySpeed = -230;
-				landEnemy.landEnemyColor = PURPLE;
-				
+				landEnemy.landEnemyColor = WHITE;
+				landEnemy.landEnemyTexture = LoadTexture("Resources/Textures/van.png");
+
 				break;
 			
 			case game::Vehicles::Bus:
@@ -60,8 +64,9 @@ namespace game
 				landEnemy.landEnemySize.x = 150;
 				landEnemy.landEnemySize.y = 60;
 				landEnemy.landEnemySpeed = 170;
-				landEnemy.landEnemyColor = YELLOW;
-				
+				landEnemy.landEnemyColor = WHITE;
+				landEnemy.landEnemyTexture = LoadTexture("Resources/Textures/bus.png");
+
 				break;
 			
 			case game::Vehicles::Truck:
@@ -71,8 +76,9 @@ namespace game
 				landEnemy.landEnemySize.x = 200;
 				landEnemy.landEnemySize.y = 60;
 				landEnemy.landEnemySpeed = -150;
-				landEnemy.landEnemyColor = MAGENTA;
-				
+				landEnemy.landEnemyColor = WHITE;
+				landEnemy.landEnemyTexture = LoadTexture("Resources/Textures/truck.png");
+
 				break;
 			
 			default:
@@ -87,6 +93,7 @@ namespace game
 
 	void DrawLandEnemy(LandEnemy landEnemy)
 	{
-		DrawRectangle(static_cast<int>(landEnemy.landEnemyPosition.x), static_cast<int>(landEnemy.landEnemyPosition.y), static_cast<int>(landEnemy.landEnemySize.x), static_cast<int>(landEnemy.landEnemySize.y), landEnemy.landEnemyColor);
+		//DrawRectangle(static_cast<int>(landEnemy.landEnemyPosition.x), static_cast<int>(landEnemy.landEnemyPosition.y), static_cast<int>(landEnemy.landEnemySize.x), static_cast<int>(landEnemy.landEnemySize.y), landEnemy.landEnemyColor);
+		DrawTexture(landEnemy.landEnemyTexture, static_cast<int>(landEnemy.landEnemyPosition.x), static_cast<int>(landEnemy.landEnemyPosition.y), landEnemy.landEnemyColor);
 	}
 }
