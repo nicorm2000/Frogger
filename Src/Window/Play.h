@@ -19,5 +19,5 @@ namespace game
 
 	void DrawWinMenu(Font gameFont);
 
-	void DrawLoseMenu(Font gameFont);
+	void DrawLoseMenu(Font gameFont, int fliesPickedUp);
 }

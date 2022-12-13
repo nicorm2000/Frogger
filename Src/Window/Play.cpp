@@ -528,12 +528,45 @@ namespace game
 
 	void DrawWinMenu(Font gameFont)
 	{
+		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 250, static_cast<float>(GetScreenHeight() / 2) - 190, 500, 330 }, 0.5f, 1, BLACK);
+		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 245, static_cast<float>(GetScreenHeight() / 2) - 185, 490, 320 }, 0.5f, 1, LIGHTGRAY);
 
+		DrawTextPro(gameFont, "You Won!", { static_cast<float>(GetScreenWidth() - 730), static_cast<float>(GetScreenHeight() / 2) - 150 }, { 0, 0 }, 0, 150, 0, BLACK);
+
+		DrawRectangleRounded({ 350, 525, 150, 100 }, 0.5f, 1, BLACK);
+		DrawRectangleRounded({ 355, 530, 140, 90 }, 0.5f, 1, GREEN);
+
+		DrawTextPro(gameFont, "go back", { 365, 530 }, { 0, 0 }, 0, 50, 0, BLACK);
+		DrawTextPro(gameFont, "to menu", { 355, 565 }, { 0, 0 }, 0, 50, 0, BLACK);
+
+		DrawRectangleRounded({ 530, 525, 150, 100 }, 0.5f, 1, BLACK);
+		DrawRectangleRounded({ 535, 530, 140, 90 }, 0.5f, 1, RED);
+
+		DrawTextPro(gameFont, "exit", { 575, 530 }, { 0, 0 }, 0, 50, 0, BLACK);
+		DrawTextPro(gameFont, "game", { 560, 565 }, { 0, 0 }, 0, 50, 0, BLACK);
 	}
 
-	void DrawLoseMenu(Font gameFont)
+	void DrawLoseMenu(Font gameFont, int fliesPickedUp)
 	{
+		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 250, static_cast<float>(GetScreenHeight() / 2) - 190, 500, 330 }, 0.5f, 1, BLACK);
+		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 245, static_cast<float>(GetScreenHeight() / 2) - 185, 490, 320 }, 0.5f, 1, LIGHTGRAY);
 
+		DrawTextPro(gameFont, "You Lost!", { static_cast<float>(GetScreenWidth() - 650), static_cast<float>(GetScreenHeight() / 2) - 180 }, { 0, 0 }, 0, 100, 0, BLACK);
+		DrawTextPro(gameFont, "You got", { static_cast<float>(GetScreenWidth() - 725), static_cast<float>(GetScreenHeight() / 2) - 80 }, { 0, 0 }, 0, 90, 0, BLACK);
+		DrawTextPro(gameFont, TextFormat("%i", fliesPickedUp), { static_cast<float>(GetScreenWidth() - 475), static_cast<float>(GetScreenHeight() / 2) - 80 }, { 0, 0 }, 0, 90, 0, WHITE);
+		DrawTextPro(gameFont, "flies", { static_cast<float>(GetScreenWidth() - 415), static_cast<float>(GetScreenHeight() / 2) - 80 }, { 0, 0 }, 0, 90, 0, BLACK);
+
+		DrawRectangleRounded({ 350, 525, 150, 100 }, 0.5f, 1, BLACK);
+		DrawRectangleRounded({ 355, 530, 140, 90 }, 0.5f, 1, GREEN);
+
+		DrawTextPro(gameFont, "go back", { 365, 530 }, { 0, 0 }, 0, 50, 0, BLACK);
+		DrawTextPro(gameFont, "to menu", { 355, 565 }, { 0, 0 }, 0, 50, 0, BLACK);
+
+		DrawRectangleRounded({ 530, 525, 150, 100 }, 0.5f, 1, BLACK);
+		DrawRectangleRounded({ 535, 530, 140, 90 }, 0.5f, 1, RED);
+
+		DrawTextPro(gameFont, "exit", { 575, 530 }, { 0, 0 }, 0, 50, 0, BLACK);
+		DrawTextPro(gameFont, "game", { 560, 565 }, { 0, 0 }, 0, 50, 0, BLACK);
 	}
 
 	void LogTp(Log& log)
