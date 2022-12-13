@@ -38,7 +38,7 @@ namespace game
 
 	void ResetGame(Frog& frog, Fly& fly, float& timer, int& fliesPickedUp);
 
-	void UnloadData(Texture2D mouse, Frog frog, Log totalLogs[], LandEnemy landEnemies[], Fly flies[]);
+	void UnloadData(Texture2D mouse, Texture2D bg, Frog frog, Log totalLogs[], LandEnemy landEnemies[], Fly flies[], Font gameFont);
 
 	void Game()
 	{
@@ -56,6 +56,9 @@ namespace game
 		GameState gameState = GameState::GAMETITLE;
 
 		Texture2D mouse = LoadTexture("Resources/Textures/mouse.png");
+		Texture2D bg = LoadTexture("Resources/Textures/bg.png");
+			
+		Font gameFont = LoadFont("Resources/Fonts/Abalone Smile.otf");
 
 		Frog frog;
 
@@ -328,7 +331,7 @@ namespace game
 					////Draw
 
 					//Map
-					DrawMap();
+					DrawMap(bg);
 					
 					for (int i = 0; i < FLIES_COUNT; i++)
 					{
@@ -340,11 +343,11 @@ namespace game
 
 					//Draw lives
 
-					DrawText(TextFormat("Lives:%i", frog.frogLives), 10, 965, 60, BLACK);
+					DrawTextEx(gameFont, TextFormat("Lives: %i", frog.frogLives), { 10, 955 }, 80, 0, BLACK);
 
 					//Draw Points
 
-					DrawText(TextFormat("Timer:%02.02f", timer), 680, 965, 60, BLACK);
+					DrawTextEx(gameFont, TextFormat("Timer: %02.02f", timer), { 720, 955 }, 80, 0, BLACK);
 
 					//Draw log
 
@@ -412,6 +415,8 @@ namespace game
 
 				case game::GameState::EXIT:
 
+					UnloadData(mouse, bg, frog, totalLogs, landEnemies, flies, gameFont);
+
 					playingGame = false;
 
 					break;
@@ -433,41 +438,42 @@ namespace game
 		CloseWindow();
 	}
 
-	void DrawMap()
+	void DrawMap(Texture2D bg)
 	{
-		DrawRectangle(0, 0, 1024, 64, DARKGRAY);
+		DrawTexture(bg, 0, 0, WHITE);
+		//DrawRectangle(0, 0, 1024, 64, DARKGRAY);
 
-		//Objective zone
-		DrawRectangle(95, 0, 64, 64, LIME);
-		DrawRectangle(287, 0, 64, 64, LIME);
-		DrawRectangle(479, 0, 64, 64, LIME);
-		DrawRectangle(671, 0, 64, 64, LIME);
-		DrawRectangle(863, 0, 64, 64, LIME);
+		////Objective zone
+		//DrawRectangle(95, 0, 64, 64, LIME);
+		//DrawRectangle(287, 0, 64, 64, LIME);
+		//DrawRectangle(479, 0, 64, 64, LIME);
+		//DrawRectangle(671, 0, 64, 64, LIME);
+		//DrawRectangle(863, 0, 64, 64, LIME);
 
-		//Water
-		DrawRectangle(0, 64, 1024, 64, SKYBLUE);
-		DrawRectangle(0, 128, 1024, 64, SKYBLUE);
-		DrawRectangle(0, 192, 1024, 64, SKYBLUE);
-		DrawRectangle(0, 256, 1024, 64, SKYBLUE);
-		DrawRectangle(0, 320, 1024, 64, SKYBLUE);
-		DrawRectangle(0, 384, 1024, 64, SKYBLUE);
+		////Water
+		//DrawRectangle(0, 64, 1024, 64, SKYBLUE);
+		//DrawRectangle(0, 128, 1024, 64, SKYBLUE);
+		//DrawRectangle(0, 192, 1024, 64, SKYBLUE);
+		//DrawRectangle(0, 256, 1024, 64, SKYBLUE);
+		//DrawRectangle(0, 320, 1024, 64, SKYBLUE);
+		//DrawRectangle(0, 384, 1024, 64, SKYBLUE);
 
-		//Sidewalk
-		DrawRectangle(0, 448, 1024, 64, LIGHTGRAY);
+		////Sidewalk
+		//DrawRectangle(0, 448, 1024, 64, LIGHTGRAY);
 
-		//Street
-		DrawRectangle(0, 512, 1024, 64, GRAY);
-		DrawRectangle(0, 576, 1024, 64, GRAY);
-		DrawRectangle(0, 640, 1024, 64, GRAY);
-		DrawRectangle(0, 704, 1024, 64, GRAY);
-		DrawRectangle(0, 768, 1024, 64, GRAY);
-		DrawRectangle(0, 832, 1024, 64, GRAY);
+		////Street
+		//DrawRectangle(0, 512, 1024, 64, GRAY);
+		//DrawRectangle(0, 576, 1024, 64, GRAY);
+		//DrawRectangle(0, 640, 1024, 64, GRAY);
+		//DrawRectangle(0, 704, 1024, 64, GRAY);
+		//DrawRectangle(0, 768, 1024, 64, GRAY);
+		//DrawRectangle(0, 832, 1024, 64, GRAY);
 
-		//Sidewalk
-		DrawRectangle(0, 896, 1024, 64, LIGHTGRAY);
+		////Sidewalk
+		//DrawRectangle(0, 896, 1024, 64, LIGHTGRAY);
 
-		//Start zone
-		DrawRectangle(0, 960, 1024, 64, DARKGREEN);
+		////Start zone
+		//DrawRectangle(0, 960, 1024, 64, DARKGREEN);
 	}
 
 	void DrawExitWindow()
@@ -673,9 +679,11 @@ namespace game
 		timer = 30.0f;
 	}
 
-	void UnloadData(Texture2D mouse, Frog frog, Log totalLogs[], LandEnemy landEnemies[], Fly flies[])
+	void UnloadData(Texture2D mouse, Texture2D bg, Frog frog, Log totalLogs[], LandEnemy landEnemies[], Fly flies[], Font gameFont)
 	{
 		UnloadTexture(mouse);
+
+		UnloadTexture(bg);
 
 		UnloadTexture(frog.frogTexture);
 
@@ -693,5 +701,7 @@ namespace game
 		{
 			UnloadTexture(flies[i].flyTexture);
 		}
+
+		UnloadFont(gameFont);
 	}
 }
