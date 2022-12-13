@@ -223,7 +223,7 @@ namespace game
 
 		PlayMusicStream(bgMusic);
 
-		SetMusicVolume(bgMusic, 0.5f);
+		SetMusicVolume(bgMusic, 0.25f);
 
 		while (playingGame && !WindowShouldClose())
 		{
@@ -324,7 +324,7 @@ namespace game
 
 								SetSoundVolume(frogRibbitClick, 1);
 
-								gameState = GameState::GAME;
+								gameState = GameState::GAMETITLE;
 							}
 						}
 						if (CheckCollisionPointRec(mousePosition, { 530, 525, 150, 100 }))
@@ -335,7 +335,7 @@ namespace game
 
 								SetSoundVolume(frogRibbitClick, 1);
 
-								gameState = GameState::GAMETITLE;
+								gameState = GameState::EXIT;
 							}
 						}
 					}
@@ -434,6 +434,11 @@ namespace game
 					if (fliesPickedUp == 5 && frog.isAlive)
 					{
 						DrawExitWindow(gameFont);
+					}
+
+					if (fliesPickedUp == 5)
+					{
+						DrawWinMenu(gameFont);
 					}
 
 					DrawTexture(mouse, static_cast<int>(mousePosition.x), static_cast<int>(mousePosition.y), WHITE);
