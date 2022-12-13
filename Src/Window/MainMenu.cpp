@@ -1,4 +1,5 @@
 #include "Window/MainMenu.h"
+#include "Window/Play.h"
 
 #include "raylib.h"
 
@@ -18,6 +19,8 @@ namespace game
 				PlaySound(frogRibbitClick);
 
 				SetSoundVolume(frogRibbitClick, 1);
+
+				ResetGame();
 
 				gameState = GameState::GAME;
 			}
@@ -58,8 +61,6 @@ namespace game
 
 	void MainMenuDraw()
 	{
-		DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), WHITE);
-
 		DrawRectangle(GetScreenWidth() / 2 - (150 / 2), 197, 150, 50, BLACK);
 		DrawText("PLAY", GetScreenWidth() / 2 - 50 - 15, 200, 50, WHITE);
 
