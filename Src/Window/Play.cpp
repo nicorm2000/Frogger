@@ -112,16 +112,20 @@ namespace game
 
 		for (int i = 0; i < FLIES_COUNT; i++)
 		{
-			CreateFly(flies[i], static_cast<float>(106 + currentDistance));
+			CreateFly(flies[i], static_cast<float>(FIRST_FLY_POS_X + currentDistance));
 
 			currentDistance += SPACE_BETWEEN_FLIES;
 		}
 
 		//Logs
 		{
+			float smallLogPosY = 66;
+			float mediumLogPosY = 130;
+			float bigLogPosY = 194;
+
 			for (int i = 0; i < SMALL_LOG_COUNT; i++)
 			{
-				smallLog[i] = CreateLog(Logs::Small, static_cast<float>(i * -500));
+				smallLog[i] = CreateLog(Logs::Small, static_cast<float>(i * -LOG_DISTANCE));
 
 				totalLogs[auxLogCount] = smallLog[i];
 				auxLogCount++;
@@ -129,9 +133,9 @@ namespace game
 
 			for (int i = 0; i < SMALL_LOG_COUNT2; i++)
 			{
-				smallLog2[i] = CreateLog(Logs::Small, static_cast<float>(i * 500));
-				smallLog2[i].logPosition.y = 66;
-				smallLog2[i].logSpeed = -200;
+				smallLog2[i] = CreateLog(Logs::Small, static_cast<float>(i * LOG_DISTANCE));
+				smallLog2[i].logPosition.y = smallLogPosY;
+				smallLog2[i].logSpeed *= -1;
 
 				totalLogs[auxLogCount] = smallLog2[i];
 				auxLogCount++;
@@ -139,7 +143,7 @@ namespace game
 
 			for (int i = 0; i < MEDIUM_LOG_COUNT; i++)
 			{
-				mediumLog[i] = CreateLog(Logs::Medium, static_cast<float>(i * 500));
+				mediumLog[i] = CreateLog(Logs::Medium, static_cast<float>(i * LOG_DISTANCE));
 
 				totalLogs[auxLogCount] = mediumLog[i];
 				auxLogCount++;
@@ -147,9 +151,9 @@ namespace game
 
 			for (int i = 0; i < MEDIUM_LOG_COUNT2; i++)
 			{
-				mediumLog2[i] = CreateLog(Logs::Medium, static_cast<float>(i * -500));
-				mediumLog2[i].logPosition.y = 130;
-				mediumLog2[i].logSpeed = 175;
+				mediumLog2[i] = CreateLog(Logs::Medium, static_cast<float>(i * -LOG_DISTANCE));
+				mediumLog2[i].logPosition.y = mediumLogPosY;
+				mediumLog2[i].logSpeed *= -1;
 
 				totalLogs[auxLogCount] = mediumLog2[i];
 				auxLogCount++;
@@ -157,7 +161,7 @@ namespace game
 
 			for (int i = 0; i < BIG_LOG_COUNT; i++)
 			{
-				bigLog[i] = CreateLog(Logs::Big, static_cast<float>(i * -500));
+				bigLog[i] = CreateLog(Logs::Big, static_cast<float>(i * -LOG_DISTANCE));
 
 				totalLogs[auxLogCount] = bigLog[i];
 				auxLogCount++;
@@ -165,9 +169,9 @@ namespace game
 
 			for (int i = 0; i < BIG_LOG_COUNT2; i++)
 			{
-				bigLog2[i] = CreateLog(Logs::Big, static_cast<float>(i * 500));
-				bigLog2[i].logPosition.y = 194;
-				bigLog2[i].logSpeed = -150;
+				bigLog2[i] = CreateLog(Logs::Big, static_cast<float>(i * LOG_DISTANCE));
+				bigLog2[i].logPosition.y = bigLogPosY;
+				bigLog2[i].logSpeed *= -1;
 
 				totalLogs[auxLogCount] = bigLog2[i];
 				auxLogCount++;
@@ -176,9 +180,11 @@ namespace game
 
 		//Land Enemies
 		{
+			float truckDistance = 100;
+
 			for (int i = 0; i < MOTORCYCLE_COUNT; i++)
 			{
-				motorcycle[i] = CreateVehicle(Vehicles::Motorcycle, static_cast<float>(i * -500));
+				motorcycle[i] = CreateVehicle(Vehicles::Motorcycle, static_cast<float>(i * -LAND_ENEMIES_DISTANCE));
 
 				landEnemies[auxEnemyCount] = motorcycle[i];
 				auxEnemyCount++;
@@ -186,7 +192,7 @@ namespace game
 
 			for (int i = 0; i < CAR_COUNT; i++)
 			{
-				car[i] = CreateVehicle(Vehicles::Car, static_cast<float>(i * -500));
+				car[i] = CreateVehicle(Vehicles::Car, static_cast<float>(i * -LAND_ENEMIES_DISTANCE));
 
 				landEnemies[auxEnemyCount] = car[i];
 				auxEnemyCount++;
@@ -194,7 +200,7 @@ namespace game
 
 			for (int i = 0; i < FAST_CAR_COUNT; i++)
 			{
-				fastCar[i] = CreateVehicle(Vehicles::FastCar, static_cast<float>(i * -500));
+				fastCar[i] = CreateVehicle(Vehicles::FastCar, static_cast<float>(i * -LAND_ENEMIES_DISTANCE));
 
 				landEnemies[auxEnemyCount] = fastCar[i];
 				auxEnemyCount++;
@@ -202,7 +208,7 @@ namespace game
 
 			for (int i = 0; i < VAN_COUNT; i++)
 			{
-				van[i] = CreateVehicle(Vehicles::Van, static_cast<float>(i * -500));
+				van[i] = CreateVehicle(Vehicles::Van, static_cast<float>(i * -LAND_ENEMIES_DISTANCE));
 
 				landEnemies[auxEnemyCount] = van[i];
 				auxEnemyCount++;
@@ -210,7 +216,7 @@ namespace game
 
 			for (int i = 0; i < BUS_COUNT; i++)
 			{
-				bus[i] = CreateVehicle(Vehicles::Bus, static_cast<float>(i * -500));
+				bus[i] = CreateVehicle(Vehicles::Bus, static_cast<float>(i * -LAND_ENEMIES_DISTANCE));
 
 				landEnemies[auxEnemyCount] = bus[i];
 				auxEnemyCount++;
@@ -218,7 +224,7 @@ namespace game
 
 			for (int i = 0; i < TRUCK_COUNT; i++)
 			{
-				truck[i] = CreateVehicle(Vehicles::Truck, static_cast<float>(i * -400));
+				truck[i] = CreateVehicle(Vehicles::Truck, static_cast<float>(i * (-LAND_ENEMIES_DISTANCE + truckDistance)));
 
 				landEnemies[auxEnemyCount] = truck[i];
 				auxEnemyCount++;
