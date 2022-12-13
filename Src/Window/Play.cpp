@@ -235,13 +235,13 @@ namespace game
 
 			UpdateMusicStream(bgMusic);
 
+			mousePosition = GetMousePosition();
+
 			switch (gameState)
 			{
 				case game::GameState::GAMETITLE:
 
 					////Logic
-
-					mousePosition = GetMousePosition();
 
 					MainMenuLogic(mousePosition, gameState, frogRibbitClick);
 
@@ -254,8 +254,6 @@ namespace game
 				case game::GameState::GAME:
 					
 					////Logic
-
-					mousePosition = GetMousePosition();
 
 					if (fliesPickedUp != 5)
 					{
@@ -419,8 +417,6 @@ namespace game
 					
 					////Logic
 
-					mousePosition = GetMousePosition();
-
 					HowToPlayLogic(mousePosition, gameState, frogRibbitClick);
 
 					////Draw
@@ -432,8 +428,6 @@ namespace game
 				case game::GameState::CREDITS:
 					
 					////Logic
-
-					mousePosition = GetMousePosition();
 					
 					CreditsLogic(mousePosition, gameState, frogRibbitClick);
 
@@ -455,6 +449,7 @@ namespace game
 					break;
 			}
 
+			//Mouse Draw
 			DrawTexture(mouse, static_cast<int>(mousePosition.x - mouse.width / 2), static_cast<int>(mousePosition.y - mouse.height / 2), WHITE);
 
 			EndDrawing();
