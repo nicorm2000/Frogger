@@ -15,7 +15,8 @@ namespace game
 				log.logSize.x = 180;
 				log.logSize.y = 60;
 				log.logSpeed = 200;
-				log.logColor = BROWN;
+				log.logColor = WHITE;
+				log.logTexture = LoadTexture("Resources/Textures/logSmall.png");
 
 				break;
 
@@ -26,7 +27,8 @@ namespace game
 				log.logSize.x = 240;
 				log.logSize.y = 60;
 				log.logSpeed = -175;
-				log.logColor = BROWN;
+				log.logColor = WHITE;
+				log.logTexture = LoadTexture("Resources/Textures/logMedium.png");
 
 				break;
 
@@ -37,7 +39,8 @@ namespace game
 				log.logSize.x = 300;
 				log.logSize.y = 60;
 				log.logSpeed = 150;
-				log.logColor = BROWN;
+				log.logColor = WHITE;
+				log.logTexture = LoadTexture("Resources/Textures/logBig.png");
 
 				break;
 
@@ -55,6 +58,7 @@ namespace game
 
 	void DrawLog(Log log)
 	{
-		DrawRectangle(static_cast<int>(log.logPosition.x), static_cast<int>(log.logPosition.y), static_cast<int>(log.logSize.x), static_cast<int>(log.logSize.y), log.logColor);
+		//DrawRectangle(static_cast<int>(log.logPosition.x), static_cast<int>(log.logPosition.y), static_cast<int>(log.logSize.x), static_cast<int>(log.logSize.y), log.logColor);
+		DrawTexture(log.logTexture, static_cast<int>(log.logPosition.x), static_cast<int>(log.logPosition.y), log.logColor);
 	}
 }
