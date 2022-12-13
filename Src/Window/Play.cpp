@@ -38,7 +38,7 @@ namespace game
 
 	void ResetGame(Frog& frog, Fly& fly, float& timer, int& fliesPickedUp);
 
-	void UnloadData(Texture2D mouse, Texture2D bg, Frog frog, Log totalLogs[], LandEnemy landEnemies[], Fly flies[], Font gameFont, Sound frogJump, Sound frogSplat, Sound frogDrown, Sound frogPickUpFly);
+	void UnloadData(Texture2D mouse, Texture2D bg, Frog frog, Log totalLogs[], LandEnemy landEnemies[], Fly flies[], Font gameFont, Sound frogJump, Sound frogSplat, Sound frogDrown, Sound frogPickUpFly, Music bgMusic);
 
 	void Game()
 	{
@@ -64,6 +64,8 @@ namespace game
 		Sound frogSplat = LoadSound("Resources/Sounds/87535__whiprealgood__splat.wav");
 		Sound frogDrown = LoadSound("Resources/Sounds/657930__matrixxx__cartoon-drowning-02.wav");
 		Sound frogPickUpFly = LoadSound("Resources/Sounds/646671__sounddesignforyou__coin-pickup-sfx-3.wav");
+
+		Music bgMusic = LoadMusicStream("Resources/Sounds/Video Game Music - Dar Golan - 200bpm - 01-11.mp3");
 
 		Frog frog;
 
@@ -218,11 +220,17 @@ namespace game
 		
 		Vector2 mousePosition = GetMousePosition();
 
+		PlayMusicStream(bgMusic);
+
+		SetMusicVolume(bgMusic, 0.5f);
+
 		while (playingGame && !WindowShouldClose())
 		{
 			BeginDrawing();
 
 			ClearBackground(BLACK);
+
+			UpdateMusicStream(bgMusic);
 
 			switch (gameState)
 			{
@@ -420,7 +428,7 @@ namespace game
 
 				case game::GameState::EXIT:
 
-					UnloadData(mouse, bg, frog, totalLogs, landEnemies, flies, gameFont, frogJump, frogSplat, frogDrown, frogPickUpFly);
+					UnloadData(mouse, bg, frog, totalLogs, landEnemies, flies, gameFont, frogJump, frogSplat, frogDrown, frogPickUpFly, bgMusic);
 
 					playingGame = false;
 
@@ -681,7 +689,7 @@ namespace game
 		timer = 30.0f;
 	}
 
-	void UnloadData(Texture2D mouse, Texture2D bg, Frog frog, Log totalLogs[], LandEnemy landEnemies[], Fly flies[], Font gameFont, Sound frogJump, Sound frogSplat, Sound frogDrown, Sound frogPickUpFly)
+	void UnloadData(Texture2D mouse, Texture2D bg, Frog frog, Log totalLogs[], LandEnemy landEnemies[], Fly flies[], Font gameFont, Sound frogJump, Sound frogSplat, Sound frogDrown, Sound frogPickUpFly, Music bgMusic)
 	{
 		UnloadTexture(mouse);
 
@@ -713,5 +721,7 @@ namespace game
 		UnloadSound(frogDrown);
 		
 		UnloadSound(frogPickUpFly);
+
+		UnloadMusicStream(bgMusic);
 	}
 }
