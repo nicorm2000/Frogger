@@ -7,10 +7,16 @@ namespace game
 {
 	void CreditsLogic(Vector2 mousePosition, GameState& gameState)
 	{
+		Sound frogRibbitClick = LoadSound("Resources/Sounds/Frog-sound-ribbit.wav");
+
 		if (CheckCollisionPointRec(mousePosition, { static_cast<float>(GetScreenWidth() / 2) - 87.5f, static_cast<float>(GetScreenHeight() / 2) - 20, 190, 85 }))
 		{
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
+				PlaySound(frogRibbitClick);
+
+				SetSoundVolume(frogRibbitClick, 1);
+
 				OpenURL("https://nicorm.itch.io/");
 			}
 		}
@@ -19,6 +25,10 @@ namespace game
 		{
 			if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 			{
+				PlaySound(frogRibbitClick);
+
+				SetSoundVolume(frogRibbitClick, 1);
+
 				gameState = GameState::GAMETITLE;
 			}
 		}
