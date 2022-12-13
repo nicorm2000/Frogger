@@ -38,7 +38,7 @@ namespace game
 
 	void ResetGame(Frog& frog, Fly& fly, float& timer, int& fliesPickedUp);
 
-	void UnloadData(Texture2D mouse, Log totalLogs[], LandEnemy landEnemies[]);
+	void UnloadData(Texture2D mouse, Frog frog, Log totalLogs[], LandEnemy landEnemies[]);
 
 	void Game()
 	{
@@ -673,9 +673,11 @@ namespace game
 		timer = 30.0f;
 	}
 
-	void UnloadData(Texture2D mouse, Log totalLogs[], LandEnemy landEnemies[])
+	void UnloadData(Texture2D mouse, Frog frog, Log totalLogs[], LandEnemy landEnemies[])
 	{
 		UnloadTexture(mouse);
+
+		UnloadTexture(frog.frogTexture);
 
 		for (int i = 0; i < LOG_COUNT; i++)
 		{

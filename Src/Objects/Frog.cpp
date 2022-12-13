@@ -11,13 +11,15 @@ namespace game
 		frog.frogSize.y = 50;
 		frog.frogLives = 5;
 		frog.isAlive = true;
-		frog.frogColor = GREEN;
+		frog.frogColor = WHITE;
+		frog.frogTexture = LoadTexture("Resources/Textures/frog.png");
 
 		return frog;
 	}
 
 	void DrawFrog(Frog frog)
 	{
-		DrawRectangle(static_cast<int>(frog.frogPosition.x), static_cast<int>(frog.frogPosition.y), static_cast<int>(frog.frogSize.x), static_cast<int>(frog.frogSize.y), frog.frogColor);
+		//DrawRectangle(static_cast<int>(frog.frogPosition.x), static_cast<int>(frog.frogPosition.y), static_cast<int>(frog.frogSize.x), static_cast<int>(frog.frogSize.y), frog.frogColor);
+		DrawTexture(frog.frogTexture, static_cast<int>(frog.frogPosition.x), static_cast<int>(frog.frogPosition.y), frog.frogColor);
 	}
 }
