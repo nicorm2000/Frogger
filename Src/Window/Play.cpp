@@ -36,6 +36,8 @@ namespace game
 
 	void TpBackToStart(Frog& frog);
 
+	void ResetGame(Frog& frog, Fly& fly, float& timer, int& fliesPickedUp);
+
 	void Game()
 	{
 		Initialize();
@@ -220,6 +222,11 @@ namespace game
 
 					MainMenuLogic(mousePosition, gameState);
 
+					for (int i = 0; i < FLIES_COUNT; i++)
+					{
+						ResetGame(frog, flies[i], timer, fliesPickedUp);
+					}
+
 					////Draw
 
 					MainMenuDraw();
@@ -231,7 +238,7 @@ namespace game
 					////Logic
 
 					mousePosition = GetMousePosition();
-					
+
 					if (fliesPickedUp != 5)
 					{
 						if (!isPaused)
@@ -639,5 +646,18 @@ namespace game
 		}
 
 		//Jump Sound
+	}
+
+	void ResetGame(Frog& frog, Fly& fly, float& timer, int& fliesPickedUp)
+	{
+		frog.frogLives = 5;
+		frog.frogPosition.x = 486;
+		frog.frogPosition.y = 967.5f;
+
+		fly.isFlyPicked = false;
+		
+		fliesPickedUp = 0;
+
+		timer = 30.0f;
 	}
 }
