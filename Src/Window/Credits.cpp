@@ -5,10 +5,13 @@
 
 namespace game
 {
-	void CreditsLogic(Vector2 mousePosition, GameState& gameState)
+	void CreditsLoad()
 	{
 		Sound frogRibbitClick = LoadSound("Resources/Sounds/Frog-sound-ribbit.wav");
+	}
 
+	void CreditsLogic(Vector2 mousePosition, GameState& gameState, Sound frogRibbitClick)
+	{
 		if (CheckCollisionPointRec(mousePosition, { static_cast<float>(GetScreenWidth() / 2) - 87.5f, static_cast<float>(GetScreenHeight() / 2) - 20, 190, 85 }))
 		{
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -45,5 +48,10 @@ namespace game
 		DrawRectangle(250, GetScreenHeight() / 2 - 115, 550, 85, BLACK);
 		DrawRectangle(255, GetScreenHeight() / 2 - 110, 540, 75, WHITE);
 		DrawText("Nicolas Ramos Marin", static_cast<int>(GetScreenWidth() / 2) - MeasureText("Nicolas Ramos Marin", 25), static_cast<int>(GetScreenHeight() / 2) - 100, 50, BLACK);
+	}
+
+	void UnloadDataCredits(Sound frogRibbitClick)
+	{
+		UnloadSound(frogRibbitClick);
 	}
 }

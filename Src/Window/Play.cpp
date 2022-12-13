@@ -38,7 +38,7 @@ namespace game
 
 	void ResetGame(Frog& frog, Fly& fly, float& timer, int& fliesPickedUp);
 
-	void UnloadData(Texture2D mouse, Texture2D bg, Frog frog, Log totalLogs[], LandEnemy landEnemies[], Fly flies[], Font gameFont, Sound frogJump, Sound frogSplat, Sound frogDrown, Sound frogPickUpFly, Music bgMusic);
+	void UnloadDataPlay(Texture2D mouse, Texture2D bg, Frog frog, Log totalLogs[], LandEnemy landEnemies[], Fly flies[], Font gameFont, Sound frogJump, Sound frogSplat, Sound frogDrown, Sound frogPickUpFly, Sound frogRibbitClick, Music bgMusic);
 
 	void Game()
 	{
@@ -241,7 +241,7 @@ namespace game
 
 					mousePosition = GetMousePosition();
 
-					MainMenuLogic(mousePosition, gameState);
+					MainMenuLogic(mousePosition, gameState, frogRibbitClick);
 
 					for (int i = 0; i < FLIES_COUNT; i++)
 					{
@@ -413,7 +413,7 @@ namespace game
 
 					mousePosition = GetMousePosition();
 
-					HowToPlayLogic(mousePosition, gameState);
+					HowToPlayLogic(mousePosition, gameState, frogRibbitClick);
 
 					////Draw
 
@@ -429,7 +429,7 @@ namespace game
 
 					mousePosition = GetMousePosition();
 					
-					CreditsLogic(mousePosition, gameState);
+					CreditsLogic(mousePosition, gameState, frogRibbitClick);
 
 					////Draw
 
@@ -441,8 +441,11 @@ namespace game
 
 				case game::GameState::EXIT:
 
-					UnloadData(mouse, bg, frog, totalLogs, landEnemies, flies, gameFont, frogJump, frogSplat, frogDrown, frogPickUpFly, bgMusic);
-
+					UnloadDataMainMenu(frogRibbitClick);
+					UnloadDataPlay(mouse, bg, frog, totalLogs, landEnemies, flies, gameFont, frogJump, frogSplat, frogDrown, frogPickUpFly, frogRibbitClick, bgMusic);
+					UnloadDataHowToPlay(frogRibbitClick);
+					UnloadDataCredits(frogRibbitClick);
+					
 					playingGame = false;
 
 					break;
@@ -702,7 +705,7 @@ namespace game
 		timer = 30.0f;
 	}
 
-	void UnloadData(Texture2D mouse, Texture2D bg, Frog frog, Log totalLogs[], LandEnemy landEnemies[], Fly flies[], Font gameFont, Sound frogJump, Sound frogSplat, Sound frogDrown, Sound frogPickUpFly, Music bgMusic)
+	void UnloadDataPlay(Texture2D mouse, Texture2D bg, Frog frog, Log totalLogs[], LandEnemy landEnemies[], Fly flies[], Font gameFont, Sound frogJump, Sound frogSplat, Sound frogDrown, Sound frogPickUpFly, Sound frogRibbitClick, Music bgMusic)
 	{
 		UnloadTexture(mouse);
 
@@ -734,6 +737,8 @@ namespace game
 		UnloadSound(frogDrown);
 		
 		UnloadSound(frogPickUpFly);
+
+		UnloadSound(frogRibbitClick);
 
 		UnloadMusicStream(bgMusic);
 	}

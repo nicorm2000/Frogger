@@ -5,7 +5,11 @@
 
 namespace game
 {
-	void CreditsLogic(Vector2 mousePosition, GameState& gameState);
+	void CreditsLoad();
+
+	void CreditsLogic(Vector2 mousePosition, GameState& gameState, Sound frogRibbitClick);
 
 	void CreditsDraw();
+
+	void UnloadDataCredits(Sound frogRibbitClick);
 }

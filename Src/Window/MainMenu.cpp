@@ -4,10 +4,13 @@
 
 namespace game
 {
-	void MainMenuLogic(Vector2 mousePosition, GameState& gameState)
+	void MainMenuLoad()
 	{
 		Sound frogRibbitClick = LoadSound("Resources/Sounds/Frog-sound-ribbit.wav");
+	}
 
+	void MainMenuLogic(Vector2 mousePosition, GameState& gameState, Sound frogRibbitClick)
+	{
 		if (CheckCollisionPointRec(mousePosition, { static_cast<float>(GetScreenWidth() / 2) - 150 / 2, 200, 150, 50 }))
 		{
 			if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
@@ -68,5 +71,10 @@ namespace game
 
 		DrawRectangle(GetScreenWidth() / 2 - (150 / 2), 422, 150, 50, BLACK);
 		DrawText("EXIT", GetScreenWidth() / 2 - 50 - 10, 425, 50, WHITE);
+	}
+
+	void UnloadDataMainMenu(Sound frogRibbitClick)
+	{
+		UnloadSound(frogRibbitClick);
 	}
 }

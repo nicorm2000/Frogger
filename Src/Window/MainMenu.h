@@ -15,7 +15,11 @@ namespace game
 
 	void Game();
 
-	void MainMenuLogic(Vector2 mousePosition, GameState& gameState);
+	void MainMenuLoad();
+
+	void MainMenuLogic(Vector2 mousePosition, GameState& gameState, Sound frogRibbitClick);
 
 	void MainMenuDraw();
+
+	void UnloadDataMainMenu(Sound frogRibbitClick);
 }
