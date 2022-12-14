@@ -17,6 +17,36 @@ namespace game
 
 		return frog;
 	}
+	/*
+	void CreateFrog1(Frog& frog)
+	{
+		frog.frogPosition.x = 486;
+		frog.frogPosition.y = 967.5f;
+		frog.frogSize.x = 50;
+		frog.frogSize.y = 50;
+		frog.frogLives = 5;
+		frog.isAlive = true;
+		frog.frogColor = WHITE;
+		frog.frogTexture = LoadTexture("Resources/Textures/frog.png");
+	}
+
+	Frog CreateFrog2()
+	{
+		Frog frog;
+
+		frog.frogPosition.x = 486;
+		frog.frogPosition.y = 967.5f;
+		frog.frogSize.x = 50;
+		frog.frogSize.y = 50;
+		frog.frogLives = 5;
+		frog.isAlive = true;
+		frog.frogColor = WHITE;
+		frog.frogTexture = LoadTexture("Resources/Textures/frog.png");
+
+		return frog;
+	}
+	*/
+
 
 	void DrawFrog(Frog frog)
 	{

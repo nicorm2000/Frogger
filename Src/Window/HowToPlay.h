@@ -1,5 +1,4 @@
 #pragma once
-#include "Window/HowToPlay.h"
 
 #include "raylib.h"
 
