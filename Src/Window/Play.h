@@ -111,8 +111,6 @@ namespace game
 
 	const int INSIDE_BORDER_RIGHT_BUTTON_SIZE_Y = 90;
 
-
-
 	void DrawMap(Texture2D bg);
 
 	void DrawExitWindow(Font gameFont);

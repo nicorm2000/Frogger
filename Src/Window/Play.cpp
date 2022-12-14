@@ -54,6 +54,8 @@ namespace game
 	
 	void ResetGame();
 
+	//Functions and their functionality
+
 	void Game()
 	{
 		Initialize();
@@ -454,11 +456,258 @@ namespace game
 		CloseWindow();
 	}
 
-	void DrawMap(Texture2D bg)
+	void LogTp(Log& log)
 	{
-		DrawTexture(bg, 0, 0, WHITE);
+		float spawnTp = 310;
+		float firstTpPosition = 50;
+		float secondTpPosition = 200;
+
+		if (log.logSpeed < 0)
+		{
+			if (log.logPosition.x < -spawnTp)
+			{
+				log.logPosition.x = static_cast<float>(GetScreenWidth()) + firstTpPosition;
+			}
+		}
+		else
+		{
+			if (log.logPosition.x > GetScreenWidth() + secondTpPosition)
+			{
+				log.logPosition.x = -spawnTp;
+			}
+		}
 	}
-	
+
+	void LandEnemyTp(LandEnemy& landEnemy)
+	{
+		float firstTpPosition = 200;
+		float secondTpPosition = 50;
+
+		if (landEnemy.landEnemySpeed < 0)
+		{
+			if (landEnemy.landEnemyPosition.x < -firstTpPosition)
+			{
+				landEnemy.landEnemyPosition.x = static_cast<float>(GetScreenWidth()) + secondTpPosition;
+			}
+		}
+		else
+		{
+			if (landEnemy.landEnemyPosition.x > GetScreenWidth() + firstTpPosition)
+			{
+				landEnemy.landEnemyPosition.x = -firstTpPosition;
+			}
+		}
+	}
+
+	void CheckPlayerInput(Sound frogJump)
+	{
+		int topLimit = 64;
+		int bottomLimit = 959;
+		int rightLimit = 933;
+		int leftLimit = 39;
+
+		float jumpSFX = 0.5f;
+
+		if (IsKeyPressed(KEY_UP))
+		{
+			if (frog.frogPosition.y >= topLimit)
+			{
+				frog.frogPosition.y -= CELL_SIZE;
+			}
+
+			//Jump Sound
+			PlaySound(frogJump);
+
+			SetSoundVolume(frogJump, jumpSFX);
+		}
+
+		if (IsKeyPressed(KEY_DOWN))
+		{
+			if (frog.frogPosition.y <= bottomLimit)
+			{
+				frog.frogPosition.y += CELL_SIZE;
+			}
+
+			//Jump Sound
+			PlaySound(frogJump);
+
+			SetSoundVolume(frogJump, jumpSFX);
+		}
+
+		if (IsKeyPressed(KEY_RIGHT))
+		{
+			if (frog.frogPosition.x <= rightLimit)
+			{
+				frog.frogPosition.x += CELL_SIZE;
+			}
+
+			//Jump Sound
+			PlaySound(frogJump);
+
+			SetSoundVolume(frogJump, jumpSFX);
+		}
+
+		if (IsKeyPressed(KEY_LEFT))
+		{
+			if (frog.frogPosition.x >= leftLimit)
+			{
+				frog.frogPosition.x -= CELL_SIZE;
+			}
+
+			//Jump Sound
+			PlaySound(frogJump);
+
+			SetSoundVolume(frogJump, jumpSFX);
+		}
+	}
+
+	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h)
+	{
+		if (r1x + r1w >= r2x && r1x <= r2x + r2w && r1y + r1h >= r2y && r1y <= r2y + r2h)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	void LandGameCollisions(LandEnemy landEnemy, Sound frogSplat)
+	{
+		float splatSFX = 1;
+
+		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, landEnemy.landEnemyPosition.x, landEnemy.landEnemyPosition.y, landEnemy.landEnemySize.x, landEnemy.landEnemySize.y))
+		{
+			Respawn();
+
+			//Splat Sound
+			PlaySound(frogSplat);
+
+			SetSoundVolume(frogSplat, splatSFX);
+		}
+	}
+
+	void WaterGameCollisions(Water water, Log totalLogs[], Sound frogDrown)
+	{
+		float drownSFX = 1;
+
+		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, water.waterPosition.x, water.waterPosition.y, water.waterSize.x, water.waterSize.y))
+		{
+			bool frogOnLog = false;
+
+			for (int i = 0; i < LOG_COUNT; i++)
+			{
+				frogOnLog = LogCollisions(totalLogs[i]);
+
+				if (frogOnLog)
+				{
+					break;
+				}
+			}
+
+			if (!frogOnLog)
+			{
+				Respawn();
+
+				//Drown Sound
+				PlaySound(frogDrown);
+
+				SetSoundVolume(frogDrown, drownSFX);
+			}
+		}
+	}
+
+	bool LogCollisions(Log log)
+	{
+		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, log.logPosition.x, log.logPosition.y, log.logSize.x, log.logSize.y))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	void FlyCollisions(Fly& fly, Sound frogPickUpFly)
+	{
+		float pickUpFlySFX = 1;
+
+		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, fly.flyPosition.x, fly.flyPosition.y, fly.flySize.x, fly.flySize.y))
+		{
+			TpBackToStart();
+
+			timer = TIMER;
+
+			fly.isFlyPicked = true;
+
+			fliesPickedUp++;
+
+			//Pick up Fly Sound
+			PlaySound(frogPickUpFly);
+
+			SetSoundVolume(frogPickUpFly, pickUpFlySFX);
+		}
+	}
+
+	void Respawn()
+	{
+		timer = TIMER;
+
+		frog.frogLives--;
+
+		frog.frogPosition.x = FROG_INITIAL_POSITION_X;
+		frog.frogPosition.y = FROG_INITIAL_POSITION_Y;
+
+		if (frog.frogLives <= 0)
+		{
+			frog.isAlive = false;
+		}
+	}
+
+	void TpBackToStart()
+	{
+		frog.frogPosition.x = FROG_INITIAL_POSITION_X;
+		frog.frogPosition.y = FROG_INITIAL_POSITION_Y;
+	}
+
+	void UnloadDataPlay(Texture2D mouse, Texture2D bg, Log totalLogs[], LandEnemy landEnemies[], Font gameFont, Sound frogJump, Sound frogSplat, Sound frogDrown, Sound frogPickUpFly, Sound frogRibbitClick, Music bgMusic)
+	{
+		UnloadTexture(mouse);
+
+		UnloadTexture(bg);
+
+		UnloadTexture(frog.frogTexture);
+
+		for (int i = 0; i < LOG_COUNT; i++)
+		{
+			UnloadTexture(totalLogs[i].logTexture);
+		}
+
+		for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
+		{
+			UnloadTexture(landEnemies[i].landEnemyTexture);
+		}
+
+		for (int i = 0; i < FLIES_COUNT; i++)
+		{
+			UnloadTexture(flies[i].flyTexture);
+		}
+
+		UnloadFont(gameFont);
+
+		UnloadSound(frogJump);
+
+		UnloadSound(frogSplat);
+
+		UnloadSound(frogDrown);
+
+		UnloadSound(frogPickUpFly);
+
+		UnloadSound(frogRibbitClick);
+
+		UnloadMusicStream(bgMusic);
+	}
+
 	void WinAndLoseLogic(Sound frogRibbitClick, GameState& gameState)
 	{
 		if (CheckCollisionPointRec(mousePosition, { LEFT_BUTTON_POSITION_X, BUTTON_POSITION_Y, BUTTON_SIZE_X, BUTTON_SIZE_Y }))
@@ -483,6 +732,61 @@ namespace game
 				gameState = GameState::EXIT;
 			}
 		}
+	}
+
+	void PauseLogic(bool& exitWindow, bool& isPaused, GameState& gameState, Sound frogRibbitClick)
+	{
+		if (exitWindow)
+		{
+			if (CheckCollisionPointRec(mousePosition, { LEFT_BUTTON_POSITION_X, BUTTON_POSITION_Y, BUTTON_SIZE_X, BUTTON_SIZE_Y }))
+			{
+				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+				{
+					PlaySound(frogRibbitClick);
+
+					SetSoundVolume(frogRibbitClick, 1);
+
+					exitWindow = false;
+					isPaused = !isPaused;
+				}
+			}
+			if (CheckCollisionPointRec(mousePosition, { RIGHT_BUTTON_POSITION_X, BUTTON_POSITION_Y, BUTTON_SIZE_X, BUTTON_SIZE_Y }))
+			{
+				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+				{
+					PlaySound(frogRibbitClick);
+
+					SetSoundVolume(frogRibbitClick, 1);
+
+					gameState = GameState::GAMETITLE;
+
+					exitWindow = false;
+					isPaused = !isPaused;
+				}
+			}
+		}
+	}
+
+	void ResetGame()
+	{
+		frog.isAlive = true;
+		frog.frogLives = FROG_LIVES;
+		frog.frogPosition.x = FROG_INITIAL_POSITION_X;
+		frog.frogPosition.y = FROG_INITIAL_POSITION_Y;
+
+		for (int i = 0; i < FLIES_COUNT; i++)
+		{
+			flies[i].isFlyPicked = false;
+		}
+
+		fliesPickedUp = 0;
+
+		timer = TIMER;
+	}
+
+	void DrawMap(Texture2D bg)
+	{
+		DrawTexture(bg, 0, 0, WHITE);
 	}
 
 	void DrawExitWindow(Font gameFont)
@@ -586,307 +890,5 @@ namespace game
 
 		DrawTextPro(gameFont, "exit", { rightButtonPosX, rightButtonPosY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
 		DrawTextPro(gameFont, "game", { rightButton2PosX, rightButton2PosY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
-	}
-
-	void PauseLogic(bool& exitWindow, bool& isPaused, GameState& gameState,Sound frogRibbitClick)
-	{
-		if (exitWindow)
-		{
-			if (CheckCollisionPointRec(mousePosition, { LEFT_BUTTON_POSITION_X, BUTTON_POSITION_Y, BUTTON_SIZE_X, BUTTON_SIZE_Y }))
-			{
-				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
-				{
-					PlaySound(frogRibbitClick);
-
-					SetSoundVolume(frogRibbitClick, 1);
-
-					exitWindow = false;
-					isPaused = !isPaused;
-				}
-			}
-			if (CheckCollisionPointRec(mousePosition, { RIGHT_BUTTON_POSITION_X, BUTTON_POSITION_Y, BUTTON_SIZE_X, BUTTON_SIZE_Y }))
-			{
-				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
-				{
-					PlaySound(frogRibbitClick);
-
-					SetSoundVolume(frogRibbitClick, 1);
-
-					gameState = GameState::GAMETITLE;
-
-					exitWindow = false;
-					isPaused = !isPaused;
-				}
-			}
-		}
-	}
-
-	void LogTp(Log& log)
-	{
-		float spawnTp = 310;
-		float firstTpPosition = 50;
-		float secondTpPosition = 200;
-
-		if (log.logSpeed < 0)
-		{
-			if (log.logPosition.x < -spawnTp)
-			{
-				log.logPosition.x = static_cast<float>(GetScreenWidth()) + firstTpPosition;
-			}
-		}
-		else
-		{
-			if (log.logPosition.x > GetScreenWidth() + secondTpPosition)
-			{
-				log.logPosition.x = -spawnTp;
-			}
-		}
-	}
-
-	void LandEnemyTp(LandEnemy& landEnemy)
-	{
-		float firstTpPosition = 200;
-		float secondTpPosition = 50;
-
-		if (landEnemy.landEnemySpeed < 0)
-		{
-			if (landEnemy.landEnemyPosition.x < -firstTpPosition)
-			{
-				landEnemy.landEnemyPosition.x = static_cast<float>(GetScreenWidth()) + secondTpPosition;
-			}
-		}
-		else
-		{
-			if (landEnemy.landEnemyPosition.x > GetScreenWidth() + firstTpPosition)
-			{
-				landEnemy.landEnemyPosition.x = -firstTpPosition;
-			}
-		}
-	}
-
-	void Respawn()
-	{
-		timer = TIMER;
-
-		frog.frogLives--;
-
-		frog.frogPosition.x = FROG_INITIAL_POSITION_X;
-		frog.frogPosition.y = FROG_INITIAL_POSITION_Y;
-
-		if (frog.frogLives <= 0)
-		{
-			frog.isAlive = false;
-		}
-	}
-
-	void TpBackToStart()
-	{
-		frog.frogPosition.x = FROG_INITIAL_POSITION_X;
-		frog.frogPosition.y = FROG_INITIAL_POSITION_Y;
-	}
-
-	bool CollisionRectangleRectangle(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h)
-	{
-		if (r1x + r1w >= r2x && r1x <= r2x + r2w && r1y + r1h >= r2y && r1y <= r2y + r2h)
-		{
-			return true;
-		}
-
-		return false;
-	}
-
-	void LandGameCollisions(LandEnemy landEnemy, Sound frogSplat)
-	{
-		float splatSFX = 1;
-
-		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, landEnemy.landEnemyPosition.x, landEnemy.landEnemyPosition.y, landEnemy.landEnemySize.x, landEnemy.landEnemySize.y))
-		{
-			Respawn();
-
-			//Splat Sound
-			PlaySound(frogSplat);
-
-			SetSoundVolume(frogSplat, splatSFX);
-		}
-	}
-
-	void WaterGameCollisions(Water water, Log totalLogs[], Sound frogDrown)
-	{
-		float drownSFX = 1;
-
-		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, water.waterPosition.x, water.waterPosition.y, water.waterSize.x, water.waterSize.y))
-		{
-			bool frogOnLog = false;
-
-			for (int i = 0; i < LOG_COUNT; i++)
-			{
-				frogOnLog = LogCollisions(totalLogs[i]);
-
-				if (frogOnLog)
-				{
-					break;
-				}
-			}
-
-			if (!frogOnLog)
-			{
-				Respawn();
-
-				//Drown Sound
-				PlaySound(frogDrown);
-
-				SetSoundVolume(frogDrown, drownSFX);
-			}
-		}
-	}
-
-	bool LogCollisions(Log log)
-	{
-		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, log.logPosition.x, log.logPosition.y, log.logSize.x, log.logSize.y))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	void FlyCollisions(Fly& fly, Sound frogPickUpFly)
-	{
-		float pickUpFlySFX = 1;
-
-		if (CollisionRectangleRectangle(frog.frogPosition.x, frog.frogPosition.y, frog.frogSize.x, frog.frogSize.y, fly.flyPosition.x, fly.flyPosition.y, fly.flySize.x, fly.flySize.y))
-		{
-			TpBackToStart();
-
-			timer = TIMER;
-
-			fly.isFlyPicked = true;
-
-			fliesPickedUp++;
-
-			//Pick up Fly Sound
-			PlaySound(frogPickUpFly);
-
-			SetSoundVolume(frogPickUpFly, pickUpFlySFX);
-		}
-	}
-
-	void CheckPlayerInput(Sound frogJump)
-	{
-		int topLimit = 64;
-		int bottomLimit = 959;
-		int rightLimit = 933;
-		int leftLimit = 39;
-
-		float jumpSFX = 0.5f;
-
-		if (IsKeyPressed(KEY_UP))
-		{
-			if (frog.frogPosition.y >= topLimit)
-			{
-				frog.frogPosition.y -= CELL_SIZE;
-			}
-
-			//Jump Sound
-			PlaySound(frogJump);
-
-			SetSoundVolume(frogJump, jumpSFX);
-		}
-
-		if (IsKeyPressed(KEY_DOWN))
-		{
-			if (frog.frogPosition.y <= bottomLimit)
-			{
-				frog.frogPosition.y += CELL_SIZE;
-			}
-
-			//Jump Sound
-			PlaySound(frogJump);
-
-			SetSoundVolume(frogJump, jumpSFX);
-		}
-
-		if (IsKeyPressed(KEY_RIGHT))
-		{
-			if (frog.frogPosition.x <= rightLimit)
-			{
-				frog.frogPosition.x += CELL_SIZE;
-			}
-
-			//Jump Sound
-			PlaySound(frogJump);
-
-			SetSoundVolume(frogJump, jumpSFX);
-		}
-
-		if (IsKeyPressed(KEY_LEFT))
-		{
-			if (frog.frogPosition.x >= leftLimit)
-			{
-				frog.frogPosition.x -= CELL_SIZE;
-			}
-
-			//Jump Sound
-			PlaySound(frogJump);
-
-			SetSoundVolume(frogJump, jumpSFX);
-		}
-	}
-
-	void ResetGame()
-	{
-		frog.isAlive = true;
-		frog.frogLives = FROG_LIVES;
-		frog.frogPosition.x = FROG_INITIAL_POSITION_X;
-		frog.frogPosition.y = FROG_INITIAL_POSITION_Y;
-		
-		for (int i = 0; i < FLIES_COUNT; i++)
-		{
-			flies[i].isFlyPicked = false;
-		}
-		
-		fliesPickedUp = 0;
-
-		timer = TIMER;
-	}
-
-	void UnloadDataPlay(Texture2D mouse, Texture2D bg, Log totalLogs[], LandEnemy landEnemies[], Font gameFont, Sound frogJump, Sound frogSplat, Sound frogDrown, Sound frogPickUpFly, Sound frogRibbitClick, Music bgMusic)
-	{
-		UnloadTexture(mouse);
-
-		UnloadTexture(bg);
-
-		UnloadTexture(frog.frogTexture);
-
-		for (int i = 0; i < LOG_COUNT; i++)
-		{
-			UnloadTexture(totalLogs[i].logTexture);
-		}
-
-		for (int i = 0; i < LAND_ENEMIES_COUNT; i++)
-		{
-			UnloadTexture(landEnemies[i].landEnemyTexture);
-		}
-
-		for (int i = 0; i < FLIES_COUNT; i++)
-		{
-			UnloadTexture(flies[i].flyTexture);
-		}
-
-		UnloadFont(gameFont);
-
-		UnloadSound(frogJump);
-
-		UnloadSound(frogSplat);
-		
-		UnloadSound(frogDrown);
-		
-		UnloadSound(frogPickUpFly);
-
-		UnloadSound(frogRibbitClick);
-
-		UnloadMusicStream(bgMusic);
 	}
 }
