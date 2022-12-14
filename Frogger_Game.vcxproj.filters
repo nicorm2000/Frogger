@@ -20,9 +20,6 @@
     <ClCompile Include="Src\Window\HowToPlay.cpp">
       <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Window\GameLoop.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Objects\Log.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
@@ -58,9 +55,6 @@
       <Filter>Window</Filter>
     </ClInclude>
     <ClInclude Include="Src\Window\HowToPlay.h">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Window\GameLoop.h">
       <Filter>Window</Filter>
     </ClInclude>
     <ClInclude Include="Src\Objects\Log.h">

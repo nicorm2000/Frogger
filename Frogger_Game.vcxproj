@@ -26,7 +26,6 @@
     <ClCompile Include="Src\Objects\Log.cpp" />
     <ClCompile Include="Src\Objects\Water.cpp" />
     <ClCompile Include="Src\Window\Credits.cpp" />
-    <ClCompile Include="Src\Window\GameLoop.cpp" />
     <ClCompile Include="Src\Window\HowToPlay.cpp" />
     <ClCompile Include="Src\Window\MainMenu.cpp" />
     <ClCompile Include="Src\Window\Play.cpp" />
@@ -38,7 +37,6 @@
     <ClInclude Include="Src\Objects\Log.h" />
     <ClInclude Include="Src\Objects\Water.h" />
     <ClInclude Include="Src\Window\Credits.h" />
-    <ClInclude Include="Src\Window\GameLoop.h" />
     <ClInclude Include="Src\Window\HowToPlay.h" />
     <ClInclude Include="Src\Window\MainMenu.h" />
     <ClInclude Include="Src\Window\Play.h" />
