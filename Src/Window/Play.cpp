@@ -446,7 +446,7 @@ namespace game
 
 	static void Initialize()
 	{
-		InitWindow(SCREEN_WIDTH, SCREEN_WIDTH, "Frogger 0.3");
+		InitWindow(SCREEN_WIDTH, SCREEN_WIDTH, "Frogger 1.0");
 		InitAudioDevice();
 	}
 
