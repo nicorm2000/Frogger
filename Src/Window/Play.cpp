@@ -67,9 +67,10 @@ namespace game
 
 		GameState gameState = GameState::GAMETITLE;
 
-		Texture2D mouse = LoadTexture("Resources/Textures/mouse.png");
-		Texture2D bg = LoadTexture("Resources/Textures/bg.png");
-			
+		Texture mouse = LoadTexture("Resources/Textures/mouse.png");
+		Texture bg = LoadTexture("Resources/Textures/bg.png");
+		Texture creditsScene = LoadTexture("Resources/Textures/creditsScene.png");
+
 		Font gameFont = LoadFont("Resources/Fonts/Abalone Smile.otf");
 		
 		Sound frogJump = LoadSound("Resources/Sounds/zapsplat_cartoon_spring_boing_jump_002_88903.wav");
@@ -414,7 +415,7 @@ namespace game
 
 					////Draw
 
-					CreditsDraw();
+					CreditsDraw(creditsScene);
 
 					break;
 
@@ -423,7 +424,7 @@ namespace game
 					UnloadDataMainMenu(frogRibbitClick);
 					UnloadDataPlay(mouse, bg, totalLogs, landEnemies, gameFont, frogJump, frogSplat, frogDrown, frogPickUpFly, frogRibbitClick, bgMusic);
 					UnloadDataHowToPlay(frogRibbitClick);
-					UnloadDataCredits(frogRibbitClick);
+					UnloadDataCredits(frogRibbitClick, creditsScene);
 					
 					playingGame = false;
 
@@ -441,7 +442,7 @@ namespace game
 
 	static void Initialize()
 	{
-		InitWindow(1024, 1024, "Frogger 0.3");
+		InitWindow(SCREEN_WIDTH, SCREEN_WIDTH, "Frogger 0.3");
 		InitAudioDevice();
 	}
 

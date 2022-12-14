@@ -9,7 +9,7 @@ namespace game
 
 	void CreditsLogic(Vector2 mousePosition, GameState& gameState, Sound frogRibbitClick);
 
-	void CreditsDraw();
+	void CreditsDraw(Texture creditsScene);
 
-	void UnloadDataCredits(Sound frogRibbitClick);
+	void UnloadDataCredits(Sound frogRibbitClick, Texture creditsScene);
 }
