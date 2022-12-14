@@ -86,10 +86,8 @@ namespace game
 		DrawTexture(mainMenuScene, 0, 0, WHITE);
 	}
 
-	void UnloadDataMainMenu(Sound frogRibbitClick, Texture mainMenuScene)
+	void UnloadDataMainMenu(Texture mainMenuScene)
 	{
-		UnloadSound(frogRibbitClick);
-
 		UnloadTexture(mainMenuScene);
 	}
 }

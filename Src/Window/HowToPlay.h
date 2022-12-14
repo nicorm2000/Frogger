@@ -10,5 +10,5 @@ namespace game
 
 	void HowToPlayDraw(Texture howToPlayScene);
 	
-	void UnloadDataHowToPlay(Sound frogRibbitClick, Texture howToPlayScene);
+	void UnloadDataHowToPlay(Texture howToPlayScene);
 }

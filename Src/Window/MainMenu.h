@@ -29,5 +29,5 @@ namespace game
 
 	void MainMenuDraw(Texture mainMenuScene);
 
-	void UnloadDataMainMenu(Sound frogRibbitClick, Texture mainMenuScene);
+	void UnloadDataMainMenu(Texture mainMenuScene);
 }

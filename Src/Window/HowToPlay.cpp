@@ -39,10 +39,8 @@ namespace game
 		DrawText("x", xPosX, xPosY, xFontSize, WHITE);
 	}
 
-	void UnloadDataHowToPlay(Sound frogRibbitClick, Texture howToPlayScene)
+	void UnloadDataHowToPlay(Texture howToPlayScene)
 	{
-		UnloadSound(frogRibbitClick);
-
 		UnloadTexture(howToPlayScene);
 	}
 }

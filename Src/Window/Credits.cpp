@@ -172,10 +172,8 @@ namespace game
 		DrawText("x", xPosX, xPosY, xFontSize, WHITE);
 	}
 
-	void UnloadDataCredits(Sound frogRibbitClick, Texture creditsScene)
+	void UnloadDataCredits(Texture creditsScene)
 	{
-		UnloadSound(frogRibbitClick);
-
 		UnloadTexture(creditsScene);
 	}
 }

@@ -13,5 +13,5 @@ namespace game
 
 	void CreditsDraw(Texture creditsScene);
 
-	void UnloadDataCredits(Sound frogRibbitClick, Texture creditsScene);
+	void UnloadDataCredits(Texture creditsScene);
 }

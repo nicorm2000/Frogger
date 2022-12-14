@@ -425,10 +425,10 @@ namespace game
 
 				case game::GameState::EXIT:
 
-					UnloadDataMainMenu(frogRibbitClick, mainMenuScene);
 					UnloadDataPlay(mouse, bg, totalLogs, landEnemies, gameFont, frogJump, frogSplat, frogDrown, frogPickUpFly, frogRibbitClick, bgMusic);
-					UnloadDataHowToPlay(frogRibbitClick, howToPlayScene);
-					UnloadDataCredits(frogRibbitClick, creditsScene);
+					UnloadDataMainMenu(mainMenuScene);
+					UnloadDataHowToPlay(howToPlayScene);
+					UnloadDataCredits(creditsScene);
 					
 					playingGame = false;
 
