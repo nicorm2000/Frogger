@@ -1,5 +1,7 @@
 #include "Objects/Water.h"
 
+#include "raylib.h"
+
 namespace game
 {
 	Water CreateWater(Water& water)

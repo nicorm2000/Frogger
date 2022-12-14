@@ -1,5 +1,7 @@
 #include "Objects/Fly.h"
 
+#include "raylib.h"
+
 namespace game
 {
 	Fly CreateFly(Fly& fly, float posX)

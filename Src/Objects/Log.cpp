@@ -1,5 +1,7 @@
 #include "Log.h"
 
+#include "raylib.h"
+
 namespace game
 {
 	Log CreateLog(Logs logs, float distance)
