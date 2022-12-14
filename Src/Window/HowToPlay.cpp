@@ -27,8 +27,12 @@ namespace game
 
 	void HowToPlayDraw()
 	{
-		DrawRectangle(10, 10, 45, 45, RED);
-		DrawText("x", 20, 5, 50, WHITE);
+		int xPosX = 20;
+		int xPosY = 5;
+		int xFontSize = 50;
+
+		DrawRectangle(EXIT_BUTTON_POSITION_X, EXIT_BUTTON_POSITION_Y, EXIT_BUTTON_SIZE_X, EXIT_BUTTON_SIZE_Y, RED);
+		DrawText("x", xPosX, xPosY, xFontSize, WHITE);
 	}
 
 	void UnloadDataHowToPlay(Sound frogRibbitClick)
