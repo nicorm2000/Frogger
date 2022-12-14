@@ -27,12 +27,12 @@ Frog Drown
 MATRIXXX_ -> https://freesound.org/people/MATRIXXX_/
 https://freesound.org/people/MATRIXXX_/sounds/657930/
 
-Game Font by Khurasan -> https://www.dafont.com/es/khurasan.d5849
-
-https://www.dafont.com/es/abalone-smile.font
-
 Frog Ribbit
 ALEXANDER
 https://orangefreesounds.com/frog-sound-ribbit/
+
+Game Font by Khurasan -> https://www.dafont.com/es/khurasan.d5849
+
+https://www.dafont.com/es/abalone-smile.font
 
 Enjoy the game :), and please give feedback!
