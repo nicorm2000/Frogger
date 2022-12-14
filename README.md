@@ -1,6 +1,6 @@
 # Frogger Version 1.0
 
-##Simple Frogger game made with raylib 4.0 for windows 32, in c++.
+Simple Frogger game made with raylib 4.0 for windows 32, in c++.
 
 Game Dev as well as artist -> https://nicorm.itch.io/
 
@@ -26,7 +26,6 @@ https://freesound.org/people/Whiprealgood/sounds/87535/
 Frog Drown
 MATRIXXX_ -> https://freesound.org/people/MATRIXXX_/
 https://freesound.org/people/MATRIXXX_/sounds/657930/
-
 
 Game Font by Khurasan -> https://www.dafont.com/es/khurasan.d5849
 
