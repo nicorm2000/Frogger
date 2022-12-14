@@ -7,11 +7,25 @@
 
 namespace game
 {
+	//BASIC GAME INFO
+
 	const int SCREEN_WIDTH = 1024;
 
 	const int SCREEN_HEIGHT = 1024;
 
 	const int CELL_SIZE = 64;
+
+	//BASIC FROG INFO
+
+	const int FROG_LIVES = 5;
+
+	const float FROG_INITIAL_POSITION_X = 486.0F;
+
+	const float FROG_INITIAL_POSITION_Y = 967.5f;
+
+	const float TIMER = 30.0f;
+
+	//BASIC GAMEPLAY INFO
 
 	const int SPACE_BETWEEN_FLIES = 192;
 
@@ -27,6 +41,10 @@ namespace game
 
 	const int LOG_DISTANCE = 500;
 
+	//BASIC UI INFO AND LOGIC
+
+	//LOGIC
+
 	const int LEFT_BUTTON_POSITION_X = 350;
 
 	const int RIGHT_BUTTON_POSITION_X = 530;
@@ -37,13 +55,7 @@ namespace game
 
 	const int BUTTON_SIZE_Y = 100;
 
-	const int FROG_LIVES = 5;
-
-	const float FROG_INITIAL_POSITION_X = 486.0F;
-	
-	const float FROG_INITIAL_POSITION_Y = 967.5f;
-
-	const float TIMER = 30.0f;
+	//UI
 
 	const float OUTSIDE_BORDER_POSITION_X = (SCREEN_WIDTH / 2) - 250;
 
@@ -65,6 +77,7 @@ namespace game
 
 	const float ROUNDNESS = 0.5f;
 
+	//BASIC PAUSE, WIN AND LOSE UI INFO
 
 	const int OUTSIDE_BORDER_LEFT_BUTTON_POSITION_X = 345;
 
@@ -74,7 +87,6 @@ namespace game
 
 	const int OUTSIDE_BORDER_LEFT_BUTTON_SIZE_Y = 100;
 
-
 	const int OUTSIDE_BORDER_RIGHT_BUTTON_POSITION_X = 525;
 
 	const int OUTSIDE_BORDER_RIGHT_BUTTON_POSITION_Y = 525;
@@ -82,7 +94,6 @@ namespace game
 	const int OUTSIDE_BORDER_RIGHT_BUTTON_SIZE_X = 150;
 
 	const int OUTSIDE_BORDER_RIGHT_BUTTON_SIZE_Y = 100;
-
 
 	const int INSIDE_BORDER_LEFT_BUTTON_POSITION_X = 350;
 
@@ -92,7 +103,6 @@ namespace game
 
 	const int INSIDE_BORDER_LEFT_BUTTON_SIZE_Y = 90;
 
-
 	const int INSIDE_BORDER_RIGHT_BUTTON_POSITION_X = 530;
 
 	const int INSIDE_BORDER_RIGHT_BUTTON_POSITION_Y = 530;
@@ -100,6 +110,8 @@ namespace game
 	const int INSIDE_BORDER_RIGHT_BUTTON_SIZE_X = 140;
 
 	const int INSIDE_BORDER_RIGHT_BUTTON_SIZE_Y = 90;
+
+
 
 	void DrawMap(Texture2D bg);
 
