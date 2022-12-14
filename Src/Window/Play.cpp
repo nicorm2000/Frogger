@@ -70,6 +70,8 @@ namespace game
 		Texture mouse = LoadTexture("Resources/Textures/mouse.png");
 		Texture bg = LoadTexture("Resources/Textures/bg.png");
 		Texture creditsScene = LoadTexture("Resources/Textures/creditsScene.png");
+		Texture howToPlayScene = LoadTexture("Resources/Textures/howToPlayScene.png");
+		Texture mainMenuScene = LoadTexture("Resources/Textures/mainMenuScene.png");
 
 		Font gameFont = LoadFont("Resources/Fonts/Abalone Smile.otf");
 		
@@ -256,7 +258,7 @@ namespace game
 
 					////Draw
 
-					MainMenuDraw();
+					MainMenuDraw(mainMenuScene);
 
 					break;
 
@@ -403,7 +405,7 @@ namespace game
 
 					////Draw
 
-					HowToPlayDraw();
+					HowToPlayDraw(howToPlayScene);
 
 					break;
 
@@ -421,9 +423,9 @@ namespace game
 
 				case game::GameState::EXIT:
 
-					UnloadDataMainMenu(frogRibbitClick);
+					UnloadDataMainMenu(frogRibbitClick, mainMenuScene);
 					UnloadDataPlay(mouse, bg, totalLogs, landEnemies, gameFont, frogJump, frogSplat, frogDrown, frogPickUpFly, frogRibbitClick, bgMusic);
-					UnloadDataHowToPlay(frogRibbitClick);
+					UnloadDataHowToPlay(frogRibbitClick, howToPlayScene);
 					UnloadDataCredits(frogRibbitClick, creditsScene);
 					
 					playingGame = false;

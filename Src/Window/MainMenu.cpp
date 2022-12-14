@@ -8,11 +8,18 @@ namespace game
 	void MainMenuLoad()
 	{
 		Sound frogRibbitClick = LoadSound("Resources/Sounds/Frog-sound-ribbit.wav");
+
+		Texture mainMenuScene = LoadTexture("Resources/Textures/mainMenuScene.png");
 	}
 
 	void MainMenuLogic(Vector2 mousePosition, GameState& gameState, Sound frogRibbitClick)
 	{
-		if (CheckCollisionPointRec(mousePosition, { static_cast<float>(GetScreenWidth() / 2) - 150 / 2, 200, 150, 50 }))
+		float gamePosX = 370;
+		float gamePosY = 455;
+		float gameSizeX = 280;
+		float gameSizeY = 150;
+
+		if (CheckCollisionPointRec(mousePosition, { gamePosX, gamePosY, gameSizeX, gameSizeY }))
 		{
 			if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 			{
@@ -26,7 +33,12 @@ namespace game
 			}
 		}
 
-		if (CheckCollisionPointRec(mousePosition, { static_cast<float>(GetScreenWidth() / 2) - (375 / 2) + 5, 275, 375, 50 }))
+		float howToPlayPosX = 750;
+		float howToPlayPosY = 330;
+		float howToPlaySizeX = 260;
+		float howToPlaySizeY = 190;
+
+		if (CheckCollisionPointRec(mousePosition, { howToPlayPosX, howToPlayPosY, howToPlaySizeX, howToPlaySizeY }))
 		{
 			if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 			{
@@ -38,7 +50,12 @@ namespace game
 			}
 		}
 
-		if (CheckCollisionPointRec(mousePosition, { static_cast<float>(GetScreenWidth() / 2) - (250 / 2), 350, 250, 50 }))
+		float creditsPosX = 10;
+		float creditsPosY = 385;
+		float creditsSizeX = 280;
+		float creditsSizeY = 80;
+
+		if (CheckCollisionPointRec(mousePosition, { creditsPosX, creditsPosY, creditsSizeX, creditsSizeY }))
 		{
 			if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 			{
@@ -50,7 +67,12 @@ namespace game
 			}
 		}
 
-		if (CheckCollisionPointRec(mousePosition, { static_cast<float>(GetScreenWidth() / 2) - (150 / 2), 425, 150, 150 }))
+		float exitPosX = 440;
+		float exitPosY = 930;
+		float exitSizeX = 150;
+		float exitSizeY = 80;
+
+		if (CheckCollisionPointRec(mousePosition, { exitPosX, exitPosY, exitSizeX, exitSizeY }))
 		{
 			if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 			{
@@ -59,23 +81,15 @@ namespace game
 		}
 	}
 
-	void MainMenuDraw()
+	void MainMenuDraw(Texture mainMenuScene)
 	{
-		DrawRectangle(GetScreenWidth() / 2 - (150 / 2), 197, 150, 50, BLACK);
-		DrawText("PLAY", GetScreenWidth() / 2 - 50 - 15, 200, 50, WHITE);
-
-		DrawRectangle(GetScreenWidth() / 2 - (375 / 2) + 5, 272, 375, 50, BLACK);
-		DrawText("HOW TO PLAY", GetScreenWidth() / 2 - 50 - 125, 275, 50, WHITE);
-
-		DrawRectangle(GetScreenWidth() / 2 - (250 / 2), 347, 250, 50, BLACK);
-		DrawText("CREDITS", GetScreenWidth() / 2 - 50 - 65, 350, 50, WHITE);
-
-		DrawRectangle(GetScreenWidth() / 2 - (150 / 2), 422, 150, 50, BLACK);
-		DrawText("EXIT", GetScreenWidth() / 2 - 50 - 10, 425, 50, WHITE);
+		DrawTexture(mainMenuScene, 0, 0, WHITE);
 	}
 
-	void UnloadDataMainMenu(Sound frogRibbitClick)
+	void UnloadDataMainMenu(Sound frogRibbitClick, Texture mainMenuScene)
 	{
 		UnloadSound(frogRibbitClick);
+
+		UnloadTexture(mainMenuScene);
 	}
 }

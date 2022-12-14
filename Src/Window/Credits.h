@@ -5,14 +5,6 @@
 
 namespace game
 {
-	const int EXIT_BUTTON_POSITION_X = 10;
-
-	const int EXIT_BUTTON_POSITION_Y = 10;
-	
-	const int EXIT_BUTTON_SIZE_X = 45;
-	
-	const int EXIT_BUTTON_SIZE_Y = 45;
-
 	const int CREDITS_BUTTON_SIZE_Y = 70;
 
 	void CreditsLoad();

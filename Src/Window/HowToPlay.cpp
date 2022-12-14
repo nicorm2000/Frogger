@@ -8,6 +8,8 @@ namespace game
 	void HowToPlayLoad()
 	{
 		Sound frogRibbitClick = LoadSound("Resources/Sounds/Frog-sound-ribbit.wav");
+
+		Texture howToPlayScene = LoadTexture("Resources/Textures/howToPlayScene.png");
 	}
 
 	void HowToPlayLogic(Vector2 mousePosition, GameState& gameState, Sound frogRibbitClick)
@@ -25,14 +27,22 @@ namespace game
 		}
 	}
 
-	void HowToPlayDraw()
+	void HowToPlayDraw(Texture howToPlayScene)
 	{
-		DrawRectangle(10, 10, 45, 45, RED);
-		DrawText("x", 20, 5, 50, WHITE);
+		int xPosX = 20;
+		int xPosY = 5;
+		int xFontSize = 50;
+
+		DrawTexture(howToPlayScene, 0, 0, WHITE);
+
+		DrawRectangle(EXIT_BUTTON_POSITION_X, EXIT_BUTTON_POSITION_Y, EXIT_BUTTON_SIZE_X, EXIT_BUTTON_SIZE_Y, RED);
+		DrawText("x", xPosX, xPosY, xFontSize, WHITE);
 	}
 
-	void UnloadDataHowToPlay(Sound frogRibbitClick)
+	void UnloadDataHowToPlay(Sound frogRibbitClick, Texture howToPlayScene)
 	{
 		UnloadSound(frogRibbitClick);
+
+		UnloadTexture(howToPlayScene);
 	}
 }

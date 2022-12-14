@@ -9,7 +9,7 @@ namespace game
 
 	void HowToPlayLogic(Vector2 mousePosition, GameState& gameState, Sound frogRibbitClick);
 
-	void HowToPlayDraw();
+	void HowToPlayDraw(Texture howToPlayScene);
 	
-	void UnloadDataHowToPlay(Sound frogRibbitClick);
+	void UnloadDataHowToPlay(Sound frogRibbitClick, Texture howToPlayScene);
 }
