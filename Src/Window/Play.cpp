@@ -534,8 +534,8 @@ namespace game
 		DrawRectangleRounded({ OUTSIDE_BORDER_LEFT_BUTTON_POSITION_X, OUTSIDE_BORDER_LEFT_BUTTON_POSITION_Y, OUTSIDE_BORDER_LEFT_BUTTON_SIZE_X, OUTSIDE_BORDER_LEFT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, BLACK);
 		DrawRectangleRounded({ INSIDE_BORDER_LEFT_BUTTON_POSITION_X, INSIDE_BORDER_LEFT_BUTTON_POSITION_Y, INSIDE_BORDER_LEFT_BUTTON_SIZE_X, INSIDE_BORDER_LEFT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, GREEN);
 
-		DrawTextPro(gameFont, "go back", { leftButtonPosX, leftButton2PosX }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
-		DrawTextPro(gameFont, "to menu", { leftButtonPosY, leftButton2PosY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
+		DrawTextPro(gameFont, "go back", { leftButtonPosX, leftButtonPosY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
+		DrawTextPro(gameFont, "to menu", { leftButton2PosX, leftButton2PosY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
 
 		DrawRectangleRounded({ OUTSIDE_BORDER_RIGHT_BUTTON_POSITION_X, OUTSIDE_BORDER_RIGHT_BUTTON_POSITION_Y, OUTSIDE_BORDER_RIGHT_BUTTON_SIZE_X, OUTSIDE_BORDER_RIGHT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, BLACK);
 		DrawRectangleRounded({ INSIDE_BORDER_RIGHT_BUTTON_POSITION_X, INSIDE_BORDER_RIGHT_BUTTON_POSITION_Y, INSIDE_BORDER_RIGHT_BUTTON_SIZE_X, INSIDE_BORDER_RIGHT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, RED);
@@ -834,6 +834,7 @@ namespace game
 
 	void ResetGame()
 	{
+		frog.isAlive = true;
 		frog.frogLives = FROG_LIVES;
 		frog.frogPosition.x = FROG_INITIAL_POSITION_X;
 		frog.frogPosition.y = FROG_INITIAL_POSITION_Y;
