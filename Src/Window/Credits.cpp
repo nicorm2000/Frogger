@@ -14,7 +14,11 @@ namespace game
 
 	void CreditsLogic(Vector2 mousePosition, GameState& gameState, Sound frogRibbitClick)
 	{
-		if (CheckCollisionPointRec(mousePosition, { 180, 140, 660, 70 }))
+		float nicormPosX = 180;
+		float nicormPosY = 140;
+		float nicormSizeX = 660;
+
+		if (CheckCollisionPointRec(mousePosition, { nicormPosX, nicormPosY, nicormSizeX, CREDITS_BUTTON_SIZE_Y }))
 		{
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
@@ -26,7 +30,11 @@ namespace game
 			}
 		}
 
-		if (CheckCollisionPointRec(mousePosition, { 490, 280, 310, 70 }))
+		float fontPosX = 490;
+		float fontPosY = 280;
+		float fontSizeX = 310;
+
+		if (CheckCollisionPointRec(mousePosition, { fontPosX, fontPosY, fontSizeX, CREDITS_BUTTON_SIZE_Y }))
 		{
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
@@ -39,7 +47,11 @@ namespace game
 			}
 		}
 
-		if (CheckCollisionPointRec(mousePosition, { 500, 415, 315, 70 }))
+		float bgMusicPosX = 500;
+		float bgMusicPosY = 415;
+		float bgMusicSizeX = 315;
+
+		if (CheckCollisionPointRec(mousePosition, { bgMusicPosX, bgMusicPosY, bgMusicSizeX, CREDITS_BUTTON_SIZE_Y }))
 		{
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
@@ -51,7 +63,11 @@ namespace game
 			}
 		}
 
-		if (CheckCollisionPointRec(mousePosition, { 200, 645, 630, 70 }))
+		float pickUpFlyPosX = 200;
+		float pickUpFlyPosY = 645;
+		float pickUpFlySizeX = 630;
+
+		if (CheckCollisionPointRec(mousePosition, { pickUpFlyPosX, pickUpFlyPosY, pickUpFlySizeX, CREDITS_BUTTON_SIZE_Y }))
 		{
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
@@ -64,7 +80,11 @@ namespace game
 			}
 		}
 
-		if (CheckCollisionPointRec(mousePosition, { 50, 735, 370, 70 }))
+		float ribbitPosX = 50;
+		float ribbitPosY = 735;
+		float ribbitSizeX = 370;
+
+		if (CheckCollisionPointRec(mousePosition, { ribbitPosX, ribbitPosY, ribbitSizeX, CREDITS_BUTTON_SIZE_Y }))
 		{
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
@@ -76,7 +96,11 @@ namespace game
 			}
 		}
 
-		if (CheckCollisionPointRec(mousePosition, { 650, 735, 280, 70 }))
+		float jumpPosX = 650;
+		float jumpPosY = 735;
+		float jumpSizeX = 280;
+
+		if (CheckCollisionPointRec(mousePosition, { jumpPosX, jumpPosY, jumpSizeX, CREDITS_BUTTON_SIZE_Y }))
 		{
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
@@ -89,7 +113,11 @@ namespace game
 			}
 		}
 
-		if (CheckCollisionPointRec(mousePosition, { 90, 810, 360, 70 }))
+		float drownPosX = 90;
+		float drownPosY = 810;
+		float drownSizeX = 360;
+
+		if (CheckCollisionPointRec(mousePosition, { drownPosX, drownPosY, drownSizeX, CREDITS_BUTTON_SIZE_Y }))
 		{
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
@@ -102,7 +130,11 @@ namespace game
 			}
 		}
 
-		if (CheckCollisionPointRec(mousePosition, { 570, 810, 430, 70 }))
+		float splatPosX = 570;
+		float splatPosY = 810;
+		float splatSizeX = 430;
+
+		if (CheckCollisionPointRec(mousePosition, { splatPosX, splatPosY, splatSizeX, CREDITS_BUTTON_SIZE_Y }))
 		{
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{

@@ -13,6 +13,8 @@ namespace game
 	
 	const int EXIT_BUTTON_SIZE_Y = 45;
 
+	const int CREDITS_BUTTON_SIZE_Y = 70;
+
 	void CreditsLoad();
 
 	void CreditsLogic(Vector2 mousePosition, GameState& gameState, Sound frogRibbitClick);
