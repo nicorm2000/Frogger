@@ -3,8 +3,14 @@
 #include "Objects/Log.h"
 #include "Objects/LandEnemy.h"
 
+#include "raylib.h"
+
 namespace game
 {
+	const int SCREEN_WIDTH = 1024;
+
+	const int SCREEN_HEIGHT = 1024;
+
 	const int CELL_SIZE = 64;
 
 	const int SPACE_BETWEEN_FLIES = 192;
@@ -38,6 +44,62 @@ namespace game
 	const float FROG_INITIAL_POSITION_Y = 967.5f;
 
 	const float TIMER = 30.0f;
+
+	const float OUTSIDE_BORDER_POSITION_X = (SCREEN_WIDTH / 2) - 250;
+
+	const float OUTSIDE_BORDER_POSITION_Y = (SCREEN_HEIGHT / 2) - 190;
+
+	const int OUTSIDE_BORDER_SIZE_X = 500;
+
+	const int OUTSIDE_BORDER_SIZE_Y = 330;
+
+	const float INSIDE_BORDER_POSITION_X = (SCREEN_WIDTH / 2) - 245;
+
+	const float INSIDE_BORDER_POSITION_Y = (SCREEN_HEIGHT / 2) - 185;
+
+	const int INSIDE_BORDER_SIZE_X = 490;
+
+	const int INSIDE_BORDER_SIZE_Y = 320;
+
+	const int SEGMENTS = 1;
+
+	const float ROUNDNESS = 0.5f;
+
+
+	const int OUTSIDE_BORDER_LEFT_BUTTON_POSITION_X = 345;
+
+	const int OUTSIDE_BORDER_LEFT_BUTTON_POSITION_Y = 525;
+
+	const int OUTSIDE_BORDER_LEFT_BUTTON_SIZE_X = 150;
+
+	const int OUTSIDE_BORDER_LEFT_BUTTON_SIZE_Y = 100;
+
+
+	const int OUTSIDE_BORDER_RIGHT_BUTTON_POSITION_X = 525;
+
+	const int OUTSIDE_BORDER_RIGHT_BUTTON_POSITION_Y = 525;
+
+	const int OUTSIDE_BORDER_RIGHT_BUTTON_SIZE_X = 150;
+
+	const int OUTSIDE_BORDER_RIGHT_BUTTON_SIZE_Y = 100;
+
+
+	const int INSIDE_BORDER_LEFT_BUTTON_POSITION_X = 350;
+
+	const int INSIDE_BORDER_LEFT_BUTTON_POSITION_Y = 530;
+
+	const int INSIDE_BORDER_LEFT_BUTTON_SIZE_X = 140;
+
+	const int INSIDE_BORDER_LEFT_BUTTON_SIZE_Y = 90;
+
+
+	const int INSIDE_BORDER_RIGHT_BUTTON_POSITION_X = 530;
+
+	const int INSIDE_BORDER_RIGHT_BUTTON_POSITION_Y = 530;
+
+	const int INSIDE_BORDER_RIGHT_BUTTON_SIZE_X = 140;
+
+	const int INSIDE_BORDER_RIGHT_BUTTON_SIZE_Y = 90;
 
 	void DrawMap(Texture2D bg);
 

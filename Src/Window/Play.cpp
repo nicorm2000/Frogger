@@ -484,64 +484,105 @@ namespace game
 
 	void DrawExitWindow(Font gameFont)
 	{
-		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 250, static_cast<float>(GetScreenHeight() / 2) - 190, 500, 330 }, 0.5f, 1, BLACK);
-		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 245, static_cast<float>(GetScreenHeight() / 2) - 185, 490, 320 }, 0.5f, 1, LIGHTGRAY);
+		float fontSizeTitle = 90;
+		float fontSizeButttons = 80;
+		float title1X = static_cast<float>(GetScreenWidth() - 730);
+		float title1Y = static_cast<float>((GetScreenHeight() / 2) - 150);
+		float title2X = static_cast<float>(GetScreenWidth() - 700);
+		float title2Y = static_cast<float>((GetScreenHeight() / 2) - 80);
+		float yesPosX = 375;
+		float noPosX = 570;
+		float posY = 540;
 
-		DrawTextPro(gameFont, "Do you want to", { static_cast<float>(GetScreenWidth() - 730), static_cast<float>(GetScreenHeight() / 2) - 150 }, { 0, 0 }, 0, 90, 0, BLACK);
-		DrawTextPro(gameFont, "keep playing?", { static_cast<float>(GetScreenWidth() - 700), static_cast<float>(GetScreenHeight() / 2) - 80 }, { 0, 0 }, 0, 90, 0, BLACK);
+		DrawRectangleRounded({ OUTSIDE_BORDER_POSITION_X, OUTSIDE_BORDER_POSITION_Y, OUTSIDE_BORDER_SIZE_X, OUTSIDE_BORDER_SIZE_Y }, ROUNDNESS, SEGMENTS, BLACK);
+		DrawRectangleRounded({ INSIDE_BORDER_POSITION_X, INSIDE_BORDER_POSITION_Y, INSIDE_BORDER_SIZE_X, INSIDE_BORDER_SIZE_Y }, ROUNDNESS, SEGMENTS, LIGHTGRAY);
 
-		DrawRectangleRounded({ 350, 525, 150, 100 }, 0.5f, 1, BLACK);
-		DrawRectangleRounded({ 355, 530, 140, 90 }, 0.5f, 1, GREEN);
+		DrawTextPro(gameFont, "Do you want to", { title1X, title1Y }, { 0, 0 }, 0, fontSizeTitle, 0, BLACK);
+		DrawTextPro(gameFont, "keep playing?", { title2X, title2Y }, { 0, 0 }, 0, fontSizeTitle, 0, BLACK);
 
-		DrawTextPro(gameFont, "YES", { 375, 540 }, { 0, 0 }, 0, 80, 0, BLACK);
+		DrawRectangleRounded({ OUTSIDE_BORDER_LEFT_BUTTON_POSITION_X, OUTSIDE_BORDER_LEFT_BUTTON_POSITION_Y, OUTSIDE_BORDER_LEFT_BUTTON_SIZE_X, OUTSIDE_BORDER_LEFT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, BLACK);
+		DrawRectangleRounded({ INSIDE_BORDER_LEFT_BUTTON_POSITION_X, INSIDE_BORDER_LEFT_BUTTON_POSITION_Y, INSIDE_BORDER_LEFT_BUTTON_SIZE_X, INSIDE_BORDER_LEFT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, GREEN);
 
-		DrawRectangleRounded({ 530, 525, 150, 100 }, 0.5f, 1, BLACK);
-		DrawRectangleRounded({ 535, 530, 140, 90 }, 0.5f, 1, RED);
+		DrawTextPro(gameFont, "YES", { yesPosX, posY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
 
-		DrawTextPro(gameFont, "NO", { 570, 540 }, { 0, 0 }, 0, 80, 0, BLACK);
+		DrawRectangleRounded({ OUTSIDE_BORDER_RIGHT_BUTTON_POSITION_X, OUTSIDE_BORDER_RIGHT_BUTTON_POSITION_Y, OUTSIDE_BORDER_RIGHT_BUTTON_SIZE_X, OUTSIDE_BORDER_RIGHT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, BLACK);
+		DrawRectangleRounded({ INSIDE_BORDER_RIGHT_BUTTON_POSITION_X, INSIDE_BORDER_RIGHT_BUTTON_POSITION_Y, INSIDE_BORDER_RIGHT_BUTTON_SIZE_X, INSIDE_BORDER_RIGHT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, RED);
+
+		DrawTextPro(gameFont, "NO", { noPosX, posY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
 	}
 
 	void DrawWinMenu(Font gameFont)
 	{
-		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 250, static_cast<float>(GetScreenHeight() / 2) - 190, 500, 330 }, 0.5f, 1, BLACK);
-		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 245, static_cast<float>(GetScreenHeight() / 2) - 185, 490, 320 }, 0.5f, 1, LIGHTGRAY);
+		float fontSizeTitle = 150;
+		float fontSizeButttons = 50;
+		float titleX = static_cast<float>(GetScreenWidth() - 730);
+		float titleY = static_cast<float>((GetScreenHeight() / 2) - 150);
+		float leftButtonPosX = 365;
+		float leftButton2PosX = 350;
+		float leftButtonPosY = 530;
+		float leftButton2PosY = 565;
+		float rightButtonPosX = 575;
+		float rightButtonPosY = 530;
+		float rightButton2PosX = 560;
+		float rightButton2PosY = 565;
 
-		DrawTextPro(gameFont, "You Won!", { static_cast<float>(GetScreenWidth() - 730), static_cast<float>(GetScreenHeight() / 2) - 150 }, { 0, 0 }, 0, 150, 0, BLACK);
+		DrawRectangleRounded({ OUTSIDE_BORDER_POSITION_X, OUTSIDE_BORDER_POSITION_Y, OUTSIDE_BORDER_SIZE_X, OUTSIDE_BORDER_SIZE_Y }, ROUNDNESS, SEGMENTS, BLACK);
+		DrawRectangleRounded({ INSIDE_BORDER_POSITION_X, INSIDE_BORDER_POSITION_Y, INSIDE_BORDER_SIZE_X, INSIDE_BORDER_SIZE_Y }, ROUNDNESS, SEGMENTS, LIGHTGRAY);
 
-		DrawRectangleRounded({ 350, 525, 150, 100 }, 0.5f, 1, BLACK);
-		DrawRectangleRounded({ 355, 530, 140, 90 }, 0.5f, 1, GREEN);
+		DrawTextPro(gameFont, "You Won!", { titleX, titleY }, { 0, 0 }, 0, fontSizeTitle, 0, BLACK);
 
-		DrawTextPro(gameFont, "go back", { 365, 530 }, { 0, 0 }, 0, 50, 0, BLACK);
-		DrawTextPro(gameFont, "to menu", { 355, 565 }, { 0, 0 }, 0, 50, 0, BLACK);
+		DrawRectangleRounded({ OUTSIDE_BORDER_LEFT_BUTTON_POSITION_X, OUTSIDE_BORDER_LEFT_BUTTON_POSITION_Y, OUTSIDE_BORDER_LEFT_BUTTON_SIZE_X, OUTSIDE_BORDER_LEFT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, BLACK);
+		DrawRectangleRounded({ INSIDE_BORDER_LEFT_BUTTON_POSITION_X, INSIDE_BORDER_LEFT_BUTTON_POSITION_Y, INSIDE_BORDER_LEFT_BUTTON_SIZE_X, INSIDE_BORDER_LEFT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, GREEN);
 
-		DrawRectangleRounded({ 530, 525, 150, 100 }, 0.5f, 1, BLACK);
-		DrawRectangleRounded({ 535, 530, 140, 90 }, 0.5f, 1, RED);
+		DrawTextPro(gameFont, "go back", { leftButtonPosX, leftButton2PosX }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
+		DrawTextPro(gameFont, "to menu", { leftButtonPosY, leftButton2PosY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
 
-		DrawTextPro(gameFont, "exit", { 575, 530 }, { 0, 0 }, 0, 50, 0, BLACK);
-		DrawTextPro(gameFont, "game", { 560, 565 }, { 0, 0 }, 0, 50, 0, BLACK);
+		DrawRectangleRounded({ OUTSIDE_BORDER_RIGHT_BUTTON_POSITION_X, OUTSIDE_BORDER_RIGHT_BUTTON_POSITION_Y, OUTSIDE_BORDER_RIGHT_BUTTON_SIZE_X, OUTSIDE_BORDER_RIGHT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, BLACK);
+		DrawRectangleRounded({ INSIDE_BORDER_RIGHT_BUTTON_POSITION_X, INSIDE_BORDER_RIGHT_BUTTON_POSITION_Y, INSIDE_BORDER_RIGHT_BUTTON_SIZE_X, INSIDE_BORDER_RIGHT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, RED);
+
+		DrawTextPro(gameFont, "exit", { rightButtonPosX, rightButtonPosY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
+		DrawTextPro(gameFont, "game", { rightButton2PosX, rightButton2PosY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
 	}
 
 	void DrawLoseMenu(Font gameFont)
 	{
-		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 250, static_cast<float>(GetScreenHeight() / 2) - 190, 500, 330 }, 0.5f, 1, BLACK);
-		DrawRectangleRounded({ static_cast<float>(GetScreenWidth() / 2) - 245, static_cast<float>(GetScreenHeight() / 2) - 185, 490, 320 }, 0.5f, 1, LIGHTGRAY);
+		float fontSizeTitle = 100;
+		float fontSizeTitle2 = 90;
+		float fontSizeButttons = 50;
+		float titleX = static_cast<float>(GetScreenWidth() - 650);
+		float titleY = static_cast<float>((GetScreenHeight() / 2) - 180);
+		float subtitleX1 = static_cast<float>(GetScreenWidth() - 725);
+		float subtitleX2 = static_cast<float>(GetScreenWidth() - 475);
+		float subtitleX3 = static_cast<float>(GetScreenWidth() - 415);
+		float subtitleY = static_cast<float>((GetScreenHeight() / 2) - 80);
+		float leftButtonPosX = 365;
+		float leftButton2PosX = 350;
+		float leftButtonPosY = 530;
+		float leftButton2PosY = 565;
+		float rightButtonPosX = 575;
+		float rightButtonPosY = 530;
+		float rightButton2PosX = 560;
+		float rightButton2PosY = 565;
 
-		DrawTextPro(gameFont, "You Lost!", { static_cast<float>(GetScreenWidth() - 650), static_cast<float>(GetScreenHeight() / 2) - 180 }, { 0, 0 }, 0, 100, 0, BLACK);
-		DrawTextPro(gameFont, "You got", { static_cast<float>(GetScreenWidth() - 725), static_cast<float>(GetScreenHeight() / 2) - 80 }, { 0, 0 }, 0, 90, 0, BLACK);
-		DrawTextPro(gameFont, TextFormat("%i", fliesPickedUp), { static_cast<float>(GetScreenWidth() - 475), static_cast<float>(GetScreenHeight() / 2) - 80 }, { 0, 0 }, 0, 90, 0, WHITE);
-		DrawTextPro(gameFont, "flies", { static_cast<float>(GetScreenWidth() - 415), static_cast<float>(GetScreenHeight() / 2) - 80 }, { 0, 0 }, 0, 90, 0, BLACK);
+		DrawRectangleRounded({ OUTSIDE_BORDER_POSITION_X, OUTSIDE_BORDER_POSITION_Y, OUTSIDE_BORDER_SIZE_X, OUTSIDE_BORDER_SIZE_Y }, ROUNDNESS, SEGMENTS, BLACK);
+		DrawRectangleRounded({ INSIDE_BORDER_POSITION_X, INSIDE_BORDER_POSITION_Y, INSIDE_BORDER_SIZE_X, INSIDE_BORDER_SIZE_Y }, ROUNDNESS, SEGMENTS, LIGHTGRAY);
 
-		DrawRectangleRounded({ 350, 525, 150, 100 }, 0.5f, 1, BLACK);
-		DrawRectangleRounded({ 355, 530, 140, 90 }, 0.5f, 1, GREEN);
+		DrawTextPro(gameFont, "You Lost!", { titleX, titleY }, { 0, 0 }, 0, fontSizeTitle, 0, BLACK);
+		DrawTextPro(gameFont, "You got", { subtitleX1, subtitleY }, { 0, 0 }, 0, fontSizeTitle2, 0, BLACK);
+		DrawTextPro(gameFont, TextFormat("%i", fliesPickedUp), { subtitleX2, subtitleY }, { 0, 0 }, 0, fontSizeTitle2, 0, WHITE);
+		DrawTextPro(gameFont, "flies", { subtitleX3, subtitleY }, { 0, 0 }, 0, fontSizeTitle2, 0, BLACK);
 
-		DrawTextPro(gameFont, "go back", { 365, 530 }, { 0, 0 }, 0, 50, 0, BLACK);
-		DrawTextPro(gameFont, "to menu", { 355, 565 }, { 0, 0 }, 0, 50, 0, BLACK);
+		DrawRectangleRounded({ OUTSIDE_BORDER_LEFT_BUTTON_POSITION_X, OUTSIDE_BORDER_LEFT_BUTTON_POSITION_Y, OUTSIDE_BORDER_LEFT_BUTTON_SIZE_X, OUTSIDE_BORDER_LEFT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, BLACK);
+		DrawRectangleRounded({ INSIDE_BORDER_LEFT_BUTTON_POSITION_X, INSIDE_BORDER_LEFT_BUTTON_POSITION_Y, INSIDE_BORDER_LEFT_BUTTON_SIZE_X, INSIDE_BORDER_LEFT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, GREEN);
 
-		DrawRectangleRounded({ 530, 525, 150, 100 }, 0.5f, 1, BLACK);
-		DrawRectangleRounded({ 535, 530, 140, 90 }, 0.5f, 1, RED);
+		DrawTextPro(gameFont, "go back", { leftButtonPosX, leftButtonPosY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
+		DrawTextPro(gameFont, "to menu", { leftButton2PosX, leftButton2PosY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
 
-		DrawTextPro(gameFont, "exit", { 575, 530 }, { 0, 0 }, 0, 50, 0, BLACK);
-		DrawTextPro(gameFont, "game", { 560, 565 }, { 0, 0 }, 0, 50, 0, BLACK);
+		DrawRectangleRounded({ OUTSIDE_BORDER_RIGHT_BUTTON_POSITION_X, OUTSIDE_BORDER_RIGHT_BUTTON_POSITION_Y, OUTSIDE_BORDER_RIGHT_BUTTON_SIZE_X, OUTSIDE_BORDER_RIGHT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, BLACK);
+		DrawRectangleRounded({ INSIDE_BORDER_RIGHT_BUTTON_POSITION_X, INSIDE_BORDER_RIGHT_BUTTON_POSITION_Y, INSIDE_BORDER_RIGHT_BUTTON_SIZE_X, INSIDE_BORDER_RIGHT_BUTTON_SIZE_Y }, ROUNDNESS, SEGMENTS, RED);
+
+		DrawTextPro(gameFont, "exit", { rightButtonPosX, rightButtonPosY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
+		DrawTextPro(gameFont, "game", { rightButton2PosX, rightButton2PosY }, { 0, 0 }, 0, fontSizeButttons, 0, BLACK);
 	}
 
 	void PauseLogic(bool& exitWindow, bool& isPaused, GameState& gameState,Sound frogRibbitClick)
@@ -560,7 +601,7 @@ namespace game
 					isPaused = !isPaused;
 				}
 			}
-			if (CheckCollisionPointRec(mousePosition, { BUTTON_SIZE_X, BUTTON_POSITION_Y, BUTTON_SIZE_X, BUTTON_SIZE_Y }))
+			if (CheckCollisionPointRec(mousePosition, { RIGHT_BUTTON_POSITION_X, BUTTON_POSITION_Y, BUTTON_SIZE_X, BUTTON_SIZE_Y }))
 			{
 				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 				{
@@ -592,7 +633,7 @@ namespace game
 		}
 		else
 		{
-			if (log.logPosition.x > GetScreenWidth() + 200)
+			if (log.logPosition.x > GetScreenWidth() + secondTpPosition)
 			{
 				log.logPosition.x = -spawnTp;
 			}
