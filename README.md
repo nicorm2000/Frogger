@@ -23,11 +23,11 @@ Frog Splat;
 Whiprealgood -> https://freesound.org/people/Whiprealgood/
 https://freesound.org/people/Whiprealgood/sounds/87535/
 
-Frog Drown
+Frog Drown;
 MATRIXXX_ -> https://freesound.org/people/MATRIXXX_/
 https://freesound.org/people/MATRIXXX_/sounds/657930/
 
-Frog Ribbit
+Frog Ribbit;
 ALEXANDER
 https://orangefreesounds.com/frog-sound-ribbit/
 
